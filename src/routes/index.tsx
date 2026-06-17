@@ -185,8 +185,8 @@ function HomePage() {
         </h2>
         <div className="mt-8 grid gap-5 md:grid-cols-[1fr_auto_1fr_auto_1fr] items-center">
           {STEPS.map((s, i) => (
-            <>
-              <div key={s.n} className="hover-lift rounded-2xl border border-border bg-white p-6 shadow-card">
+            <Fragment key={s.n}>
+              <div className="hover-lift rounded-2xl border border-border bg-white p-6 shadow-card">
                 <div className="flex items-start gap-4">
                   <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[color:var(--gold-soft)] text-sm font-bold text-[color:var(--navy)]">
                     {s.n}
@@ -199,9 +199,9 @@ function HomePage() {
                 </div>
               </div>
               {i < STEPS.length - 1 && (
-                <ArrowRight key={`a${i}`} className="mx-auto hidden md:block h-5 w-5 text-gold" />
+                <ArrowRight className="mx-auto hidden md:block h-5 w-5 text-gold" />
               )}
-            </>
+            </Fragment>
           ))}
         </div>
 
