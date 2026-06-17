@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ShieldCheck, Building2, FileCheck2, TrendingUp, Globe2, Handshake, Users, BarChart3, CheckCircle2 } from "lucide-react";
 import heroImg from "@/assets/hero-trading.jpg";
