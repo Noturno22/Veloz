@@ -7,6 +7,8 @@ import mineralsImg from "@/assets/commodity-minerals.jpg";
 import energyImg from "@/assets/commodity-energy.jpg";
 import industrialImg from "@/assets/commodity-industrial.jpg";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { useI18n } from "@/lib/i18n";
+import type { TKey } from "@/lib/translations";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,34 +24,46 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const STATS = [
-  { icon: Globe2, value: "50+", label: "Countries Served" },
-  { icon: Handshake, value: "1,200+", label: "Transactions" },
-  { icon: Users, value: "850+", label: "Global Partners" },
-  { icon: BarChart3, value: "US$ 2.8B+", label: "Trading Volume" },
-];
-
-const STEPS = [
-  { n: "1", icon: Building2, title: "Create Business Profile", text: "Provide basic information about your business." },
-  { n: "2", icon: FileCheck2, title: "Verify Company Information", text: "Upload required documents for verification." },
-  { n: "3", icon: TrendingUp, title: "Start Trading Opportunities", text: "Access global markets and start trading." },
-];
-
-const COMMODITIES = [
-  { title: "Agricultural", items: ["Coffee", "Soybeans", "Corn", "Rice"], img: agriImg },
-  { title: "Minerals", items: ["Gold", "Diamonds", "Copper", "Iron Ore"], img: mineralsImg },
-  { title: "Energy", items: ["Oil", "Natural Gas", "Fuel Products"], img: energyImg },
-  { title: "Industrial", items: ["Steel", "Aluminum", "Cement"], img: industrialImg },
-];
-
-const MARKET_INSIGHTS = [
-  { name: "Crude Oil", price: "$84.45", change: "+2.35%", up: true },
-  { name: "Gold", price: "$2,395.50", change: "+1.25%", up: true },
-  { name: "Copper", price: "$9,125.00", change: "-0.45%", up: false },
-  { name: "Natural Gas", price: "$2.75", change: "+3.45%", up: true },
-];
-
 function HomePage() {
+  const { t } = useI18n();
+
+  const STATS: { icon: typeof Globe2; value: string; labelKey: TKey }[] = [
+    { icon: Globe2, value: "50+", labelKey: "stats.countries" },
+    { icon: Handshake, value: "1,200+", labelKey: "stats.transactions" },
+    { icon: Users, value: "850+", labelKey: "stats.partners" },
+    { icon: BarChart3, value: "US$ 2.8B+", labelKey: "stats.volume" },
+  ];
+
+  const STEPS: { n: string; icon: typeof Building2; titleKey: TKey; textKey: TKey }[] = [
+    { n: "1", icon: Building2, titleKey: "steps.s1.title", textKey: "steps.s1.text" },
+    { n: "2", icon: FileCheck2, titleKey: "steps.s2.title", textKey: "steps.s2.text" },
+    { n: "3", icon: TrendingUp, titleKey: "steps.s3.title", textKey: "steps.s3.text" },
+  ];
+
+  const COMMODITIES: { titleKey: TKey; items: string[]; img: string }[] = [
+    { titleKey: "comm.agricultural", items: ["Coffee", "Soybeans", "Corn", "Rice"], img: agriImg },
+    { titleKey: "comm.minerals", items: ["Gold", "Diamonds", "Copper", "Iron Ore"], img: mineralsImg },
+    { titleKey: "comm.energy", items: ["Oil", "Natural Gas", "Fuel Products"], img: energyImg },
+    { titleKey: "comm.industrial", items: ["Steel", "Aluminum", "Cement"], img: industrialImg },
+  ];
+
+  const MARKET_INSIGHTS = [
+    { name: "Crude Oil", price: "$84.45", change: "+2.35%", up: true },
+    { name: "Gold", price: "$2,395.50", change: "+1.25%", up: true },
+    { name: "Copper", price: "$9,125.00", change: "-0.45%", up: false },
+    { name: "Natural Gas", price: "$2.75", change: "+3.45%", up: true },
+  ];
+
+  const FORM_FIELDS: { phKey: TKey; icon: string }[] = [
+    { phKey: "form.fullName", icon: "👤" },
+    { phKey: "form.companyName", icon: "🏢" },
+    { phKey: "form.email", icon: "✉" },
+    { phKey: "form.whatsapp", icon: "📞" },
+  ];
+
+  const COUNTRIES = ["Angola", "Nigeria", "South Africa", "Brazil", "China", "USA"];
+  const BIZ_KEYS: TKey[] = ["biz.producer", "biz.supplier", "biz.exporter", "biz.importer", "biz.investor"];
+
   return (
     <div className="bg-background">
       {/* HERO */}
@@ -59,22 +73,20 @@ function HomePage() {
           className="absolute inset-0 -z-10"
           style={{
             background:
-              "radial-gradient(ellipse 80% 60% at 80% 0%, color-mix(in oklab, var(--gold) 18%, transparent), transparent 60%), linear-gradient(180deg, #fcfbf6 0%, #ffffff 70%)",
+              "radial-gradient(ellipse 80% 60% at 80% 0%, color-mix(in oklab, var(--gold) 18%, transparent), transparent 60%), linear-gradient(180deg, color-mix(in oklab, var(--background) 96%, var(--gold) 4%) 0%, var(--background) 70%)",
           }}
         />
         <div className="container-x pt-10 lg:pt-14 pb-16 lg:pb-24">
           <div className="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-14 items-start">
-            {/* Left */}
             <div className="animate-rise">
               <div className="text-xs font-semibold uppercase tracking-[0.32em] text-gold">
-                Worldwide Commodity Marketplace
+                {t("home.hero.eyebrow")}
               </div>
               <h1 className="mt-5 font-display text-[2.5rem] sm:text-5xl lg:text-[3.75rem] font-bold leading-[1.02] text-[color:var(--navy)]">
-                Global Commodity<br />Trading Made Simple
+                {t("home.hero.titleA")}<br />{t("home.hero.titleB")}
               </h1>
               <p className="mt-5 max-w-xl text-base md:text-lg text-muted-foreground">
-                Connecting producers, suppliers, exporters, importers and investors through
-                secure, transparent and efficient commodity trading solutions.
+                {t("home.hero.desc")}
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -82,14 +94,14 @@ function HomePage() {
                   to="/partnership"
                   className="group inline-flex items-center gap-2 rounded-xl bg-gradient-gold px-6 py-3.5 text-sm font-semibold text-[color:var(--gold-foreground)] shadow-gold transition hover:translate-y-[-2px]"
                 >
-                  Become a Partner
+                  {t("common.becomeAPartner")}
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </Link>
                 <Link
                   to="/opportunities"
                   className="group inline-flex items-center gap-2 rounded-xl border border-[color:var(--navy)]/15 bg-white/70 px-6 py-3.5 text-sm font-semibold text-[color:var(--navy)] hover:bg-white"
                 >
-                  Explore Opportunities
+                  {t("common.exploreOpportunities")}
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </Link>
               </div>
@@ -108,15 +120,14 @@ function HomePage() {
                   ))}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Trusted by <span className="font-semibold text-foreground">850+</span> global partners
+                  {t("home.hero.trustedBy")} <span className="font-semibold text-foreground">850+</span> {t("home.hero.trustedBySuffix")}
                 </p>
               </div>
 
-              {/* Hero image */}
               <div className="relative mt-10 rounded-2xl overflow-hidden shadow-elegant">
                 <img
                   src={heroImg}
-                  alt="Cargo ship, airplane and connected digital globe representing global trade"
+                  alt={t("home.hero.imgAlt")}
                   className="w-full h-[320px] sm:h-[400px] object-cover"
                   width={1600}
                   height={1100}
@@ -126,50 +137,42 @@ function HomePage() {
               </div>
             </div>
 
-            {/* Right — Join form */}
             <div className="lg:sticky lg:top-28 animate-rise">
               <div className="glass rounded-2xl p-7 shadow-elegant">
                 <h2 className="font-display text-2xl font-bold text-[color:var(--navy)]">
-                  Join Zentra Trading
+                  {t("common.joinZentra")}
                 </h2>
                 <p className="mt-1.5 text-sm text-muted-foreground">
-                  Create your account and unlock global trading opportunities.
+                  {t("form.heroIntro")}
                 </p>
                 <form className="mt-5 space-y-3" onSubmit={(e) => e.preventDefault()}>
-                  {[
-                    { ph: "Full Name", icon: "👤" },
-                    { ph: "Company Name", icon: "🏢" },
-                    { ph: "Email Address", icon: "✉" },
-                    { ph: "WhatsApp Number", icon: "📞" },
-                  ].map((f) => (
-                    <div key={f.ph} className="relative">
+                  {FORM_FIELDS.map((f) => (
+                    <div key={f.phKey} className="relative">
                       <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-base text-muted-foreground">{f.icon}</span>
                       <input
-                        placeholder={f.ph}
+                        placeholder={t(f.phKey)}
                         className="w-full rounded-lg border border-input bg-white pl-10 pr-3 py-3 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-gold/50"
                       />
                     </div>
                   ))}
                   <select className="w-full rounded-lg border border-input bg-white px-3.5 py-3 text-sm text-muted-foreground focus:outline-none focus:ring-2 focus:ring-gold/50">
-                    <option>🌍 Select Country</option>
-                    <option>Angola</option><option>Nigeria</option><option>South Africa</option>
-                    <option>Brazil</option><option>China</option><option>USA</option>
+                    <option>{t("form.selectCountry")}</option>
+                    {COUNTRIES.map((c) => <option key={c}>{c}</option>)}
                   </select>
                   <select className="w-full rounded-lg border border-input bg-white px-3.5 py-3 text-sm text-muted-foreground focus:outline-none focus:ring-2 focus:ring-gold/50">
-                    <option>💼 Select Business Type</option>
-                    <option>Producer</option><option>Supplier</option><option>Exporter</option>
-                    <option>Importer</option><option>Investor</option>
+                    <option>{t("form.selectBusinessType")}</option>
+                    {BIZ_KEYS.map((k) => <option key={k}>{t(k)}</option>)}
                   </select>
                   <button
                     type="submit"
                     className="group mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-gold px-4 py-3.5 text-sm font-semibold text-[color:var(--gold-foreground)] shadow-gold transition hover:translate-y-[-1px]"
                   >
-                    Join Zentra Trading
+                    {t("common.joinZentra")}
                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                   </button>
                   <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground pt-1">
                     <ShieldCheck className="h-3.5 w-3.5 text-[color:var(--success)]" />
-                    Secure. Trusted. Global.
+                    {t("form.secureGlobal")}
                   </div>
                 </form>
               </div>
@@ -181,7 +184,7 @@ function HomePage() {
       {/* STEPS */}
       <section className="container-x py-12 lg:py-16">
         <h2 className="font-display text-3xl md:text-4xl font-bold text-[color:var(--navy)]">
-          Start Your Journey in 3 Simple Steps
+          {t("steps.title")}
         </h2>
         <div className="mt-8 grid gap-5 md:grid-cols-[1fr_auto_1fr_auto_1fr] items-center">
           {STEPS.map((s, i) => (
@@ -193,8 +196,8 @@ function HomePage() {
                   </div>
                   <s.icon className="h-7 w-7 text-[color:var(--navy)]" strokeWidth={1.5} />
                   <div>
-                    <h3 className="font-display text-lg font-semibold text-[color:var(--navy)]">{s.title}</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">{s.text}</p>
+                    <h3 className="font-display text-lg font-semibold text-[color:var(--navy)]">{t(s.titleKey)}</h3>
+                    <p className="mt-1 text-sm text-muted-foreground">{t(s.textKey)}</p>
                   </div>
                 </div>
               </div>
@@ -205,33 +208,32 @@ function HomePage() {
           ))}
         </div>
 
-        {/* Stats row */}
         <div className="mt-8 rounded-2xl border border-border bg-white shadow-card grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-border">
           {STATS.map((s) => (
-            <div key={s.label} className="flex items-center gap-4 p-6">
+            <div key={s.labelKey} className="flex items-center gap-4 p-6">
               <div className="grid h-12 w-12 place-items-center rounded-full bg-[color:var(--gold-soft)]">
                 <s.icon className="h-5 w-5 text-[color:var(--navy)]" />
               </div>
               <div>
                 <div className="font-display text-2xl font-bold text-[color:var(--navy)]">{s.value}</div>
-                <div className="text-xs uppercase tracking-wider text-muted-foreground">{s.label}</div>
+                <div className="text-xs uppercase tracking-wider text-muted-foreground">{t(s.labelKey)}</div>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* COMMODITIES + DASHBOARD STRIP */}
+      {/* COMMODITIES + DASHBOARD */}
       <section className="container-x py-12 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr]">
           <div>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-[color:var(--navy)]">
-              Explore Our Commodities
+              {t("home.commTitle")}
             </h2>
             <div className="mt-8 grid sm:grid-cols-2 gap-5">
               {COMMODITIES.map((c) => (
-                <div key={c.title} className="hover-lift group rounded-2xl border border-border bg-white p-5 shadow-card">
-                  <h3 className="font-display text-lg font-semibold text-[color:var(--navy)]">{c.title}<br/><span className="text-base font-normal text-muted-foreground">Commodities</span></h3>
+                <div key={c.titleKey} className="hover-lift group rounded-2xl border border-border bg-white p-5 shadow-card">
+                  <h3 className="font-display text-lg font-semibold text-[color:var(--navy)]">{t(c.titleKey)}<br/><span className="text-base font-normal text-muted-foreground">{t("comm.commoditiesWord")}</span></h3>
                   <div className="mt-3 flex gap-5">
                     <ul className="flex-1 space-y-1.5 text-sm">
                       {c.items.map((it) => (
@@ -241,7 +243,7 @@ function HomePage() {
                       ))}
                     </ul>
                     <div className="h-24 w-28 rounded-xl overflow-hidden shrink-0">
-                      <img src={c.img} alt={c.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-110" loading="lazy" />
+                      <img src={c.img} alt={t(c.titleKey)} className="h-full w-full object-cover transition duration-500 group-hover:scale-110" loading="lazy" />
                     </div>
                   </div>
                   <Link to="/commodities" className="mt-4 inline-flex items-center justify-center h-8 w-8 rounded-full bg-gradient-gold text-[color:var(--gold-foreground)] shadow-gold">
@@ -252,14 +254,13 @@ function HomePage() {
             </div>
           </div>
 
-          {/* Dashboard mock */}
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-3">
               {[
-                { l: "Total Trading Volume", v: "US$ 2.8B+", d: "+18.2%" },
-                { l: "Active Transactions", v: "1,200+", d: "+14.7%" },
-                { l: "Global Partners", v: "850+", d: "+21.3%" },
-                { l: "Markets Access", v: "50+", d: "+10.5%" },
+                { l: t("dash.totalVolume"), v: "US$ 2.8B+", d: "+18.2%" },
+                { l: t("dash.activeTx"), v: "1,200+", d: "+14.7%" },
+                { l: t("dash.globalPartners"), v: "850+", d: "+21.3%" },
+                { l: t("dash.marketsAccess"), v: "50+", d: "+10.5%" },
               ].map((k) => (
                 <div key={k.l} className="rounded-xl border border-border bg-white p-4 shadow-card">
                   <div className="text-[11px] text-muted-foreground">{k.l}</div>
@@ -273,10 +274,10 @@ function HomePage() {
 
             <div className="rounded-2xl border border-border bg-white p-5 shadow-card">
               <div className="flex items-center justify-between">
-                <h4 className="text-sm font-semibold text-[color:var(--navy)]">Trading Overview</h4>
+                <h4 className="text-sm font-semibold text-[color:var(--navy)]">{t("dash.tradingOverview")}</h4>
                 <div className="flex gap-1 text-[11px]">
-                  <span className="rounded-full bg-[color:var(--gold-soft)] px-2 py-0.5 font-medium text-[color:var(--navy)]">This Year</span>
-                  <span className="rounded-full px-2 py-0.5 text-muted-foreground">Last Year</span>
+                  <span className="rounded-full bg-[color:var(--gold-soft)] px-2 py-0.5 font-medium text-[color:var(--navy)]">{t("dash.thisYear")}</span>
+                  <span className="rounded-full px-2 py-0.5 text-muted-foreground">{t("dash.lastYear")}</span>
                 </div>
               </div>
               <svg viewBox="0 0 320 120" className="mt-3 w-full h-28">
@@ -298,7 +299,7 @@ function HomePage() {
             </div>
 
             <div className="rounded-2xl border border-border bg-white p-5 shadow-card">
-              <h4 className="text-sm font-semibold text-[color:var(--navy)]">Live Market Insights</h4>
+              <h4 className="text-sm font-semibold text-[color:var(--navy)]">{t("dash.liveMarket")}</h4>
               <ul className="mt-3 divide-y divide-border text-sm">
                 {MARKET_INSIGHTS.map((m) => (
                   <li key={m.name} className="flex items-center justify-between py-2">
@@ -323,25 +324,20 @@ function HomePage() {
         <div className="grid lg:grid-cols-2 gap-10 items-center rounded-3xl border border-border bg-white p-8 lg:p-12 shadow-card overflow-hidden">
           <div>
             <SectionHeading
-              eyebrow="Global Network"
-              title={<>Global Reach,<br /><span className="text-gold">Local Expertise</span></>}
-              description="Zentra Trading connects markets across continents with a robust network of trusted partners and real-time market intelligence."
+              eyebrow={t("global.eyebrow")}
+              title={<>{t("global.titleA")}<br /><span className="text-gold">{t("global.titleB")}</span></>}
+              description={t("global.desc")}
             />
             <ul className="mt-6 space-y-3 text-sm">
-              {[
-                "Operations in 50+ countries across 5 continents",
-                "Regional teams with on-the-ground expertise",
-                "24/7 trade desk and logistics coordination",
-                "End-to-end compliance and documentation support",
-              ].map((t) => (
-                <li key={t} className="flex items-start gap-2.5">
+              {(["global.b1","global.b2","global.b3","global.b4"] as TKey[]).map((k) => (
+                <li key={k} className="flex items-start gap-2.5">
                   <CheckCircle2 className="h-5 w-5 text-[color:var(--success)] shrink-0 mt-0.5" />
-                  <span className="text-foreground/80">{t}</span>
+                  <span className="text-foreground/80">{t(k)}</span>
                 </li>
               ))}
             </ul>
             <Link to="/partnership" className="mt-7 inline-flex items-center gap-2 rounded-xl bg-gradient-navy px-6 py-3 text-sm font-semibold text-white">
-              Join our Network <ArrowRight className="h-4 w-4" />
+              {t("common.joinOurNetwork")} <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="relative h-72 lg:h-96 rounded-2xl bg-[color:var(--accent)] overflow-hidden">
@@ -361,18 +357,18 @@ function HomePage() {
           <div className="relative grid lg:grid-cols-[1.4fr_1fr] gap-8 items-center">
             <div>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                Ready to trade on a <span className="text-gold">global scale?</span>
+                {t("cta.titleA")} <span className="text-gold">{t("cta.titleB")}</span>
               </h2>
               <p className="mt-3 text-white/75 max-w-xl">
-                Join 850+ producers, exporters, importers and investors growing through Zentra Trading.
+                {t("cta.desc")}
               </p>
             </div>
             <div className="flex flex-wrap gap-3 lg:justify-end">
               <Link to="/partnership" className="rounded-xl bg-gradient-gold px-6 py-3.5 text-sm font-semibold text-[color:var(--gold-foreground)] shadow-gold">
-                Become a Partner
+                {t("common.becomeAPartner")}
               </Link>
               <Link to="/contact" className="rounded-xl border border-white/25 px-6 py-3.5 text-sm font-semibold hover:bg-white/10">
-                Contact Us
+                {t("common.contactUs")}
               </Link>
             </div>
           </div>
@@ -383,7 +379,6 @@ function HomePage() {
 }
 
 function WorldMap() {
-  // Decorative dotted world map with golden routes
   return (
     <svg viewBox="0 0 800 400" className="w-full h-full">
       <defs>
@@ -393,7 +388,6 @@ function WorldMap() {
         </radialGradient>
       </defs>
       <rect width="800" height="400" fill="url(#bg)" />
-      {/* dots forming continents - random scatter */}
       <g fill="#9AAAC2" opacity="0.6">
         {Array.from({ length: 380 }).map((_, i) => {
           const x = (i * 53) % 800;
@@ -402,7 +396,6 @@ function WorldMap() {
           return <circle key={i} cx={x} cy={y} r={r} />;
         })}
       </g>
-      {/* routes */}
       {[
         ["120,180","320,90","620,160"],
         ["180,260","420,210","680,260"],

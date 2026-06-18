@@ -23,7 +23,9 @@ export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
         <circle cx="14" cy="32" r="2.2" fill="url(#zg)" />
       </svg>
       <div className="leading-tight">
-        <div className={`font-display text-[1.15rem] font-bold tracking-wide ${variant === "dark" ? "text-navy" : "text-white"}`} style={variant === "dark" ? { color: "var(--navy)" } : undefined}>
+        <div
+          className={`font-display text-[1.15rem] font-bold tracking-wide ${variant === "dark" ? "text-foreground" : "text-white"}`}
+        >
           ZENTRA
         </div>
         <div className="text-[0.62rem] font-semibold tracking-[0.32em] text-gold -mt-0.5">

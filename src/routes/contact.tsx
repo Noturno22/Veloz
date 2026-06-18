@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Mail, Phone, MapPin, Globe2, ArrowRight, ShieldCheck } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
+import type { TKey } from "@/lib/translations";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -16,27 +18,29 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
+  const { t } = useI18n();
+  const CONTACTS: { icon: typeof Mail; labelKey: TKey; value: string }[] = [
+    { icon: MapPin, labelKey: "contact.address", value: "Luanda, Angola" },
+    { icon: Phone, labelKey: "contact.phoneWa", value: "+244 926 599 991" },
+    { icon: Mail, labelKey: "contact.email", value: "info@zentratrading.com" },
+    { icon: Globe2, labelKey: "contact.website", value: "www.zentratrading.com" },
+  ];
   return (
     <>
       <PageHero
-        eyebrow="Contact"
-        title={<>Let's connect your business to <span className="text-gold">global commodity markets.</span></>}
-        description="Our trade desk responds within one business day. Reach us by phone, email, WhatsApp or fill in the registration form."
+        eyebrow={t("contact.eyebrow")}
+        title={<>{t("contact.titleA")} <span className="text-gold">{t("contact.titleB")}</span></>}
+        description={t("contact.desc")}
       />
       <section className="container-x py-16 grid lg:grid-cols-[1fr_1.1fr] gap-10">
         <div className="space-y-4">
-          {[
-            { icon: MapPin, label: "Address", value: "Luanda, Angola" },
-            { icon: Phone, label: "Phone / WhatsApp", value: "+244 926 599 991" },
-            { icon: Mail, label: "Email", value: "info@zentratrading.com" },
-            { icon: Globe2, label: "Website", value: "www.zentratrading.com" },
-          ].map((c) => (
-            <div key={c.label} className="flex items-start gap-4 rounded-2xl border border-border bg-white p-5 shadow-card">
+          {CONTACTS.map((c) => (
+            <div key={c.labelKey} className="flex items-start gap-4 rounded-2xl border border-border bg-white p-5 shadow-card">
               <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-gold text-[color:var(--gold-foreground)] shadow-gold">
                 <c.icon className="h-5 w-5" />
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wider text-muted-foreground">{c.label}</div>
+                <div className="text-xs uppercase tracking-wider text-muted-foreground">{t(c.labelKey)}</div>
                 <div className="font-display text-lg font-semibold text-[color:var(--navy)]">{c.value}</div>
               </div>
             </div>
@@ -53,22 +57,30 @@ function Contact() {
         </div>
 
         <form onSubmit={(e)=>e.preventDefault()} className="rounded-2xl border border-border bg-white p-7 shadow-card">
-          <h2 className="font-display text-2xl font-bold text-[color:var(--navy)]">Join Zentra Trading</h2>
-          <p className="mt-1.5 text-sm text-muted-foreground">Tell us about your business — we'll set up your trade profile.</p>
+          <h2 className="font-display text-2xl font-bold text-[color:var(--navy)]">{t("common.joinZentra")}</h2>
+          <p className="mt-1.5 text-sm text-muted-foreground">{t("form.contactIntro")}</p>
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            <Field label="Full Name" />
-            <Field label="Company Name" />
-            <Field label="Email" type="email" />
-            <Field label="WhatsApp" />
-            <SelectField label="Country" options={["Angola","Nigeria","South Africa","Brazil","China","USA","Other"]} />
-            <SelectField label="Business Type" options={["Producer","Supplier","Exporter","Importer","Investor"]} />
+            <Field label={t("form.fullName")} />
+            <Field label={t("form.companyName")} />
+            <Field label={t("form.emailShort")} type="email" />
+            <Field label={t("form.whatsappShort")} />
+            <SelectField
+              label={t("form.country")}
+              placeholder={t("form.selectPlaceholder")}
+              options={["Angola","Nigeria","South Africa","Brazil","China","USA","Other"]}
+            />
+            <SelectField
+              label={t("form.businessType")}
+              placeholder={t("form.selectPlaceholder")}
+              options={[t("biz.producer"),t("biz.supplier"),t("biz.exporter"),t("biz.importer"),t("biz.investor")]}
+            />
           </div>
-          <Field label="Tell us about your trade" textarea />
+          <Field label={t("form.tellUsTrade")} textarea />
           <button className="mt-5 group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-gold px-5 py-3.5 text-sm font-semibold text-[color:var(--gold-foreground)] shadow-gold transition hover:translate-y-[-1px]">
-            Join Zentra Trading <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+            {t("common.joinZentra")} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
           </button>
           <div className="mt-3 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-            <ShieldCheck className="h-3.5 w-3.5 text-[color:var(--success)]" /> Your information is secure and confidential.
+            <ShieldCheck className="h-3.5 w-3.5 text-[color:var(--success)]" /> {t("form.secureConfidential")}
           </div>
         </form>
       </section>
@@ -89,12 +101,12 @@ function Field({ label, type = "text", textarea }: { label: string; type?: strin
   );
 }
 
-function SelectField({ label, options }: { label: string; options: string[] }) {
+function SelectField({ label, options, placeholder }: { label: string; options: string[]; placeholder: string }) {
   return (
     <label className="block">
       <span className="block text-xs font-medium text-foreground/70 mb-1.5">{label}</span>
       <select className="w-full rounded-lg border border-input bg-white px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gold/50">
-        <option value="">Select…</option>
+        <option value="">{placeholder}</option>
         {options.map((o) => <option key={o}>{o}</option>)}
       </select>
     </label>
