@@ -99,9 +99,9 @@
 .dark {
   --background: oklch(0.16 0.03 260);
   --foreground: oklch(0.97 0.01 90);
-  --card: oklch(0.20 0.04 260);
+  --card: oklch(0.21 0.04 260);
   --card-foreground: oklch(0.97 0.01 90);
-  --popover: oklch(0.20 0.04 260);
+  --popover: oklch(0.21 0.04 260);
   --popover-foreground: oklch(0.97 0.01 90);
   --primary: oklch(0.74 0.14 78);
   --primary-foreground: oklch(0.16 0.03 260);
@@ -109,14 +109,27 @@
   --secondary-foreground: oklch(0.97 0.01 90);
   --muted: oklch(0.24 0.04 260);
   --muted-foreground: oklch(0.72 0.02 90);
-  --accent: oklch(0.30 0.06 260);
+  --accent: oklch(0.28 0.05 260);
   --accent-foreground: oklch(0.97 0.01 90);
-  --navy: oklch(0.16 0.03 260);
-  --gold: oklch(0.78 0.14 80);
-  --gold-soft: oklch(0.26 0.05 80);
+  /* Keep brand navy stable; only relax foreground readability via overrides below. */
+  --gold-soft: oklch(0.30 0.06 80);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.74 0.14 78);
+}
+
+/* Dark-mode surface overrides for components that hardcode white surfaces or
+   the navy brand color for text. Keeps the brand palette intact while
+   making the UI legible in the dark theme without rewriting every component. */
+.dark .bg-white { background-color: var(--card) !important; color: var(--card-foreground); }
+.dark .bg-white\/70, .dark .bg-white\/95 { background-color: color-mix(in oklab, var(--card) 92%, transparent) !important; }
+.dark .text-\[color\:var\(--navy\)\] { color: var(--foreground); }
+.dark .border-input { border-color: var(--border); }
+.dark input, .dark select, .dark textarea { background-color: var(--card); color: var(--foreground); }
+.dark input::placeholder, .dark textarea::placeholder { color: var(--muted-foreground); }
+.dark .glass {
+  background: color-mix(in oklab, var(--background) 70%, transparent);
+  border: 1px solid color-mix(in oklab, white 10%, transparent);
 }
 
 @layer base {
