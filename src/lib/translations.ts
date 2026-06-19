@@ -335,7 +335,12 @@ const pt: Record<keyof typeof en, string> = {
   "comm.energy": "Energia",
   "comm.industrial": "Industriais",
   "comm.commoditiesWord": "Commodities",
-  "home.commTitle": "Explore as Nossas Commodities",
+  "comm.agriBlurb": "Café, soja, milho, arroz, cacau e açúcar entre hubs de origem e destino.",
+  "comm.energyBlurb": "Petróleo bruto, gás natural, GLP e combustíveis refinados para mercados globais de energia.",
+  "comm.mineralsBlurb": "Ouro, diamantes, cobre, minério de ferro e concentrados de metais básicos certificados.",
+  "home.commTitle": "Portfólio",
+  "home.divisions.title": "Divisões Estratégicas de Commodities",
+  "home.divisions.desc": "Operamos em todas as etapas do ciclo das commodities, conectando produção e consumo em escala global.",
 
   "dash.totalVolume": "Volume Total Negociado",
   "dash.activeTx": "Transações Ativas",
