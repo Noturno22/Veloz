@@ -34,43 +34,42 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass shadow-card" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        scrolled
+          ? "border-white/10 bg-[color:var(--background)]/90 backdrop-blur-md"
+          : "border-transparent bg-transparent"
       }`}
     >
-      <div className="container-x flex h-20 items-center justify-between">
-        <Link to="/" aria-label="Zentra Trading home">
+      <div className="container-x flex h-24 items-center justify-between">
+        <Link to="/" aria-label="Zentra Trading home" className="flex items-center">
           <Logo />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-7">
+        <nav className="hidden lg:flex items-center gap-10">
           {NAV.map((item) => {
             const active = pathname === item.to;
             return (
               <Link
                 key={item.to}
                 to={item.to}
-                className={`relative text-sm font-medium transition-colors ${
-                  active ? "text-gold" : "text-foreground/80 hover:text-foreground"
+                className={`relative text-[10px] font-bold uppercase tracking-[0.3em] transition-colors ${
+                  active ? "text-gold" : "text-foreground/60 hover:text-gold"
                 }`}
               >
                 {t(item.key)}
-                {active && (
-                  <span className="absolute -bottom-1 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-gold" />
-                )}
               </Link>
             );
           })}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-2">
+        <div className="hidden lg:flex items-center gap-3">
           <LanguageSwitcher />
           <ThemeToggle />
           <Link
             to="/contact"
-            className="ml-1 flex items-center gap-2 rounded-lg border border-gold/80 px-4 py-2 text-sm font-semibold text-foreground hover:bg-gold hover:text-[color:var(--gold-foreground)] transition-colors"
+            className="ml-1 inline-flex items-center gap-2 bg-gold px-7 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)] hover:brightness-110 transition-all"
           >
-            <UserRound className="h-4 w-4" /> {t("nav.login")}
+            <UserRound className="h-3.5 w-3.5" /> {t("nav.login")}
           </Link>
         </div>
 
@@ -88,20 +87,20 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-border bg-background/95 backdrop-blur">
+        <div className="lg:hidden border-t border-white/10 bg-[color:var(--background)]/95 backdrop-blur">
           <nav className="container-x py-4 flex flex-col gap-1">
             {NAV.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
-                className="rounded-md px-3 py-2.5 text-sm font-medium hover:bg-muted text-foreground"
+                className="rounded-md px-3 py-2.5 text-xs font-bold uppercase tracking-[0.25em] hover:bg-white/5 text-foreground/80"
               >
                 {t(item.key)}
               </Link>
             ))}
             <Link
               to="/contact"
-              className="mt-2 rounded-lg bg-gradient-gold px-4 py-2.5 text-center text-sm font-semibold text-[color:var(--gold-foreground)]"
+              className="mt-2 bg-gold px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)]"
             >
               {t("common.joinZentra")}
             </Link>
