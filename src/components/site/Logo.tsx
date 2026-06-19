@@ -6,9 +6,9 @@ export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
       <img
         src={logoAsset.url}
         alt="Zentra Trading"
-        className={`h-12 w-auto object-contain ${variant === "light" ? "brightness-0 invert" : ""}`}
-        width={120}
-        height={48}
+        className={`h-20 md:h-24 w-auto object-contain ${variant === "light" ? "brightness-0 invert" : ""}`}
+        width={240}
+        height={96}
       />
     </div>
   );
