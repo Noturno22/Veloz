@@ -147,10 +147,10 @@ function HomePage() {
                 </span>
               </div>
               <h2 className="font-display text-4xl lg:text-6xl leading-tight mb-8">
-                {t("home.divisions.title") /* fallback if missing */ || "Core Commodity Divisions"}
+                {t("home.divisions.title")}
               </h2>
               <p className="text-foreground/50 leading-relaxed mb-10 max-w-md">
-                {t("home.divisions.desc") /* fallback */ || ""}
+                {t("home.divisions.desc")}
               </p>
               <Link to="/how-it-works" className="flex items-center gap-4 group w-fit">
                 <span className="text-[10px] uppercase tracking-[0.3em] font-bold">
