@@ -54,10 +54,10 @@
   --radius: 0.75rem;
 
   /* Brand */
-  --navy: oklch(0.22 0.06 255);            /* #0B1F3A */
+  --navy: oklch(0.18 0.045 255);           /* #0A192F */
   --navy-foreground: oklch(0.98 0.005 100);
-  --gold: oklch(0.74 0.14 78);             /* #D4A017 */
-  --gold-foreground: oklch(0.20 0.05 255);
+  --gold: oklch(0.72 0.11 80);             /* #C5A059 */
+  --gold-foreground: oklch(0.18 0.045 255);
   --gold-soft: oklch(0.96 0.04 85);
 
   --background: oklch(0.99 0.003 95);      /* warm off-white */
