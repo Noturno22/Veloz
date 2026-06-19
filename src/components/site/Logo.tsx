@@ -1,15 +1,7 @@
-import logoAsset from "@/assets/zentra-logo.png.asset.json";
-
-export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
+export function Logo() {
   return (
-    <div className="flex items-center gap-3">
-      <img
-        src={logoAsset.url}
-        alt="Zentra Trading"
-        className={`h-20 md:h-24 w-auto object-contain ${variant === "light" ? "brightness-0 invert" : ""}`}
-        width={240}
-        height={96}
-      />
+    <div className="font-display text-2xl md:text-[1.65rem] font-bold tracking-tight uppercase leading-none text-foreground">
+      Zentra<span className="text-gold">.</span>
     </div>
   );
 }

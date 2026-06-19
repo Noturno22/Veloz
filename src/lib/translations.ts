@@ -86,7 +86,12 @@ const en = {
   "comm.energy": "Energy",
   "comm.industrial": "Industrial",
   "comm.commoditiesWord": "Commodities",
-  "home.commTitle": "Explore Our Commodities",
+  "comm.agriBlurb": "Coffee, soybeans, corn, rice, cocoa and sugar across origin and destination hubs.",
+  "comm.energyBlurb": "Crude oil, natural gas, LPG and refined fuels for global energy markets.",
+  "comm.mineralsBlurb": "Gold, diamonds, copper, iron ore and base metal concentrates from certified sources.",
+  "home.commTitle": "Portfolio",
+  "home.divisions.title": "Core Commodity Divisions",
+  "home.divisions.desc": "We operate at every stage of the commodity lifecycle, connecting production to consumption on a global scale.",
 
   // dashboard
   "dash.totalVolume": "Total Trading Volume",
@@ -330,7 +335,12 @@ const pt: Record<keyof typeof en, string> = {
   "comm.energy": "Energia",
   "comm.industrial": "Industriais",
   "comm.commoditiesWord": "Commodities",
-  "home.commTitle": "Explore as Nossas Commodities",
+  "comm.agriBlurb": "Café, soja, milho, arroz, cacau e açúcar entre hubs de origem e destino.",
+  "comm.energyBlurb": "Petróleo bruto, gás natural, GLP e combustíveis refinados para mercados globais de energia.",
+  "comm.mineralsBlurb": "Ouro, diamantes, cobre, minério de ferro e concentrados de metais básicos certificados.",
+  "home.commTitle": "Portfólio",
+  "home.divisions.title": "Divisões Estratégicas de Commodities",
+  "home.divisions.desc": "Operamos em todas as etapas do ciclo das commodities, conectando produção e consumo em escala global.",
 
   "dash.totalVolume": "Volume Total Negociado",
   "dash.activeTx": "Transações Ativas",
