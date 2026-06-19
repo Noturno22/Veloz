@@ -86,7 +86,12 @@ const en = {
   "comm.energy": "Energy",
   "comm.industrial": "Industrial",
   "comm.commoditiesWord": "Commodities",
-  "home.commTitle": "Explore Our Commodities",
+  "comm.agriBlurb": "Coffee, soybeans, corn, rice, cocoa and sugar across origin and destination hubs.",
+  "comm.energyBlurb": "Crude oil, natural gas, LPG and refined fuels for global energy markets.",
+  "comm.mineralsBlurb": "Gold, diamonds, copper, iron ore and base metal concentrates from certified sources.",
+  "home.commTitle": "Portfolio",
+  "home.divisions.title": "Core Commodity Divisions",
+  "home.divisions.desc": "We operate at every stage of the commodity lifecycle, connecting production to consumption on a global scale.",
 
   // dashboard
   "dash.totalVolume": "Total Trading Volume",
