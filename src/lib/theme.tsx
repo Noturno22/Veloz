@@ -12,12 +12,12 @@ function apply(t: Theme) {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("dark");
+  const [theme, setThemeState] = useState<Theme>("light");
 
   useEffect(() => {
     try {
       const stored = localStorage.getItem("zentra-theme") as Theme | null;
-      const initial: Theme = stored ?? "dark";
+      const initial: Theme = stored ?? "light";
       setThemeState(initial);
       apply(initial);
     } catch {}
