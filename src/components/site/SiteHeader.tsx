@@ -40,23 +40,24 @@ export function SiteHeader() {
           : "border-transparent bg-[color:var(--background)]/40 backdrop-blur-sm"
       }`}
     >
-      <div className="container-x flex h-24 items-center justify-between">
-        <Link to="/" aria-label="Zentra Trading home" className="flex items-center">
+      <div className="container-x flex h-20 items-center justify-between gap-4">
+        <Link to="/" aria-label="Zentra Trading home" className="flex items-center shrink-0">
           <Logo />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-10">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           {NAV.map((item) => {
             const active = pathname === item.to;
             return (
               <Link
                 key={item.to}
                 to={item.to}
-                className={`relative text-[10px] font-bold uppercase tracking-[0.3em] transition-colors ${
-                  active ? "text-gold" : "text-foreground/60 hover:text-gold"
+                className={`relative whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors ${
+                  active ? "text-gold" : "text-foreground/70 hover:text-gold"
                 }`}
               >
                 {t(item.key)}
+                {active && <span className="absolute -bottom-2 left-0 right-0 h-[2px] bg-gold" />}
               </Link>
             );
           })}

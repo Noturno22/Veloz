@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowDown, ShieldCheck, CheckCircle2, Activity } from "lucide-react";
+import { ArrowRight, Building2, ShieldCheck, BarChart3, Globe2, Handshake, TrendingUp, Briefcase } from "lucide-react";
 import heroImg from "@/assets/hero-trading.jpg";
 import agriImg from "@/assets/commodity-agricultural.jpg";
 import mineralsImg from "@/assets/commodity-minerals.jpg";
@@ -7,6 +7,7 @@ import energyImg from "@/assets/commodity-energy.jpg";
 import industrialImg from "@/assets/commodity-industrial.jpg";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
+import { WorldMap } from "@/components/site/WorldMap";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,311 +27,372 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   const { t } = useI18n();
 
-  const STATS: { value: string; labelKey: TKey }[] = [
-    { value: "50+", labelKey: "stats.countries" },
-    { value: "1,200+", labelKey: "stats.transactions" },
-    { value: "850+", labelKey: "stats.partners" },
-    { value: "US$ 2.8B+", labelKey: "stats.volume" },
+  const COUNTRIES = ["Angola", "Nigeria", "South Africa", "Brazil", "China", "USA", "UAE", "Singapore"];
+  const BIZ_KEYS: TKey[] = ["biz.producer", "biz.supplier", "biz.exporter", "biz.importer", "biz.investor"];
+
+  const STEPS = [
+    { n: "1", icon: Building2, titleKey: "steps.s1.title" as TKey, textKey: "steps.s1.text" as TKey },
+    { n: "2", icon: ShieldCheck, titleKey: "steps.s2.title" as TKey, textKey: "steps.s2.text" as TKey },
+    { n: "3", icon: BarChart3, titleKey: "steps.s3.title" as TKey, textKey: "steps.s3.text" as TKey },
   ];
 
-  const DIVISIONS: { titleKey: TKey; descKey: TKey; img: string; offset?: boolean }[] = [
-    { titleKey: "comm.agricultural", descKey: "comm.agriBlurb", img: agriImg },
-    { titleKey: "comm.energy", descKey: "comm.energyBlurb", img: energyImg, offset: true },
-    { titleKey: "comm.minerals", descKey: "comm.mineralsBlurb", img: mineralsImg },
+  const STATS = [
+    { icon: Globe2, value: "50+", labelKey: "stats.countries" as TKey },
+    { icon: Handshake, value: "1,200+", labelKey: "stats.transactions" as TKey },
+    { icon: Briefcase, value: "850+", labelKey: "stats.partners" as TKey },
+    { icon: TrendingUp, value: "US$ 2.8B+", labelKey: "stats.volume" as TKey },
+  ];
+
+  const COMMODITIES = [
+    { titleKey: "comm.agricultural" as TKey, img: agriImg, items: ["Coffee", "Soybeans", "Corn", "Rice"] },
+    { titleKey: "comm.minerals" as TKey, img: mineralsImg, items: ["Gold", "Diamonds", "Copper", "Iron Ore"] },
+    { titleKey: "comm.energy" as TKey, img: energyImg, items: ["Oil", "Natural Gas"] },
+    { titleKey: "comm.industrial" as TKey, img: industrialImg, items: ["Steel", "Cement", "Aluminum"] },
   ];
 
   const MARKET = [
-    { name: "Brent Crude", price: "$84.12", change: "+1.24%", up: true },
-    { name: "Gold (oz)", price: "$2,395.50", change: "+1.05%", up: true },
-    { name: "Copper LME", price: "$9,125.00", change: "-0.45%", up: false },
-    { name: "Soybeans", price: "$1,182.4", change: "+0.82%", up: true },
-    { name: "Natural Gas", price: "$2.84", change: "+3.10%", up: true },
+    { name: "Crude Oil", price: "$84.45", change: "+2.35%", up: true },
+    { name: "Gold", price: "$2,395.50", change: "+1.25%", up: true },
+    { name: "Copper", price: "$9,125.00", change: "-0.45%", up: false },
+    { name: "Natural Gas", price: "$2.75", change: "+3.45%", up: true },
   ];
 
-  const COUNTRIES = ["Angola", "Nigeria", "South Africa", "Brazil", "China", "USA"];
-  const BIZ_KEYS: TKey[] = ["biz.producer", "biz.supplier", "biz.exporter", "biz.importer", "biz.investor"];
+  const DIST = [
+    { label: "Energy", value: 35, color: "#3b82f6" },
+    { label: "Minerals", value: 25, color: "#14b8a6" },
+    { label: "Agricultural", value: 25, color: "#10b981" },
+    { label: "Industrial", value: 15, color: "#6366f1" },
+  ];
 
   return (
     <div className="bg-background text-foreground">
       {/* HERO */}
-      <section className="relative min-h-[92vh] flex items-end overflow-hidden border-b border-white/5">
-        <div className="absolute inset-0 z-0">
-          <img
-            src={heroImg}
-            alt={t("home.hero.imgAlt")}
-            className="w-full h-full object-cover grayscale opacity-40"
-            fetchPriority="high"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--background)] via-[color:var(--background)]/85 to-[color:var(--background)]/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--background)] via-transparent to-transparent" />
-        </div>
-
-        <div className="relative z-10 container-x py-24 lg:py-32 w-full animate-rise">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-px bg-gold" />
-            <span className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase">
+      <section className="relative overflow-hidden border-b border-border">
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "linear-gradient(var(--navy) 1px, transparent 1px), linear-gradient(90deg, var(--navy) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+          }}
+        />
+        <div className="relative container-x py-12 lg:py-20 grid lg:grid-cols-[1.25fr_1fr] gap-12 items-start">
+          {/* Left: copy + hero image */}
+          <div>
+            <div className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-6">
               {t("home.hero.eyebrow")}
-            </span>
-          </div>
-
-          <h1 className="font-display text-5xl sm:text-7xl lg:text-[7.5rem] leading-[0.95] max-w-5xl">
-            {t("home.hero.titleA")}<br />
-            <span className="italic font-normal text-gold">{t("home.hero.titleB")}</span>
-          </h1>
-
-          <div className="mt-12 flex flex-col md:flex-row md:items-end gap-10 max-w-4xl">
-            <p className="text-base md:text-lg text-foreground/60 font-light leading-relaxed max-w-md">
+            </div>
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] text-[color:var(--navy)] dark:text-foreground">
+              {t("home.hero.titleA")}<br />{t("home.hero.titleB")}
+            </h1>
+            <p className="mt-6 max-w-xl text-foreground/65 leading-relaxed">
               {t("home.hero.desc")}
             </p>
-            <div className="flex items-center gap-4">
+
+            <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 to="/partnership"
-                className="group inline-flex items-center gap-3 bg-gold px-8 py-4 text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--gold-foreground)] hover:brightness-110 transition-all"
+                className="group inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold transition-all"
               >
                 {t("common.becomeAPartner")}
-                <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
               </Link>
-              <a
-                href="#divisions"
-                aria-label="Scroll down"
-                className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center hover:bg-gold hover:border-gold hover:text-[color:var(--gold-foreground)] transition-all duration-500"
+              <Link
+                to="/opportunities"
+                className="group inline-flex items-center gap-3 border-2 border-[color:var(--navy)]/15 dark:border-white/20 px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--navy)] dark:text-foreground hover:border-gold hover:text-gold transition-all"
               >
-                <ArrowDown className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Live ticker bar */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-[#000D1A]/80 backdrop-blur-xl py-4 overflow-hidden">
-          <div className="flex gap-12 items-center px-6 animate-[ticker_40s_linear_infinite] whitespace-nowrap">
-            {[...MARKET, ...MARKET].map((m, i) => (
-              <div key={i} className="flex items-center gap-3 text-[11px] tracking-[0.15em] font-semibold">
-                <span className="text-white/40 uppercase">{m.name}</span>
-                <span className="text-white">{m.price}</span>
-                <span className={m.up ? "text-emerald-400" : "text-red-400"}>{m.change}</span>
-                <span className="text-white/10">·</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PERFORMANCE BAND */}
-      <section className="py-24 lg:py-32 bg-white/[0.03] border-b border-white/10">
-        <div className="container-x">
-          <div className="grid md:grid-cols-4 gap-12 lg:gap-16">
-            {STATS.map((s) => (
-              <div key={s.labelKey} className="group">
-                <div className="font-display text-5xl lg:text-6xl text-gold mb-4 group-hover:scale-110 transition-transform duration-500 origin-left">
-                  {s.value}
-                </div>
-                <div className="h-px w-12 bg-gold/40 mb-4 group-hover:w-24 transition-all duration-500" />
-                <div className="text-[10px] uppercase tracking-[0.25em] text-foreground/40 font-bold">
-                  {t(s.labelKey)}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PORTFOLIO / DIVISIONS */}
-      <section id="divisions" className="py-32 lg:py-40">
-        <div className="container-x">
-          <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-12 md:col-span-5 mb-16">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-px bg-gold" />
-                <span className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase">
-                  {t("home.commTitle")}
-                </span>
-              </div>
-              <h2 className="font-display text-4xl lg:text-6xl leading-tight mb-8">
-                {t("home.divisions.title")}
-              </h2>
-              <p className="text-foreground/50 leading-relaxed mb-10 max-w-md">
-                {t("home.divisions.desc")}
-              </p>
-              <Link to="/how-it-works" className="flex items-center gap-4 group w-fit">
-                <span className="text-[10px] uppercase tracking-[0.3em] font-bold">
-                  {t("common.learnMore")}
-                </span>
-                <div className="w-10 h-px bg-gold group-hover:w-20 transition-all" />
+                {t("common.exploreOpportunities")}
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
               </Link>
             </div>
 
-            <div className="col-span-12 grid md:grid-cols-3 gap-10 lg:gap-12">
-              {DIVISIONS.map((d) => (
-                <div key={d.titleKey} className={`space-y-6 ${d.offset ? "md:pt-24" : ""}`}>
-                  <Link to="/commodities" className="block aspect-[3/4] overflow-hidden">
-                    <img
-                      src={d.img}
-                      alt={t(d.titleKey)}
-                      className="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-700"
-                      loading="lazy"
-                    />
-                  </Link>
-                  <div>
-                    <h3 className="font-display text-2xl lg:text-3xl mb-3">{t(d.titleKey)}</h3>
-                    <p className="text-foreground/40 text-sm leading-relaxed">{t(d.descKey)}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="mt-8 flex items-center gap-4">
+              <div className="flex -space-x-2">
+                {["#C5A059", "#0A192F", "#3b82f6", "#10b981"].map((c, i) => (
+                  <div key={i} className="h-9 w-9 rounded-full border-2 border-background" style={{ background: c }} />
+                ))}
+              </div>
+              <p className="text-sm text-foreground/60">
+                {t("home.hero.trustedBy")} <span className="font-semibold text-foreground">850+</span> {t("home.hero.trustedBySuffix")}
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* LIVE MARKET + JOIN FORM SPLIT */}
-      <section className="py-24 lg:py-32 border-y border-white/10 bg-white/[0.02]">
-        <div className="container-x grid lg:grid-cols-2 gap-16 lg:gap-24">
-          <div>
-            <div className="flex items-center gap-4 mb-6">
-              <Activity className="h-4 w-4 text-gold" />
-              <span className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase">
-                {t("dash.liveMarket")}
-              </span>
-              <span className="ml-auto flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-foreground/40">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" /> Live
-              </span>
-            </div>
-            <h2 className="font-display text-3xl lg:text-5xl mb-10 leading-tight">
-              {t("global.titleA")} <span className="italic text-gold">{t("global.titleB")}</span>
-            </h2>
-            <ul className="divide-y divide-white/10">
-              {MARKET.map((m) => (
-                <li key={m.name} className="flex items-center justify-between py-4">
-                  <span className="text-sm font-medium">{m.name}</span>
-                  <div className="flex items-baseline gap-6">
-                    <span className="font-display text-lg text-foreground">{m.price}</span>
-                    <span className={`text-xs font-bold tracking-wider ${m.up ? "text-emerald-400" : "text-red-400"}`}>
-                      {m.change}
-                    </span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 grid grid-cols-2 gap-4 text-sm">
-              {(["global.b1","global.b2","global.b3","global.b4"] as TKey[]).map((k) => (
-                <div key={k} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="h-4 w-4 text-gold shrink-0 mt-0.5" />
-                  <span className="text-foreground/70">{t(k)}</span>
-                </div>
-              ))}
+            <div className="mt-10 relative">
+              <img
+                src={heroImg}
+                alt={t("home.hero.imgAlt")}
+                className="w-full h-auto rounded-2xl shadow-elegant object-cover aspect-[16/9]"
+                fetchPriority="high"
+              />
             </div>
           </div>
 
-          <div>
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-px bg-gold" />
-              <span className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase">
+          {/* Right: Join form card */}
+          <div className="lg:sticky lg:top-28">
+            <div className="rounded-2xl bg-card border border-border shadow-elegant p-8">
+              <h2 className="font-display text-2xl text-[color:var(--navy)] dark:text-foreground">
                 {t("common.joinZentra")}
-              </span>
-            </div>
-            <h2 className="font-display text-3xl lg:text-5xl mb-4 leading-tight">
-              {t("cta.titleA")} <span className="italic text-gold">{t("cta.titleB")}</span>
-            </h2>
-            <p className="text-foreground/50 mb-8 max-w-md">{t("form.heroIntro")}</p>
+              </h2>
+              <p className="mt-2 text-sm text-foreground/60">{t("form.heroIntro")}</p>
 
-            <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-              {([
-                { ph: "form.fullName" as TKey },
-                { ph: "form.companyName" as TKey },
-                { ph: "form.email" as TKey },
-                { ph: "form.whatsapp" as TKey },
-              ]).map((f) => (
-                <input
-                  key={f.ph}
-                  placeholder={t(f.ph)}
-                  className="w-full bg-white/[0.04] border border-white/15 px-5 py-4 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold transition"
-                />
-              ))}
-              <div className="grid grid-cols-2 gap-3">
-                <select className="w-full bg-white/[0.04] border border-white/15 px-5 py-4 text-sm text-foreground/70 focus:outline-none focus:border-gold transition">
+              <form className="mt-6 space-y-3" onSubmit={(e) => e.preventDefault()}>
+                {([
+                  { ph: "form.fullName" as TKey },
+                  { ph: "form.companyName" as TKey },
+                  { ph: "form.email" as TKey },
+                  { ph: "form.whatsapp" as TKey },
+                ]).map((f) => (
+                  <input
+                    key={f.ph}
+                    placeholder={t(f.ph)}
+                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                  />
+                ))}
+                <select className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm text-foreground/80 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition">
                   <option>{t("form.selectCountry")}</option>
                   {COUNTRIES.map((c) => <option key={c}>{c}</option>)}
                 </select>
-                <select className="w-full bg-white/[0.04] border border-white/15 px-5 py-4 text-sm text-foreground/70 focus:outline-none focus:border-gold transition">
+                <select className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm text-foreground/80 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition">
                   <option>{t("form.selectBusinessType")}</option>
                   {BIZ_KEYS.map((k) => <option key={k}>{t(k)}</option>)}
                 </select>
-              </div>
-              <button
-                type="submit"
-                className="group mt-3 w-full flex items-center justify-center gap-3 bg-gold px-6 py-4 text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--gold-foreground)] hover:brightness-110 transition-all"
-              >
-                {t("common.joinZentra")}
-                <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
-              </button>
-              <div className="flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.2em] text-foreground/40 pt-2">
-                <ShieldCheck className="h-3.5 w-3.5 text-gold" />
-                {t("form.secureGlobal")}
-              </div>
-            </form>
+                <button
+                  type="submit"
+                  className="group w-full flex items-center justify-center gap-3 bg-gold rounded-lg px-6 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold transition-all"
+                >
+                  {t("common.joinZentra")}
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </button>
+                <div className="flex items-center justify-center gap-2 text-[11px] text-foreground/50 pt-1">
+                  <ShieldCheck className="h-3.5 w-3.5 text-gold" />
+                  {t("form.secureGlobal")}
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* GLOBAL REACH MAP */}
-      <section className="py-32">
-        <div className="container-x grid lg:grid-cols-[1fr_1.4fr] gap-16 items-center">
-          <div>
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-px bg-gold" />
-              <span className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase">
-                {t("global.eyebrow")}
-              </span>
-            </div>
-            <h2 className="font-display text-4xl lg:text-6xl leading-tight mb-8">
-              {t("global.titleA")}<br/><span className="italic text-gold">{t("global.titleB")}</span>
-            </h2>
-            <p className="text-foreground/50 leading-relaxed mb-10 max-w-md">
-              {t("global.desc")}
-            </p>
-            <Link
-              to="/partnership"
-              className="inline-flex items-center gap-3 border border-white/20 px-8 py-4 text-[10px] font-bold uppercase tracking-[0.25em] hover:bg-gold hover:border-gold hover:text-[color:var(--gold-foreground)] transition-all"
-            >
-              {t("common.joinOurNetwork")} <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
+      {/* JOURNEY STEPS */}
+      <section className="py-20 bg-muted/40">
+        <div className="container-x">
+          <h2 className="font-display text-3xl md:text-4xl text-[color:var(--navy)] dark:text-foreground mb-12">
+            {t("steps.title")}
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6 items-stretch">
+            {STEPS.map((s, i) => (
+              <div key={s.n} className="relative flex">
+                <div className="flex-1 group bg-card border border-border rounded-xl p-6 flex items-start gap-5 hover-lift">
+                  <div className="h-12 w-12 rounded-full border border-gold/40 text-gold grid place-items-center font-display text-xl shrink-0 group-hover:bg-gold group-hover:text-[color:var(--gold-foreground)] transition-all">
+                    {s.n}
+                  </div>
+                  <div>
+                    <s.icon className="h-6 w-6 text-gold mb-3" />
+                    <h3 className="font-display text-lg text-[color:var(--navy)] dark:text-foreground">{t(s.titleKey)}</h3>
+                    <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{t(s.textKey)}</p>
+                  </div>
+                </div>
+                {i < STEPS.length - 1 && (
+                  <div className="hidden md:flex items-center px-3 text-gold">
+                    <ArrowRight className="h-5 w-5" />
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
-          <div className="relative">
+
+          {/* STATS ROW */}
+          <div className="mt-10 rounded-2xl bg-card border border-border p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 shadow-card">
+            {STATS.map((s) => (
+              <div key={s.labelKey} className="flex items-center gap-4">
+                <div className="h-12 w-12 rounded-full bg-gold-soft text-gold grid place-items-center shrink-0">
+                  <s.icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="font-display text-2xl md:text-3xl text-[color:var(--navy)] dark:text-foreground">{s.value}</div>
+                  <div className="text-xs text-foreground/55">{t(s.labelKey)}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* COMMODITIES + DASHBOARD */}
+      <section className="py-20">
+        <div className="container-x grid lg:grid-cols-2 gap-12">
+          {/* Commodities cards */}
+          <div>
+            <h2 className="font-display text-3xl md:text-4xl text-[color:var(--navy)] dark:text-foreground mb-8">
+              {t("dash.exploreTitle")}
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-5">
+              {COMMODITIES.map((c) => (
+                <Link
+                  to="/commodities"
+                  key={c.titleKey}
+                  className="group block rounded-2xl bg-card border border-border overflow-hidden hover-lift"
+                >
+                  <div className="relative h-40 overflow-hidden">
+                    <img
+                      src={c.img}
+                      alt={t(c.titleKey)}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-display text-lg text-[color:var(--navy)] dark:text-foreground mb-3">
+                      {t(c.titleKey)}
+                    </h3>
+                    <ul className="space-y-1.5 text-sm text-foreground/70">
+                      {c.items.map((it) => (
+                        <li key={it} className="flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                          {it}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-4 flex justify-end">
+                      <span className="h-8 w-8 rounded-full bg-gold text-[color:var(--gold-foreground)] grid place-items-center group-hover:translate-x-1 transition-transform">
+                        <ArrowRight className="h-4 w-4" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Dashboard mock */}
+          <div className="space-y-5">
+            <div>
+              <h2 className="font-display text-3xl md:text-4xl text-[color:var(--navy)] dark:text-foreground">
+                {t("home.dashTitle")}
+              </h2>
+              <p className="text-sm text-foreground/60 mt-1">{t("home.dashSubtitle")}</p>
+            </div>
+
+            {/* KPI grid */}
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { label: t("dash.totalVolume"), value: "US$ 2.8B+", delta: "+18.2%" },
+                { label: t("dash.activeTx"), value: "1,200+", delta: "+14.7%" },
+                { label: t("dash.globalPartners"), value: "850+", delta: "+21.3%" },
+                { label: t("dash.marketsAccess"), value: "50+", delta: "+10.5%" },
+              ].map((k) => (
+                <div key={k.label} className="rounded-xl bg-card border border-border p-4">
+                  <div className="text-[10px] uppercase tracking-[0.18em] text-foreground/50 font-semibold">{k.label}</div>
+                  <div className="mt-2 flex items-baseline justify-between">
+                    <span className="font-display text-xl text-[color:var(--navy)] dark:text-foreground">{k.value}</span>
+                    <span className="text-[11px] font-bold text-emerald-600">{k.delta}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Trading overview chart */}
+            <div className="rounded-xl bg-card border border-border p-5">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm font-semibold text-[color:var(--navy)] dark:text-foreground">{t("dash.tradingOverview")}</span>
+                <div className="flex gap-2 text-[10px] uppercase tracking-[0.15em]">
+                  <span className="px-2.5 py-1 rounded-full bg-gold/15 text-gold font-bold">{t("dash.thisYear")}</span>
+                  <span className="px-2.5 py-1 rounded-full text-foreground/50">{t("dash.lastYear")}</span>
+                </div>
+              </div>
+              <MiniChart />
+            </div>
+
+            {/* Distribution + live market */}
+            <div className="grid sm:grid-cols-2 gap-3">
+              <div className="rounded-xl bg-card border border-border p-5">
+                <div className="text-sm font-semibold mb-3 text-[color:var(--navy)] dark:text-foreground">Commodity Distribution</div>
+                <div className="flex items-center gap-4">
+                  <Donut data={DIST} />
+                  <ul className="space-y-1.5 text-xs">
+                    {DIST.map((d) => (
+                      <li key={d.label} className="flex items-center gap-2">
+                        <span className="h-2 w-2 rounded-full" style={{ background: d.color }} />
+                        <span className="text-foreground/70">{d.label}</span>
+                        <span className="ml-auto font-semibold">{d.value}%</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="rounded-xl bg-card border border-border p-5">
+                <div className="text-sm font-semibold mb-3 text-[color:var(--navy)] dark:text-foreground">{t("dash.liveMarket")}</div>
+                <ul className="space-y-2 text-xs">
+                  {MARKET.map((m) => (
+                    <li key={m.name} className="flex items-center justify-between">
+                      <span className="text-foreground/70">{m.name}</span>
+                      <span className="flex items-baseline gap-2">
+                        <span className="font-semibold">{m.price}</span>
+                        <span className={m.up ? "text-emerald-600 font-bold" : "text-red-500 font-bold"}>{m.change}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WORLD MAP / GLOBAL REACH */}
+      <section className="py-20 border-t border-border bg-muted/30">
+        <div className="container-x grid lg:grid-cols-[1.5fr_1fr] gap-12 items-center">
+          <div className="rounded-2xl bg-card border border-border p-6 shadow-card">
             <WorldMap />
           </div>
+          <div>
+            <div className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-5">
+              {t("global.eyebrow")}
+            </div>
+            <h2 className="font-display text-3xl md:text-5xl leading-tight text-[color:var(--navy)] dark:text-foreground">
+              {t("global.titleA")}<br />{t("global.titleB")}
+            </h2>
+            <p className="mt-5 text-foreground/65 leading-relaxed">{t("global.desc")}</p>
+            <ul className="mt-6 space-y-2.5 text-sm">
+              {(["global.b1","global.b2","global.b3","global.b4"] as TKey[]).map((k) => (
+                <li key={k} className="flex items-start gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-gold shrink-0" />
+                  <span className="text-foreground/75">{t(k)}</span>
+                </li>
+              ))}
+            </ul>
+            <Link
+              to="/partnership"
+              className="mt-8 inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110 transition-all"
+            >
+              {t("common.joinOurNetwork")} <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* CINEMATIC CTA */}
-      <section className="relative overflow-hidden border-t border-white/10">
-        <div className="absolute inset-0">
-          <img src={industrialImg} alt="" className="w-full h-full object-cover grayscale opacity-20" loading="lazy" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--background)] via-[color:var(--background)]/90 to-[color:var(--background)]/60" />
-        </div>
-        <div className="relative container-x py-32 lg:py-40">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-px bg-gold" />
-              <span className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase">{t("nav.contact")}</span>
-            </div>
-            <h2 className="font-display text-5xl lg:text-7xl leading-[0.95] mb-10">
-              {t("cta.titleA")} <span className="italic text-gold">{t("cta.titleB")}</span>
-            </h2>
-            <p className="text-foreground/60 text-lg max-w-xl mb-12">{t("cta.desc")}</p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                to="/partnership"
-                className="inline-flex items-center gap-3 bg-gold px-10 py-5 text-[10px] font-bold uppercase tracking-[0.25em] text-[color:var(--gold-foreground)] hover:brightness-110 transition-all"
-              >
-                {t("common.becomeAPartner")} <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-3 border border-white/20 px-10 py-5 text-[10px] font-bold uppercase tracking-[0.25em] hover:bg-white hover:text-[color:var(--background)] transition-all"
-              >
-                {t("common.contactUs")}
-              </Link>
-            </div>
+      {/* CTA */}
+      <section className="py-24 bg-gradient-navy text-white">
+        <div className="container-x text-center max-w-3xl mx-auto">
+          <h2 className="font-display text-4xl md:text-5xl leading-tight">
+            {t("cta.titleA")} <span className="italic text-gold">{t("cta.titleB")}</span>
+          </h2>
+          <p className="mt-5 text-white/70">{t("cta.desc")}</p>
+          <div className="mt-8 flex flex-wrap gap-4 justify-center">
+            <Link
+              to="/partnership"
+              className="inline-flex items-center gap-3 bg-gold px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)] hover:brightness-110 transition-all"
+            >
+              {t("common.becomeAPartner")} <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-3 border border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[color:var(--navy)] transition-all"
+            >
+              {t("common.contactUs")}
+            </Link>
           </div>
         </div>
       </section>
@@ -338,53 +400,59 @@ function HomePage() {
   );
 }
 
-function WorldMap() {
-  const HUBS: { cx: number; cy: number; label: string }[] = [
-    { cx: 180, cy: 160, label: "NY" },
-    { cx: 240, cy: 240, label: "São Paulo" },
-    { cx: 410, cy: 140, label: "Geneva" },
-    { cx: 440, cy: 230, label: "Luanda" },
-    { cx: 560, cy: 180, label: "Dubai" },
-    { cx: 670, cy: 200, label: "Singapore" },
-    { cx: 700, cy: 140, label: "Shanghai" },
-  ];
+function MiniChart() {
+  const pts = [10, 14, 12, 18, 22, 20, 26, 30, 28, 34, 38, 42];
+  const max = 50;
+  const w = 320;
+  const h = 110;
+  const step = w / (pts.length - 1);
+  const path = pts
+    .map((v, i) => `${i === 0 ? "M" : "L"} ${i * step},${h - (v / max) * h}`)
+    .join(" ");
+  const area = `${path} L ${w},${h} L 0,${h} Z`;
   return (
-    <svg viewBox="0 0 800 400" className="w-full h-auto">
+    <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-28">
       <defs>
-        <radialGradient id="bg" cx="50%" cy="50%" r="70%">
-          <stop offset="0%" stopColor="rgba(197,160,89,0.06)" />
-          <stop offset="100%" stopColor="transparent" />
-        </radialGradient>
+        <linearGradient id="ga" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stopColor="var(--gold)" stopOpacity="0.35" />
+          <stop offset="100%" stopColor="var(--gold)" stopOpacity="0" />
+        </linearGradient>
       </defs>
-      <rect width="800" height="400" fill="url(#bg)" />
-      <g fill="rgba(255,255,255,0.18)">
-        {Array.from({ length: 420 }).map((_, i) => {
-          const x = (i * 47) % 800;
-          const y = ((i * 73) % 360) + 20;
-          const r = ((i * 11) % 10) > 7 ? 1.8 : 1.1;
-          return <circle key={i} cx={x} cy={y} r={r} />;
-        })}
-      </g>
-      {HUBS.flatMap((a, i) =>
-        HUBS.slice(i + 1).map((b, j) => (
-          <line
-            key={`${i}-${j}`}
-            x1={a.cx} y1={a.cy} x2={b.cx} y2={b.cy}
-            stroke="rgba(197,160,89,0.15)"
-            strokeWidth="0.6"
-            strokeDasharray="3 4"
-          />
-        ))
-      )}
-      {HUBS.map((h, i) => (
-        <g key={i}>
-          <circle cx={h.cx} cy={h.cy} r="10" fill="rgba(197,160,89,0.15)">
-            <animate attributeName="r" values="6;14;6" dur="2.6s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
-            <animate attributeName="opacity" values="0.6;0;0.6" dur="2.6s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
-          </circle>
-          <circle cx={h.cx} cy={h.cy} r="3.5" fill="#C5A059" />
-        </g>
+      <path d={area} fill="url(#ga)" />
+      <path d={path} fill="none" stroke="var(--gold)" strokeWidth="2" />
+      {pts.map((v, i) => (
+        <circle key={i} cx={i * step} cy={h - (v / max) * h} r="2.5" fill="var(--gold)" />
       ))}
+    </svg>
+  );
+}
+
+function Donut({ data }: { data: { label: string; value: number; color: string }[] }) {
+  const total = data.reduce((s, d) => s + d.value, 0);
+  const r = 32;
+  const c = 2 * Math.PI * r;
+  let acc = 0;
+  return (
+    <svg viewBox="0 0 90 90" className="h-24 w-24 -rotate-90">
+      <circle cx="45" cy="45" r={r} fill="none" stroke="var(--muted)" strokeWidth="10" />
+      {data.map((d) => {
+        const len = (d.value / total) * c;
+        const seg = (
+          <circle
+            key={d.label}
+            cx="45"
+            cy="45"
+            r={r}
+            fill="none"
+            stroke={d.color}
+            strokeWidth="10"
+            strokeDasharray={`${len} ${c - len}`}
+            strokeDashoffset={-acc}
+          />
+        );
+        acc += len;
+        return seg;
+      })}
     </svg>
   );
 }

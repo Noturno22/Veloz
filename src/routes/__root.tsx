@@ -22,7 +22,7 @@ const initScript = `
 (function(){
   try {
     var t = localStorage.getItem('zentra-theme');
-    if (!t) t = 'dark';
+    if (!t) t = 'light';
     if (t === 'dark') document.documentElement.classList.add('dark');
     document.documentElement.style.colorScheme = t;
     var l = localStorage.getItem('zentra-lang');

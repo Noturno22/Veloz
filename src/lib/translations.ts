@@ -255,6 +255,12 @@ const en = {
   "footer.contactH": "Contact",
   "footer.rights": "All rights reserved.",
   "footer.slogan": "Connecting Global Commodity Opportunities.",
+
+  // Dashboard mock card labels
+  "dash.changeUp": "+18.2%",
+  "dash.exploreTitle": "Explore Our Commodities",
+  "home.dashTitle": "Trading Dashboard",
+  "home.dashSubtitle": "Real-time overview of the Zentra Trading network",
 };
 
 const pt: Record<keyof typeof en, string> = {
@@ -493,6 +499,11 @@ const pt: Record<keyof typeof en, string> = {
   "footer.contactH": "Contacto",
   "footer.rights": "Todos os direitos reservados.",
   "footer.slogan": "Conectando Oportunidades Globais de Commodities.",
+
+  "dash.changeUp": "+18,2%",
+  "dash.exploreTitle": "Explore as Nossas Commodities",
+  "home.dashTitle": "Painel de Negociação",
+  "home.dashSubtitle": "Visão em tempo real da rede Zentra Trading",
 };
 
 export type TKey = keyof typeof en;
