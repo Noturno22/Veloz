@@ -57,7 +57,7 @@ function Contact() {
       return;
     }
     try {
-      await submitContact({ data: result.data });
+      await submitContact(result.data);
       setStatus("success");
       (e.target as HTMLFormElement).reset();
     } catch {

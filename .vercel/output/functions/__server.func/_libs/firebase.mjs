@@ -1,5 +1,6 @@
 import { s as registerVersion } from "./@firebase/app+[...].mjs";
 import "./firebase__auth.mjs";
+import "./@firebase/firestore+[...].mjs";
 //#region node_modules/firebase/app/dist/index.mjs
 /**
 * @license

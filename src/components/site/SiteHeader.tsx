@@ -71,9 +71,12 @@ export function SiteHeader() {
           <ThemeToggle />
           {user ? (
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-semibold text-foreground/60 truncate max-w-28">
+              <Link
+                to="/dashboard"
+                className="text-[10px] font-semibold text-foreground/60 hover:text-gold truncate max-w-28 transition-colors"
+              >
                 {user.email}
-              </span>
+              </Link>
               <button
                 onClick={logout}
                 aria-label="Sign out"
@@ -122,12 +125,20 @@ export function SiteHeader() {
               );
             })}
             {user ? (
-              <button
-                onClick={logout}
-                className="mt-2 border border-white/20 px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-foreground/60"
-              >
-                Sign out ({user.email})
-              </button>
+              <>
+                <Link
+                  to="/dashboard"
+                  className="rounded-md px-3 py-2.5 text-xs font-bold uppercase tracking-[0.25em] text-gold"
+                >
+                  {t("dash.title")}
+                </Link>
+                <button
+                  onClick={logout}
+                  className="mt-2 border border-white/20 px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-foreground/60"
+                >
+                  Sign out ({user.email})
+                </button>
+              </>
             ) : (
               <Link
                 to="/login"

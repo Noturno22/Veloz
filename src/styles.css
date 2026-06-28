@@ -44,21 +44,26 @@
 
   --shadow-elegant: 0 30px 80px -30px color-mix(in oklab, var(--navy) 35%, transparent);
   --shadow-card: 0 1px 2px rgba(11,31,58,0.04), 0 8px 24px -12px rgba(11,31,58,0.10);
-  --shadow-gold: 0 18px 40px -18px color-mix(in oklab, var(--gold) 55%, transparent);
+  --shadow-green: 0 18px 40px -18px color-mix(in oklab, var(--brand-green) 55%, transparent);
+  --shadow-gold: var(--shadow-green);
 
   --gradient-navy: linear-gradient(135deg, oklch(0.22 0.06 255), oklch(0.28 0.07 260));
-  --gradient-gold: linear-gradient(135deg, oklch(0.78 0.14 80), oklch(0.70 0.16 70));
+  --gradient-green: linear-gradient(135deg, oklch(0.51 0.11 153), oklch(0.45 0.10 155));
+  --gradient-gold: var(--gradient-green);
 }
 
 :root {
   --radius: 0.75rem;
 
-  /* Brand */
-  --navy: oklch(0.18 0.045 255);           /* #0A192F */
+  /* Brand — extracted from zentra-logo.png */
+  --navy: oklch(0.21 0.05 258);            /* #0A192F */
   --navy-foreground: oklch(0.98 0.005 100);
-  --gold: oklch(0.72 0.11 80);             /* #C5A059 */
-  --gold-foreground: oklch(0.18 0.045 255);
-  --gold-soft: oklch(0.96 0.04 85);
+  --brand-green: oklch(0.51 0.11 153);     /* #277948 */
+  --brand-blue: oklch(0.42 0.14 255);      /* #014b96 */
+  --brand-orange: oklch(0.65 0.19 44);     /* #e86012 */
+  --gold: var(--brand-green);              /* alias — primary accent */
+  --gold-foreground: oklch(0.98 0.005 100);
+  --gold-soft: oklch(0.92 0.10 145);
 
   --background: oklch(0.99 0.003 95);      /* warm off-white */
   --foreground: oklch(0.20 0.05 260);
@@ -70,13 +75,13 @@
 
   --primary: var(--navy);
   --primary-foreground: oklch(0.98 0.005 100);
-  --secondary: var(--gold);
-  --secondary-foreground: oklch(0.20 0.05 260);
+  --secondary: var(--brand-green);
+  --secondary-foreground: oklch(0.98 0.005 100);
 
   --muted: oklch(0.965 0.005 90);
   --muted-foreground: oklch(0.50 0.02 260);
-  --accent: oklch(0.96 0.04 85);
-  --accent-foreground: oklch(0.22 0.06 255);
+  --accent: var(--brand-blue);
+  --accent-foreground: oklch(0.98 0.005 100);
 
   --destructive: oklch(0.60 0.22 27);
   --destructive-foreground: oklch(0.99 0 0);
@@ -103,18 +108,18 @@
   --card-foreground: oklch(0.97 0.01 90);
   --popover: oklch(0.21 0.045 255);
   --popover-foreground: oklch(0.97 0.01 90);
-  --primary: oklch(0.72 0.11 80);
-  --primary-foreground: oklch(0.18 0.045 255);
+  --primary: var(--brand-green);
+  --primary-foreground: oklch(0.98 0.005 100);
   --secondary: oklch(0.24 0.05 255);
   --secondary-foreground: oklch(0.97 0.01 90);
   --muted: oklch(0.23 0.045 255);
   --muted-foreground: oklch(0.72 0.02 90);
-  --accent: oklch(0.26 0.05 255);
+  --accent: var(--brand-blue);
   --accent-foreground: oklch(0.97 0.01 90);
-  --gold-soft: oklch(0.30 0.06 80);
+  --gold-soft: oklch(0.34 0.10 150);
   --border: oklch(1 0 0 / 8%);
   --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.72 0.11 80);
+  --ring: var(--brand-green);
 }
 
 /* Dark-mode surface overrides for components that hardcode white surfaces or
@@ -145,10 +150,16 @@
 
 @layer utilities {
   .bg-gradient-navy { background-image: var(--gradient-navy); }
+  .bg-gradient-green { background-image: var(--gradient-green); }
   .bg-gradient-gold { background-image: var(--gradient-gold); }
+  .text-green { color: var(--brand-green); }
+  .text-blue { color: var(--brand-blue); }
+  .text-orange { color: var(--brand-orange); }
   .text-gold { color: var(--gold); }
+  .border-green { border-color: var(--brand-green); }
   .border-gold { border-color: var(--gold); }
   .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-green { box-shadow: var(--shadow-green); }
   .shadow-gold { box-shadow: var(--shadow-gold); }
   .shadow-card { box-shadow: var(--shadow-card); }
 

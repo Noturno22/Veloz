@@ -94,7 +94,7 @@ function HomePage() {
       return;
     }
     try {
-      await submitRegister({ data: result.data });
+      await submitRegister(result.data);
       setStatus("success");
       (e.target as HTMLFormElement).reset();
     } catch {
@@ -147,7 +147,7 @@ function HomePage() {
 
             <div className="mt-8 flex items-center gap-4">
               <div className="flex -space-x-2">
-                {["#C5A059", "#0A192F", "#3b82f6", "#10b981"].map((c) => (
+                {["var(--brand-green)", "#0A192F", "#3b82f6", "#10b981"].map((c) => (
                   <div key={c} className="h-9 w-9 rounded-full border-2 border-background" style={{ background: c }} />
                 ))}
               </div>

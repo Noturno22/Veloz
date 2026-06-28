@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, ShieldCheck, Eye, EyeOff } from "lucide-react";
+import { ArrowRight, ShieldCheck, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
 
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/login")({
 
 function LoginPage() {
   const { t } = useI18n();
-  const { login } = useAuth();
+  const { login, resetPassword } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,25 +27,113 @@ function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [resetMode, setResetMode] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
+  const [resetLoading, setResetLoading] = useState(false);
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
     setLoading(true);
     try {
       await login(email, password);
-      navigate({ to: "/" });
+      navigate({ to: "/dashboard" });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Login failed";
       if (msg.includes("auth/invalid-credential") || msg.includes("auth/user-not-found") || msg.includes("auth/wrong-password")) {
         setError("Invalid email or password.");
       } else if (msg.includes("auth/invalid-email")) {
         setError("Invalid email format.");
+      } else if (msg.includes("auth/too-many-requests")) {
+        setError("Too many attempts. Please try again later.");
       } else {
         setError(msg);
       }
     } finally {
       setLoading(false);
     }
+  }
+
+  async function handleReset(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError("");
+    setResetSent(false);
+    setResetLoading(true);
+    try {
+      await resetPassword(email);
+      setResetSent(true);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "";
+      if (msg.includes("auth/user-not-found")) {
+        setError("No account found with this email.");
+      } else if (msg.includes("auth/invalid-email")) {
+        setError("Invalid email format.");
+      } else {
+        setError(msg);
+      }
+    } finally {
+      setResetLoading(false);
+    }
+  }
+
+  if (resetMode) {
+    return (
+      <div className="flex min-h-[calc(100vh-6rem)] items-center justify-center px-4 py-16">
+        <div className="w-full max-w-md">
+          <div className="rounded-2xl border border-border bg-card p-8 shadow-card">
+            <div className="text-center">
+              <h1 className="font-display text-3xl font-bold text-[color:var(--navy)] dark:text-foreground">
+                {t("forgot.title")}
+              </h1>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {t("forgot.subtitle")}
+              </p>
+            </div>
+
+            <form onSubmit={handleReset} className="mt-8 space-y-4" noValidate>
+              <div>
+                <label htmlFor="reset-email" className="block text-sm font-medium text-foreground/70 mb-1.5">
+                  Email
+                </label>
+                <input
+                  id="reset-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@company.com"
+                  required
+                  className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gold/50"
+                />
+              </div>
+
+              {error && (
+                <p className="text-xs text-red-500 bg-red-50 dark:bg-red-950/30 rounded-lg px-3 py-2">{error}</p>
+              )}
+              {resetSent && (
+                <p className="text-xs text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-3 py-2">{t("forgot.sent")}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={resetLoading}
+                className="group w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-gold px-5 py-3.5 text-sm font-semibold text-[color:var(--gold-foreground)] shadow-gold transition hover:translate-y-[-1px] disabled:opacity-60"
+              >
+                {resetLoading ? "Sending…" : t("forgot.title")}
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+              </button>
+            </form>
+
+            <button
+              onClick={() => { setResetMode(false); setError(""); setResetSent(false); }}
+              className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground hover:text-gold transition-colors w-full"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" />
+              {t("forgot.backToLogin")}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -102,6 +190,16 @@ function LoginPage() {
               </div>
             </div>
 
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={() => setResetMode(true)}
+                className="text-xs text-muted-foreground hover:text-gold transition-colors"
+              >
+                Forgot password?
+              </button>
+            </div>
+
             {error && (
               <p className="text-xs text-red-500 bg-red-50 dark:bg-red-950/30 rounded-lg px-3 py-2">{error}</p>
             )}
@@ -123,8 +221,8 @@ function LoginPage() {
 
           <p className="mt-6 text-center text-xs text-muted-foreground">
             Don&apos;t have an account?{" "}
-            <Link to="/contact" className="text-gold font-semibold hover:underline">
-              {t("common.joinZentra")}
+            <Link to="/register" className="text-gold font-semibold hover:underline">
+              Create one
             </Link>
           </p>
         </div>

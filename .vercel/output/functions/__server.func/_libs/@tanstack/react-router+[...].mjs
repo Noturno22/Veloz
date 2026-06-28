@@ -1,4 +1,4 @@
-import { i as __toESM, r as __require, t as __commonJSMin } from "../../_runtime.mjs";
+import { i as __require, o as __toESM, t as __commonJSMin } from "../../_runtime.mjs";
 import { r as parseHref } from "../tanstack__history.mjs";
 import { PassThrough, Readable } from "node:stream";
 import { ReadableStream as ReadableStream$1 } from "node:stream/web";
@@ -1985,11 +1985,6 @@ function isRedirect(obj) {
 /** True if value is a redirect with a resolved `href` location. */
 function isResolvedRedirect(obj) {
 	return isRedirect(obj) && !!obj.options.href;
-}
-/** Parse a serialized redirect object back into a redirect Response. */
-/** Parse a serialized redirect object back into a redirect Response. */
-function parseRedirect(obj) {
-	if (obj !== null && typeof obj === "object" && obj.isSerializedRedirect) return redirect(obj);
 }
 //#endregion
 //#region node_modules/@tanstack/router-core/dist/esm/rewrite.js
@@ -14727,4 +14722,4 @@ var renderRouterToStream = async ({ request, router, responseHeaders, children }
 	throw new Error("No renderToReadableStream or renderToPipeableStream found in react-dom/server. Ensure you are using a version of react-dom that supports streaming.");
 };
 //#endregion
-export { require_jsx_runtime as A, isResolvedRedirect as C, createLRUCache as D, isNotFound as E, invariant as O, isRedirect as S, rootRouteId as T, createInlineCssStyleAsset as _, RouterProvider as a, resolveManifestAssetLink as b, lazyRouteComponent as c, Link as d, useNavigate as f, createInlineCssPlaceholderAsset as g, TSR_SCRIPT_BARRIER_ID as h, useRouterState as i, require_react as j, decodePath as k, createFileRoute as l, GLOBAL_TSR as m, Scripts as n, createRouter as o, useRouter as p, HeadContent as r, Outlet as s, renderRouterToStream as t, createRootRoute as u, getStylesheetHref as v, parseRedirect as w, executeRewriteInput as x, isInlinableStylesheet as y };
+export { require_react as A, isResolvedRedirect as C, invariant as D, createLRUCache as E, decodePath as O, isRedirect as S, isNotFound as T, createInlineCssStyleAsset as _, RouterProvider as a, resolveManifestAssetLink as b, lazyRouteComponent as c, Link as d, useNavigate as f, createInlineCssPlaceholderAsset as g, TSR_SCRIPT_BARRIER_ID as h, useRouterState as i, require_jsx_runtime as k, createFileRoute as l, GLOBAL_TSR as m, Scripts as n, createRouter as o, useRouter as p, HeadContent as r, Outlet as s, renderRouterToStream as t, createRootRoute as u, getStylesheetHref as v, rootRouteId as w, executeRewriteInput as x, isInlinableStylesheet as y };

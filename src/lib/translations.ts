@@ -327,6 +327,32 @@ const en = {
   "home.dashTitle": "Trading Dashboard",
   "home.dashSubtitle": "Real-time overview of the Zentra Trading network",
   "dash.commodityDistribution": "Commodity Distribution",
+
+  // Register page
+  "register.title": "Create Account",
+  "register.subtitle": "Join Zentra Trading and access global commodity opportunities.",
+  "register.passwordLabel": "Password",
+  "register.confirmPassword": "Confirm Password",
+  "register.haveAccount": "Already have an account?",
+  "register.signIn": "Sign in",
+  "register.passwordMismatch": "Passwords do not match.",
+  "register.weakPassword": "Password should be at least 6 characters.",
+  "register.emailInUse": "An account with this email already exists.",
+  "register.termsPrefix": "By creating an account, you agree to our ",
+  "register.termsLink": "Terms & Conditions",
+  "register.success": "Account created successfully! Welcome to Zentra Trading.",
+
+  // Forgot password
+  "forgot.title": "Reset Password",
+  "forgot.subtitle": "Enter your email address and we'll send you a password reset link.",
+  "forgot.sent": "Password reset email sent. Check your inbox.",
+  "forgot.backToLogin": "Back to Login",
+
+  // Dashboard
+  "dash.title": "Dashboard",
+  "dash.welcome": "Welcome back, {name}",
+  "dash.profile": "My Profile",
+  "dash.logout": "Sign Out",
 };
 
 const pt: Record<keyof typeof en, string> = {
@@ -629,6 +655,29 @@ const pt: Record<keyof typeof en, string> = {
   "home.dashTitle": "Painel de Negociação",
   "home.dashSubtitle": "Visão em tempo real da rede Zentra Trading",
   "dash.commodityDistribution": "Distribuição de Commodities",
+
+  "register.title": "Criar Conta",
+  "register.subtitle": "Junte-se à Zentra Trading e aceda a oportunidades globais de commodities.",
+  "register.passwordLabel": "Palavra-passe",
+  "register.confirmPassword": "Confirmar Palavra-passe",
+  "register.haveAccount": "Já tem uma conta?",
+  "register.signIn": "Entrar",
+  "register.passwordMismatch": "As palavras-passe não coincidem.",
+  "register.weakPassword": "A palavra-passe deve ter pelo menos 6 caracteres.",
+  "register.emailInUse": "Já existe uma conta com este e-mail.",
+  "register.termsPrefix": "Ao criar uma conta, aceita os nossos ",
+  "register.termsLink": "Termos e Condições",
+  "register.success": "Conta criada com sucesso! Bem-vindo à Zentra Trading.",
+
+  "forgot.title": "Redefinir Palavra-passe",
+  "forgot.subtitle": "Insira o seu e-mail e enviaremos um link de redefinição de palavra-passe.",
+  "forgot.sent": "E-mail de redefinição enviado. Verifique a sua caixa de entrada.",
+  "forgot.backToLogin": "Voltar ao Login",
+
+  "dash.title": "Painel",
+  "dash.welcome": "Bem-vindo de volta, {name}",
+  "dash.profile": "Meu Perfil",
+  "dash.logout": "Sair",
 };
 
 export type TKey = keyof typeof en;

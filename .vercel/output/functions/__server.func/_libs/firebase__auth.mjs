@@ -1,4 +1,4 @@
-import { C as isCloudflareWorker, D as querystring, E as pingServer, O as querystringDecode, S as isCloudWorkstation, T as isReactNative, _ as extractQuerystring, a as getApp, b as getUA, c as LogLevel, d as Deferred, f as ErrorFactory, g as deepEqual, h as createSubscribe, i as _registerComponent, l as Logger, m as base64Decode, n as _getProvider, p as FirebaseError, r as _isFirebaseServerApp, s as registerVersion, t as SDK_VERSION, u as Component, v as getDefaultEmulatorHost, w as isMobileCordova, x as isBrowserExtension, y as getModularInstance } from "./@firebase/app+[...].mjs";
+import { A as querystring, C as isBrowserExtension, D as isReactNative, E as isMobileCordova, S as getUA, T as isCloudflareWorker, _ as deepEqual, a as getApp, c as LogLevel, d as Deferred, f as ErrorFactory, g as createSubscribe, i as _registerComponent, j as querystringDecode, k as pingServer, l as Logger, m as base64Decode, n as _getProvider, p as FirebaseError, r as _isFirebaseServerApp, s as registerVersion, t as SDK_VERSION, u as Component, v as extractQuerystring, w as isCloudWorkstation, x as getModularInstance, y as getDefaultEmulatorHost } from "./@firebase/app+[...].mjs";
 //#region node_modules/@firebase/auth/dist/node-esm/totp-65577477.js
 /**
 * @license
@@ -2546,6 +2546,12 @@ async function linkEmailPassword(auth, request) {
 async function signInWithPassword(auth, request) {
 	return _performSignInRequest(auth, "POST", "/v1/accounts:signInWithPassword", _addTidIfNecessary(auth, request));
 }
+async function sendOobCode(auth, request) {
+	return _performApiRequest(auth, "POST", "/v1/accounts:sendOobCode", _addTidIfNecessary(auth, request));
+}
+async function sendPasswordResetEmail$1(auth, request) {
+	return sendOobCode(auth, request);
+}
 /**
 * @license
 * Copyright 2020 Google LLC
@@ -3602,6 +3608,9 @@ TwitterAuthProvider.PROVIDER_ID = "twitter.com";
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+async function signUp(auth, request) {
+	return _performSignInRequest(auth, "POST", "/v1/accounts:signUp", _addTidIfNecessary(auth, request));
+}
 /**
 * @license
 * Copyright 2020 Google LLC
@@ -3856,6 +3865,25 @@ async function signInWithCredential(auth, credential) {
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+function _setActionCodeSettingsOnRequest(auth, request, actionCodeSettings) {
+	_assert(actionCodeSettings.url?.length > 0, auth, "invalid-continue-uri");
+	_assert(typeof actionCodeSettings.dynamicLinkDomain === "undefined" || actionCodeSettings.dynamicLinkDomain.length > 0, auth, "invalid-dynamic-link-domain");
+	_assert(typeof actionCodeSettings.linkDomain === "undefined" || actionCodeSettings.linkDomain.length > 0, auth, "invalid-hosting-link-domain");
+	request.continueUrl = actionCodeSettings.url;
+	request.dynamicLinkDomain = actionCodeSettings.dynamicLinkDomain;
+	request.linkDomain = actionCodeSettings.linkDomain;
+	request.canHandleCodeInApp = actionCodeSettings.handleCodeInApp;
+	if (actionCodeSettings.iOS) {
+		_assert(actionCodeSettings.iOS.bundleId.length > 0, auth, "missing-ios-bundle-id");
+		request.iOSBundleId = actionCodeSettings.iOS.bundleId;
+	}
+	if (actionCodeSettings.android) {
+		_assert(actionCodeSettings.android.packageName.length > 0, auth, "missing-android-pkg-name");
+		request.androidInstallApp = actionCodeSettings.android.installApp;
+		request.androidMinimumVersionCode = actionCodeSettings.android.minimumVersion;
+		request.androidPackageName = actionCodeSettings.android.packageName;
+	}
+}
 /**
 * @license
 * Copyright 2020 Google LLC
@@ -3888,6 +3916,87 @@ async function signInWithCredential(auth, credential) {
 async function recachePasswordPolicy(auth) {
 	const authInternal = _castAuth(auth);
 	if (authInternal._getPasswordPolicyInternal()) await authInternal._updatePasswordPolicy();
+}
+/**
+* Sends a password reset email to the given email address. This method does not throw an error when
+* there's no user account with the given email address and
+* {@link https://cloud.google.com/identity-platform/docs/admin/email-enumeration-protection | Email Enumeration Protection}
+* is enabled.
+*
+* @remarks
+* To complete the password reset, call {@link confirmPasswordReset} with the code supplied in
+* the email sent to the user, along with the new password specified by the user.
+*
+* @example
+* ```javascript
+* const actionCodeSettings = {
+*   url: 'https://www.example.com/?email=user@example.com',
+*   iOS: {
+*      bundleId: 'com.example.ios'
+*   },
+*   android: {
+*     packageName: 'com.example.android',
+*     installApp: true,
+*     minimumVersion: '12'
+*   },
+*   handleCodeInApp: true
+* };
+* await sendPasswordResetEmail(auth, 'user@example.com', actionCodeSettings);
+* // Obtain code from user.
+* await confirmPasswordReset('user@example.com', code);
+* ```
+*
+* @param auth - The {@link Auth} instance.
+* @param email - The user's email address.
+* @param actionCodeSettings - The {@link ActionCodeSettings}.
+*
+* @public
+*/
+async function sendPasswordResetEmail(auth, email, actionCodeSettings) {
+	const authInternal = _castAuth(auth);
+	const request = {
+		requestType: "PASSWORD_RESET",
+		email,
+		clientType: "CLIENT_TYPE_WEB"
+	};
+	if (actionCodeSettings) _setActionCodeSettingsOnRequest(authInternal, request, actionCodeSettings);
+	await handleRecaptchaFlow(authInternal, request, "getOobCode", sendPasswordResetEmail$1, "EMAIL_PASSWORD_PROVIDER");
+}
+/**
+* Creates a new user account associated with the specified email address and password.
+*
+* @remarks
+* On successful creation of the user account, this user will also be signed in to your application.
+*
+* User account creation can fail if the account already exists or the password is invalid.
+*
+* This method is not supported on {@link Auth} instances created with a
+* {@link @firebase/app#FirebaseServerApp}.
+*
+* Note: The email address acts as a unique identifier for the user and enables an email-based
+* password reset. This function will create a new user account and set the initial user password.
+*
+* @param auth - The {@link Auth} instance.
+* @param email - The user's email address.
+* @param password - The user's chosen password.
+*
+* @public
+*/
+async function createUserWithEmailAndPassword(auth, email, password) {
+	if (_isFirebaseServerApp(auth.app)) return Promise.reject(_serverAppCurrentUserOperationNotSupportedError(auth));
+	const authInternal = _castAuth(auth);
+	const response = await handleRecaptchaFlow(authInternal, {
+		returnSecureToken: true,
+		email,
+		password,
+		clientType: "CLIENT_TYPE_WEB"
+	}, "signUpPassword", signUp, "EMAIL_PASSWORD_PROVIDER").catch((error) => {
+		if (error.code === `auth/password-does-not-meet-requirements`) recachePasswordPolicy(auth);
+		throw error;
+	});
+	const userCredential = await UserCredentialImpl._fromIdTokenResponse(authInternal, "signIn", response);
+	await authInternal._updateCurrentUser(userCredential.user);
+	return userCredential;
 }
 /**
 * Asynchronously signs in using an email and password.
@@ -4430,4 +4539,4 @@ function _isEmptyString(input) {
 	return typeof input === "undefined" || input?.length === 0;
 }
 //#endregion
-export { signOut as i, onAuthStateChanged as n, signInWithEmailAndPassword as r, getAuth as t };
+export { signInWithEmailAndPassword as a, sendPasswordResetEmail as i, getAuth as n, signOut as o, onAuthStateChanged as r, createUserWithEmailAndPassword as t };

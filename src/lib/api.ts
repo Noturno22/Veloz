@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { createServerFn } from "@tanstack/react-start";
+import { db } from "./firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export const registerSchema = z.object({
   fullName: z.string().min(1, "form.required"),
@@ -23,16 +24,18 @@ export const contactSchema = z.object({
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type ContactInput = z.infer<typeof contactSchema>;
 
-export const submitRegister = createServerFn({ method: "POST" })
-  .validator((d: unknown) => registerSchema.parse(d))
-  .handler(async ({ data }) => {
-    console.log("[Register]", JSON.stringify(data, null, 2));
-    return { success: true };
+export async function submitRegister(data: RegisterInput) {
+  const docRef = await addDoc(collection(db, "leads"), {
+    ...data,
+    createdAt: serverTimestamp(),
   });
+  return { success: true, id: docRef.id };
+}
 
-export const submitContact = createServerFn({ method: "POST" })
-  .validator((d: unknown) => contactSchema.parse(d))
-  .handler(async ({ data }) => {
-    console.log("[Contact]", JSON.stringify(data, null, 2));
-    return { success: true };
+export async function submitContact(data: ContactInput) {
+  const docRef = await addDoc(collection(db, "contacts"), {
+    ...data,
+    createdAt: serverTimestamp(),
   });
+  return { success: true, id: docRef.id };
+}

@@ -454,6 +454,21 @@ var getDefaults = () => {
 */
 var getDefaultEmulatorHost = (productName) => getDefaults()?.emulatorHosts?.[productName];
 /**
+* Returns emulator hostname and port stored in the __FIREBASE_DEFAULTS__ object
+* for the given product.
+* @returns a pair of hostname and port like `["::1", 4000]` if available
+* @public
+*/
+var getDefaultEmulatorHostnameAndPort = (productName) => {
+	const host = getDefaultEmulatorHost(productName);
+	if (!host) return;
+	const separatorIndex = host.lastIndexOf(":");
+	if (separatorIndex <= 0 || separatorIndex + 1 === host.length) throw new Error(`Invalid host ${host} with no separate hostname and port!`);
+	const port = parseInt(host.substring(separatorIndex + 1), 10);
+	if (host[0] === "[") return [host.substring(1, separatorIndex - 1), port];
+	else return [host.substring(0, separatorIndex), port];
+};
+/**
 * Returns Firebase app config stored in the __FIREBASE_DEFAULTS__ object.
 * @public
 */
@@ -516,6 +531,36 @@ var Deferred = class {
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+function createMockUserToken(token, projectId) {
+	if (token.uid) throw new Error("The \"uid\" field is no longer supported by mockUserToken. Please use \"sub\" instead for Firebase Auth User ID.");
+	const header = {
+		alg: "none",
+		type: "JWT"
+	};
+	const project = projectId || "demo-project";
+	const iat = token.iat || 0;
+	const sub = token.sub || token.user_id;
+	if (!sub) throw new Error("mockUserToken must contain 'sub' or 'user_id' field!");
+	const payload = {
+		iss: `https://securetoken.google.com/${project}`,
+		aud: project,
+		iat,
+		exp: iat + 3600,
+		auth_time: iat,
+		sub,
+		user_id: sub,
+		firebase: {
+			sign_in_provider: "custom",
+			identities: {}
+		},
+		...token
+	};
+	return [
+		base64urlEncodeWithoutPadding(JSON.stringify(header)),
+		base64urlEncodeWithoutPadding(JSON.stringify(payload)),
+		""
+	].join(".");
+}
 /**
 * @license
 * Copyright 2017 Google LLC
@@ -551,6 +596,21 @@ function isMobileCordova() {
 	return typeof window !== "undefined" && !!(window["cordova"] || window["phonegap"] || window["PhoneGap"]) && /ios|iphone|ipod|ipad|android|blackberry|iemobile/i.test(getUA());
 }
 /**
+* Detect Node.js.
+*
+* @return true if Node.js environment is detected or specified.
+*/
+function isNode() {
+	const forceEnvironment = getDefaults()?.forceEnvironment;
+	if (forceEnvironment === "node") return true;
+	else if (forceEnvironment === "browser") return false;
+	try {
+		return Object.prototype.toString.call(global.process) === "[object process]";
+	} catch (e) {
+		return false;
+	}
+}
+/**
 * Detect Cloudflare Worker context.
 */
 function isCloudflareWorker() {
@@ -567,6 +627,10 @@ function isBrowserExtension() {
 */
 function isReactNative() {
 	return typeof navigator === "object" && navigator["product"] === "ReactNative";
+}
+/** Returns true if we are running in Safari. */
+function isSafari() {
+	return !isNode() && !!navigator.userAgent && navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome");
 }
 /**
 * This method checks if indexedDB is supported by current browser/service worker context
@@ -2485,4 +2549,4 @@ function registerCoreComponents(variant) {
 */
 registerCoreComponents("");
 //#endregion
-export { isCloudflareWorker as C, querystring as D, pingServer as E, querystringDecode as O, isCloudWorkstation as S, isReactNative as T, extractQuerystring as _, getApp as a, getUA as b, LogLevel as c, Deferred as d, ErrorFactory as f, deepEqual as g, createSubscribe as h, _registerComponent as i, Logger as l, base64Decode as m, _getProvider as n, initializeApp as o, FirebaseError as p, _isFirebaseServerApp as r, registerVersion as s, SDK_VERSION as t, Component as u, getDefaultEmulatorHost as v, isMobileCordova as w, isBrowserExtension as x, getModularInstance as y };
+export { querystring as A, isBrowserExtension as C, isReactNative as D, isMobileCordova as E, isSafari as O, getUA as S, isCloudflareWorker as T, deepEqual as _, getApp as a, getDefaultEmulatorHostnameAndPort as b, LogLevel as c, Deferred as d, ErrorFactory as f, createSubscribe as g, createMockUserToken as h, _registerComponent as i, querystringDecode as j, pingServer as k, Logger as l, base64Decode as m, _getProvider as n, initializeApp as o, FirebaseError as p, _isFirebaseServerApp as r, registerVersion as s, SDK_VERSION as t, Component as u, extractQuerystring as v, isCloudWorkstation as w, getModularInstance as x, getDefaultEmulatorHost as y };

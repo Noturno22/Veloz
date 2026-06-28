@@ -37,7 +37,7 @@ function Insights() {
       />
       <section className="container-x py-10 flex flex-wrap gap-2">
         {CATS.map((c, i) => (
-          <button key={c} className={`rounded-full px-4 py-2 text-sm font-medium border transition ${i === 0 ? "bg-[color:var(--navy)] text-white border-[color:var(--navy)]" : "border-border bg-white hover:border-gold"}`}>
+          <button key={c} className={`rounded-full px-4 py-2 text-sm font-medium border transition ${i === 0 ? "bg-[color:var(--brand-green)] text-white border-[color:var(--brand-green)]" : "border-border bg-card hover:border-gold"}`}>
             {t(c)}
           </button>
         ))}
@@ -49,7 +49,7 @@ function Insights() {
               <div
                 aria-hidden
                 className="absolute inset-0 opacity-40"
-                style={{ background: "radial-gradient(circle at 20% 20%, #D4A017 0%, transparent 60%)" }}
+                style={{ background: "radial-gradient(circle at 20% 20%, var(--brand-green) 0%, transparent 60%)" }}
               />
               <span className="absolute bottom-4 left-4 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-[color:var(--navy)]">
                 {t(p.catKey)}
