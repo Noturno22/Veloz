@@ -10,9 +10,9 @@ export function SiteFooter() {
         <div className="flex flex-col md:flex-row justify-between items-start border-b border-white/10 pb-16 gap-12">
           <div className="max-w-sm">
             <div className="flex items-center gap-3">
-              <img src="/zentra-logo.png" alt="Zentra Trading" className="h-10 w-10 object-contain" />
+              <img src="/zentra-logo.png" alt="Veloz" className="h-10 w-10 object-contain" />
               <div className="font-display text-3xl font-bold uppercase tracking-tighter">
-                Zentra<span className="text-gold">.</span>
+                Veloz<span className="text-gold">.</span>
               </div>
             </div>
             <p className="mt-5 text-sm text-white/50 leading-relaxed">{t("footer.tagline")}</p>
@@ -61,13 +61,13 @@ export function SiteFooter() {
               <ul className="space-y-3 text-sm text-white/60">
                 <li className="flex items-start gap-2.5"><MapPin className="h-4 w-4 mt-0.5 text-gold shrink-0" />Luanda, Angola</li>
                 <li className="flex items-start gap-2.5"><Phone className="h-4 w-4 mt-0.5 text-gold shrink-0" />+244 926 599 991</li>
-                <li className="flex items-start gap-2.5"><Mail className="h-4 w-4 mt-0.5 text-gold shrink-0" />info@zentratrading.com</li>
+                <li className="flex items-start gap-2.5"><Mail className="h-4 w-4 mt-0.5 text-gold shrink-0" />info@veloz.com</li>
               </ul>
             </div>
           </div>
         </div>
         <div className="mt-10 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-[0.25em] text-white/30 gap-4">
-          <p>© {new Date().getFullYear()} Zentra Trading Group. {t("footer.rights")}</p>
+          <p>© {new Date().getFullYear()} Veloz Group. {t("footer.rights")}</p>
           <p className="text-white/40">{t("footer.slogan")}</p>
         </div>
       </div>

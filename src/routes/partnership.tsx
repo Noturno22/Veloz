@@ -7,9 +7,9 @@ import type { TKey } from "@/lib/translations";
 export const Route = createFileRoute("/partnership")({
   head: () => ({
     meta: [
-      { title: "Partnership — Zentra Trading" },
-      { name: "description", content: "Join 850+ partners trading globally with Zentra Trading. Become a producer, supplier, exporter, importer or investor partner." },
-      { property: "og:title", content: "Partnership — Zentra Trading" },
+      { title: "Partnership — Veloz" },
+      { name: "description", content: "Join 850+ partners trading globally with Veloz. Become a producer, supplier, exporter, importer or investor partner." },
+      { property: "og:title", content: "Partnership — Veloz" },
       { property: "og:url", content: "https://zentratrading.com/partnership" },
     ],
     links: [{ rel: "canonical", href: "https://zentratrading.com/partnership" }],

@@ -7,9 +7,9 @@ import type { TKey } from "@/lib/translations";
 export const Route = createFileRoute("/opportunities")({
   head: () => ({
     meta: [
-      { title: "Opportunities — Zentra Trading" },
+      { title: "Opportunities — Veloz" },
       { name: "description", content: "Browse live trading opportunities across agricultural, mineral, energy and industrial markets." },
-      { property: "og:title", content: "Opportunities — Zentra Trading" },
+      { property: "og:title", content: "Opportunities — Veloz" },
       { property: "og:url", content: "https://zentratrading.com/opportunities" },
     ],
     links: [{ rel: "canonical", href: "https://zentratrading.com/opportunities" }],

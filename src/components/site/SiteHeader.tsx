@@ -1,11 +1,12 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, UserRound, LogOut } from "lucide-react";
+import { Menu, X, UserRound, LogOut, Shield } from "lucide-react";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useI18n } from "@/lib/i18n";
 import { useAuth } from "@/lib/auth";
+import { isAdminEmail } from "@/lib/admin";
 import type { TKey } from "@/lib/translations";
 
 const NAV: { to: string; key: TKey }[] = [
@@ -43,7 +44,7 @@ export function SiteHeader() {
       }`}
     >
       <div className="container-x flex h-24 items-center justify-between gap-4">
-        <Link to="/" aria-label="Zentra Trading home" className="flex items-center shrink-0">
+        <Link to="/" aria-label="Veloz home" className="flex items-center shrink-0">
           <Logo />
         </Link>
 
@@ -71,6 +72,15 @@ export function SiteHeader() {
           <ThemeToggle />
           {user ? (
             <div className="flex items-center gap-2">
+              {isAdminEmail(user.email) && (
+                <Link
+                  to="/admin"
+                  className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-gold hover:brightness-110 transition-all"
+                >
+                  <Shield className="h-3 w-3" />
+                  Admin
+                </Link>
+              )}
               <Link
                 to="/dashboard"
                 className="text-[10px] font-semibold text-foreground/60 hover:text-gold truncate max-w-28 transition-colors"
@@ -126,6 +136,15 @@ export function SiteHeader() {
             })}
             {user ? (
               <>
+                {isAdminEmail(user.email) && (
+                  <Link
+                    to="/admin"
+                    className="rounded-md px-3 py-2.5 text-xs font-bold uppercase tracking-[0.25em] text-gold"
+                  >
+                    <Shield className="h-3.5 w-3.5 inline mr-1" />
+                    Admin
+                  </Link>
+                )}
                 <Link
                   to="/dashboard"
                   className="rounded-md px-3 py-2.5 text-xs font-bold uppercase tracking-[0.25em] text-gold"

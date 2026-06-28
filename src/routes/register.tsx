@@ -7,9 +7,9 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/register")({
   head: () => ({
     meta: [
-      { title: "Create Account — Zentra Trading" },
-      { name: "description", content: "Create your Zentra Trading account and access global commodity opportunities." },
-      { property: "og:title", content: "Create Account — Zentra Trading" },
+      { title: "Create Account — Veloz" },
+      { name: "description", content: "Create your Veloz account and access global commodity opportunities." },
+      { property: "og:title", content: "Create Account — Veloz" },
       { property: "og:url", content: "https://zentratrading.com/register" },
     ],
     links: [{ rel: "canonical", href: "https://zentratrading.com/register" }],

@@ -10,9 +10,9 @@ import type { ContactInput } from "@/lib/api";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Zentra Trading" },
-      { name: "description", content: "Reach Zentra Trading in Luanda, Angola. Phone, email and registration form for global commodity opportunities." },
-      { property: "og:title", content: "Contact — Zentra Trading" },
+      { title: "Contact — Veloz" },
+      { name: "description", content: "Reach Veloz in Luanda, Angola. Phone, email and registration form for global commodity opportunities." },
+      { property: "og:title", content: "Contact — Veloz" },
       { property: "og:url", content: "https://zentratrading.com/contact" },
     ],
     links: [{ rel: "canonical", href: "https://zentratrading.com/contact" }],
@@ -25,8 +25,8 @@ function Contact() {
   const CONTACTS: { icon: typeof Mail; labelKey: TKey; value: string }[] = [
     { icon: MapPin, labelKey: "contact.address", value: "Luanda, Angola" },
     { icon: Phone, labelKey: "contact.phoneWa", value: "+244 926 599 991" },
-    { icon: Mail, labelKey: "contact.email", value: "info@zentratrading.com" },
-    { icon: Globe2, labelKey: "contact.website", value: "www.zentratrading.com" },
+    { icon: Mail, labelKey: "contact.email", value: "info@veloz.com" },
+    { icon: Globe2, labelKey: "contact.website", value: "www.veloz.com" },
   ];
 
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
@@ -87,7 +87,7 @@ function Contact() {
           ))}
           <div className="overflow-hidden rounded-2xl border border-border shadow-card">
             <iframe
-              title="Zentra Trading — Luanda, Angola"
+              title="Veloz — Luanda, Angola"
               src="https://www.google.com/maps?q=Luanda,Angola&output=embed"
               className="h-72 w-full"
               loading="lazy"

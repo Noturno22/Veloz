@@ -7,9 +7,9 @@ import { useI18n } from "@/lib/i18n";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Login — Zentra Trading" },
-      { name: "description", content: "Access your Zentra Trading account." },
-      { property: "og:title", content: "Login — Zentra Trading" },
+      { title: "Login — Veloz" },
+      { name: "description", content: "Access your Veloz account." },
+      { property: "og:title", content: "Login — Veloz" },
       { property: "og:url", content: "https://zentratrading.com/login" },
     ],
     links: [{ rel: "canonical", href: "https://zentratrading.com/login" }],
@@ -145,7 +145,7 @@ function LoginPage() {
               {t("nav.login")}
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              Access your Zentra Trading account
+              Access your Veloz account
             </p>
           </div>
 

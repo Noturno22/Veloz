@@ -10,9 +10,9 @@ import type { TKey } from "@/lib/translations";
 export const Route = createFileRoute("/commodities")({
   head: () => ({
     meta: [
-      { title: "Commodities — Zentra Trading" },
+      { title: "Commodities — Veloz" },
       { name: "description", content: "Agricultural, mineral, energy and industrial commodities traded across our global network." },
-      { property: "og:title", content: "Commodities — Zentra Trading" },
+      { property: "og:title", content: "Commodities — Veloz" },
       { property: "og:url", content: "https://zentratrading.com/commodities" },
     ],
     links: [{ rel: "canonical", href: "https://zentratrading.com/commodities" }],

@@ -15,9 +15,9 @@ import type { RegisterInput } from "@/lib/api";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Zentra Trading — Global Commodity Trading Made Simple" },
+      { title: "Veloz — Global Commodity Trading Made Simple" },
       { name: "description", content: "Connecting producers, suppliers, exporters, importers and investors through secure and efficient global commodity trading solutions." },
-      { property: "og:title", content: "Zentra Trading — Global Commodity Trading Made Simple" },
+      { property: "og:title", content: "Veloz — Global Commodity Trading Made Simple" },
       { property: "og:description", content: "Worldwide commodity marketplace for agricultural, mineral, energy and industrial trading." },
       { property: "og:url", content: "https://zentratrading.com/" },
       { property: "og:image", content: heroImg },
@@ -156,11 +156,11 @@ function HomePage() {
               </p>
             </div>
 
-            <div className="mt-10 relative">
+            <div className="mt-10 -mx-[1.25rem] md:-mx-[2rem]">
               <img
                 src={heroImg}
                 alt={t("home.hero.imgAlt")}
-                className="w-full h-auto rounded-2xl shadow-elegant object-cover aspect-[16/9]"
+                className="w-full block"
                 fetchPriority="high"
               />
             </div>
