@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowRight, Eye, EyeOff, ShieldCheck } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
+import { auth } from "@/lib/firebase";
 
 export const Route = createFileRoute("/register")({
   head: () => ({
@@ -47,7 +48,7 @@ function RegisterPage() {
     try {
       await register(email, password);
       setSuccess(true);
-      setTimeout(() => navigate({ to: "/dashboard" }), 1500);
+      setTimeout(() => navigate({ to: "/dashboard", replace: true }), 1500);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "";
       if (msg.includes("auth/email-already-in-use")) {

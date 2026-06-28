@@ -1,8 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { LogOut, UserRound, BarChart3, Globe2, Handshake, TrendingUp, ArrowRight } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
+import { auth } from "@/lib/firebase";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -21,9 +22,11 @@ function DashboardPage() {
   const { t } = useI18n();
   const { user, loading, logout } = useAuth();
   const navigate = useNavigate();
+  const redirected = useRef(false);
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (!loading && !user && !auth.currentUser && !redirected.current) {
+      redirected.current = true;
       navigate({ to: "/login" });
     }
   }, [user, loading, navigate]);
@@ -36,7 +39,7 @@ function DashboardPage() {
     );
   }
 
-  if (!user) return null;
+  if (!user && !auth.currentUser) return null;
 
   return (
     <div className="min-h-[calc(100vh-6rem)] py-16">

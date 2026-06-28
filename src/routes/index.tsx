@@ -68,11 +68,13 @@ function HomePage() {
   ];
 
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [submitMsg, setSubmitMsg] = useState("");
   const [errors, setErrors] = useState<Partial<Record<keyof RegisterInput, string>>>({});
 
   async function handleRegister(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("idle");
+    setSubmitMsg("");
     setErrors({});
     const form = new FormData(e.currentTarget);
     const data: RegisterInput = {
@@ -96,9 +98,11 @@ function HomePage() {
     try {
       await submitRegister(result.data);
       setStatus("success");
+      setSubmitMsg(t("form.submitSuccess"));
       (e.target as HTMLFormElement).reset();
-    } catch {
+    } catch (err) {
       setStatus("error");
+      setSubmitMsg(err instanceof Error ? err.message : t("form.submitError"));
     }
   }
 
@@ -157,12 +161,14 @@ function HomePage() {
             </div>
 
             <div className="mt-10 -mx-[1.25rem] md:-mx-[2rem]">
-              <img
-                src={heroImg}
-                alt={t("home.hero.imgAlt")}
-                className="w-full block"
-                fetchPriority="high"
-              />
+              <div className="mx-[1.25rem] md:mx-[2rem] overflow-hidden rounded-xl border border-border/30 shadow-elegant">
+                <img
+                  src={heroImg}
+                  alt={t("home.hero.imgAlt")}
+                  className="w-full block"
+                  fetchPriority="high"
+                />
+              </div>
             </div>
           </div>
 
@@ -247,11 +253,12 @@ function HomePage() {
                   {t("common.joinZentra")}
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </button>
-                {status === "success" && (
-                  <p className="text-xs text-emerald-600 text-center">{t("form.submitSuccess")}</p>
-                )}
-                {status === "error" && (
-                  <p className="text-xs text-red-500 text-center">{t("form.submitError")}</p>
+                {status !== "idle" && (
+                  <p className={`text-xs rounded-lg px-3 py-2 text-center ${
+                    status === "success" ? "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30" : "text-red-500 bg-red-50 dark:bg-red-950/30"
+                  }`}>
+                    {submitMsg}
+                  </p>
                 )}
                 <div className="flex items-center justify-center gap-2 text-[11px] text-foreground/50 pt-1">
                   <ShieldCheck className="h-3.5 w-3.5 text-gold" />

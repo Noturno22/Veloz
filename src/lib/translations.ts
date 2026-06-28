@@ -65,7 +65,7 @@ const en = {
   "form.required": "This field is required",
   "form.invalidEmail": "Please enter a valid email address",
   "form.submitSuccess": "Form submitted successfully! We'll be in touch shortly.",
-  "form.submitError": "Something went wrong. Please try again.",
+  "form.submitError": "Could not submit. Please check your connection or try creating an account at /register.",
   // nav
   "nav.home": "Home",
   "nav.about": "About Us",
@@ -443,7 +443,7 @@ const pt: Record<keyof typeof en, string> = {
   "form.required": "Este campo é obrigatório",
   "form.invalidEmail": "Insira um endereço de e-mail válido",
   "form.submitSuccess": "Formulário enviado com sucesso! Entraremos em contacto brevemente.",
-  "form.submitError": "Ocorreu um erro. Por favor, tente novamente.",
+  "form.submitError": "Não foi possível enviar. Verifique a sua conexão ou crie uma conta em /register.",
   "nav.home": "Início",
   "nav.about": "Sobre Nós",
   "nav.commodities": "Commodities",

@@ -1,0 +1,24 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Leads — allow anyone to create, only admins to read/update/delete
+    match /leads/{docId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null
+        && request.auth.token.email in ['admin@zentratrading.com', 'fortuna@zentratrading.com'];
+    }
+
+    // Contacts — allow anyone to create, only admins to read/update/delete
+    match /contacts/{docId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null
+        && request.auth.token.email in ['admin@zentratrading.com', 'fortuna@zentratrading.com'];
+    }
+
+    // Deny everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

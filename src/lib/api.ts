@@ -24,18 +24,34 @@ export const contactSchema = z.object({
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type ContactInput = z.infer<typeof contactSchema>;
 
+function getFirestoreErrorMessage(err: unknown): string {
+  const e = err as { code?: string } | null;
+  if (e?.code === "permission-denied") return "Firestore access denied. Contact the administrator.";
+  if (e?.code === "unavailable") return "Service temporarily unavailable. Please try again.";
+  if (e?.code?.startsWith("auth/")) return "Authentication error. Please log in.";
+  return "Network error. Check your connection and try again.";
+}
+
 export async function submitRegister(data: RegisterInput) {
-  const docRef = await addDoc(collection(db, "leads"), {
-    ...data,
-    createdAt: serverTimestamp(),
-  });
-  return { success: true, id: docRef.id };
+  try {
+    const docRef = await addDoc(collection(db, "leads"), {
+      ...data,
+      createdAt: serverTimestamp(),
+    });
+    return { success: true, id: docRef.id };
+  } catch (err) {
+    throw new Error(getFirestoreErrorMessage(err));
+  }
 }
 
 export async function submitContact(data: ContactInput) {
-  const docRef = await addDoc(collection(db, "contacts"), {
-    ...data,
-    createdAt: serverTimestamp(),
-  });
-  return { success: true, id: docRef.id };
+  try {
+    const docRef = await addDoc(collection(db, "contacts"), {
+      ...data,
+      createdAt: serverTimestamp(),
+    });
+    return { success: true, id: docRef.id };
+  } catch (err) {
+    throw new Error(getFirestoreErrorMessage(err));
+  }
 }

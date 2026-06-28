@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowRight, ShieldCheck, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
+import { auth } from "@/lib/firebase";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -37,17 +38,24 @@ function LoginPage() {
     setLoading(true);
     try {
       await login(email, password);
-      navigate({ to: "/dashboard" });
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Login failed";
-      if (msg.includes("auth/invalid-credential") || msg.includes("auth/user-not-found") || msg.includes("auth/wrong-password")) {
-        setError("Invalid email or password.");
-      } else if (msg.includes("auth/invalid-email")) {
-        setError("Invalid email format.");
-      } else if (msg.includes("auth/too-many-requests")) {
-        setError("Too many attempts. Please try again later.");
+      if (auth.currentUser) {
+        navigate({ to: "/dashboard", replace: true });
       } else {
-        setError(msg);
+        navigate({ to: "/dashboard", replace: true });
+      }
+    } catch (err: unknown) {
+      const errObj = err as { code?: string; message?: string } | null;
+      const code = errObj?.code ?? "";
+      if (code.includes("auth/invalid-credential") || code.includes("auth/user-not-found") || code.includes("auth/wrong-password")) {
+        setError("Invalid email or password. If you don't have an account, create one first.");
+      } else if (code.includes("auth/invalid-email")) {
+        setError("Invalid email format.");
+      } else if (code.includes("auth/too-many-requests")) {
+        setError("Too many attempts. Please try again later.");
+      } else if (code.includes("auth/invalid-login-credentials") || code.includes("auth/configuration-not-found")) {
+        setError("Login unavailable. Contact support or try again later.");
+      } else {
+        setError(code || errObj?.message || "Login failed");
       }
     } finally {
       setLoading(false);
@@ -63,13 +71,16 @@ function LoginPage() {
       await resetPassword(email);
       setResetSent(true);
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "";
-      if (msg.includes("auth/user-not-found")) {
+      const errObj = err as { code?: string; message?: string } | null;
+      const code = errObj?.code ?? "";
+      if (code.includes("auth/user-not-found")) {
         setError("No account found with this email.");
-      } else if (msg.includes("auth/invalid-email")) {
+      } else if (code.includes("auth/invalid-email")) {
         setError("Invalid email format.");
+      } else if (code.includes("auth/configuration-not-found")) {
+        setError("Password reset unavailable. Contact support.");
       } else {
-        setError(msg);
+        setError(code || errObj?.message || "Reset failed");
       }
     } finally {
       setResetLoading(false);
