@@ -20,12 +20,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       const initial: Theme = stored ?? "light";
       setThemeState(initial);
       apply(initial);
-    } catch {}
+    } catch { console.error("Failed to read theme from localStorage"); }
   }, []);
 
   const setTheme = useCallback((t: Theme) => {
     setThemeState(t);
-    try { localStorage.setItem("zentra-theme", t); } catch {}
+    try { localStorage.setItem("zentra-theme", t); } catch { console.error("Failed to persist theme to localStorage"); }
     apply(t);
   }, []);
 

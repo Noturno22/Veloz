@@ -8,6 +8,9 @@ import industrialImg from "@/assets/commodity-industrial.jpg";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
 import { WorldMap } from "@/components/site/WorldMap";
+import { useState } from "react";
+import { registerSchema, submitRegister } from "@/lib/api";
+import type { RegisterInput } from "@/lib/api";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -16,10 +19,10 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Connecting producers, suppliers, exporters, importers and investors through secure and efficient global commodity trading solutions." },
       { property: "og:title", content: "Zentra Trading — Global Commodity Trading Made Simple" },
       { property: "og:description", content: "Worldwide commodity marketplace for agricultural, mineral, energy and industrial trading." },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://zentratrading.com/" },
       { property: "og:image", content: heroImg },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://zentratrading.com/" }],
   }),
   component: HomePage,
 });
@@ -43,26 +46,61 @@ function HomePage() {
     { icon: TrendingUp, value: "US$ 2.8B+", labelKey: "stats.volume" as TKey },
   ];
 
-  const COMMODITIES = [
-    { titleKey: "comm.agricultural" as TKey, img: agriImg, items: ["Coffee", "Soybeans", "Corn", "Rice"] },
-    { titleKey: "comm.minerals" as TKey, img: mineralsImg, items: ["Gold", "Diamonds", "Copper", "Iron Ore"] },
-    { titleKey: "comm.energy" as TKey, img: energyImg, items: ["Oil", "Natural Gas"] },
-    { titleKey: "comm.industrial" as TKey, img: industrialImg, items: ["Steel", "Cement", "Aluminum"] },
+  const COMMODITIES: { titleKey: TKey; img: string; itemKeys: TKey[] }[] = [
+    { titleKey: "comm.agricultural", img: agriImg, itemKeys: ["comm.item.coffee", "comm.item.soybeans", "comm.item.corn", "comm.item.rice"] },
+    { titleKey: "comm.minerals", img: mineralsImg, itemKeys: ["comm.item.gold", "comm.item.diamonds", "comm.item.copper", "comm.item.ironOre"] },
+    { titleKey: "comm.energy", img: energyImg, itemKeys: ["comm.item.oil", "comm.item.naturalGas"] },
+    { titleKey: "comm.industrial", img: industrialImg, itemKeys: ["comm.item.steel", "comm.item.cement", "comm.item.aluminum"] },
   ];
 
-  const MARKET = [
-    { name: "Crude Oil", price: "$84.45", change: "+2.35%", up: true },
-    { name: "Gold", price: "$2,395.50", change: "+1.25%", up: true },
-    { name: "Copper", price: "$9,125.00", change: "-0.45%", up: false },
-    { name: "Natural Gas", price: "$2.75", change: "+3.45%", up: true },
+  const MARKET: { nameKey: TKey; nameEn: string; price: string; change: string; up: boolean }[] = [
+    { nameKey: "dash.market.crudeOil", nameEn: "Crude Oil", price: "$84.45", change: "+2.35%", up: true },
+    { nameKey: "dash.market.gold", nameEn: "Gold", price: "$2,395.50", change: "+1.25%", up: true },
+    { nameKey: "dash.market.copper", nameEn: "Copper", price: "$9,125.00", change: "-0.45%", up: false },
+    { nameKey: "dash.market.naturalGas", nameEn: "Natural Gas", price: "$2.75", change: "+3.45%", up: true },
   ];
 
-  const DIST = [
-    { label: "Energy", value: 35, color: "#3b82f6" },
-    { label: "Minerals", value: 25, color: "#14b8a6" },
-    { label: "Agricultural", value: 25, color: "#10b981" },
-    { label: "Industrial", value: 15, color: "#6366f1" },
+  const DIST: { labelKey: TKey; labelEn: string; value: number; color: string }[] = [
+    { labelKey: "dash.dist.energy", labelEn: "Energy", value: 35, color: "#3b82f6" },
+    { labelKey: "dash.dist.minerals", labelEn: "Minerals", value: 25, color: "#14b8a6" },
+    { labelKey: "dash.dist.agricultural", labelEn: "Agricultural", value: 25, color: "#10b981" },
+    { labelKey: "dash.dist.industrial", labelEn: "Industrial", value: 15, color: "#6366f1" },
   ];
+
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errors, setErrors] = useState<Partial<Record<keyof RegisterInput, string>>>({});
+
+  async function handleRegister(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("idle");
+    setErrors({});
+    const form = new FormData(e.currentTarget);
+    const data: RegisterInput = {
+      fullName: form.get("fullName") as string,
+      companyName: form.get("companyName") as string,
+      email: form.get("email") as string,
+      whatsapp: form.get("whatsapp") as string,
+      country: form.get("country") as string,
+      businessType: form.get("businessType") as string,
+    };
+    const result = registerSchema.safeParse(data);
+    if (!result.success) {
+      const fieldErrors: Partial<Record<keyof RegisterInput, string>> = {};
+      for (const issue of result.error.issues) {
+        const field = issue.path[0] as keyof RegisterInput;
+        fieldErrors[field] = issue.message;
+      }
+      setErrors(fieldErrors);
+      return;
+    }
+    try {
+      await submitRegister({ data: result.data });
+      setStatus("success");
+      (e.target as HTMLFormElement).reset();
+    } catch {
+      setStatus("error");
+    }
+  }
 
   return (
     <div className="bg-background text-foreground">
@@ -109,8 +147,8 @@ function HomePage() {
 
             <div className="mt-8 flex items-center gap-4">
               <div className="flex -space-x-2">
-                {["#C5A059", "#0A192F", "#3b82f6", "#10b981"].map((c, i) => (
-                  <div key={i} className="h-9 w-9 rounded-full border-2 border-background" style={{ background: c }} />
+                {["#C5A059", "#0A192F", "#3b82f6", "#10b981"].map((c) => (
+                  <div key={c} className="h-9 w-9 rounded-full border-2 border-background" style={{ background: c }} />
                 ))}
               </div>
               <p className="text-sm text-foreground/60">
@@ -136,27 +174,72 @@ function HomePage() {
               </h2>
               <p className="mt-2 text-sm text-foreground/60">{t("form.heroIntro")}</p>
 
-              <form className="mt-6 space-y-3" onSubmit={(e) => e.preventDefault()}>
-                {([
-                  { ph: "form.fullName" as TKey },
-                  { ph: "form.companyName" as TKey },
-                  { ph: "form.email" as TKey },
-                  { ph: "form.whatsapp" as TKey },
-                ]).map((f) => (
+              <form className="mt-6 space-y-3" onSubmit={handleRegister} noValidate>
+                <div>
+                  <label htmlFor="reg-name" className="sr-only">{t("form.fullName")}</label>
                   <input
-                    key={f.ph}
-                    placeholder={t(f.ph)}
+                    id="reg-name"
+                    name="fullName"
+                    placeholder={t("form.fullName")}
                     className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
                   />
-                ))}
-                <select className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm text-foreground/80 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition">
-                  <option>{t("form.selectCountry")}</option>
-                  {COUNTRIES.map((c) => <option key={c}>{c}</option>)}
-                </select>
-                <select className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm text-foreground/80 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition">
-                  <option>{t("form.selectBusinessType")}</option>
-                  {BIZ_KEYS.map((k) => <option key={k}>{t(k)}</option>)}
-                </select>
+                  {errors.fullName && <p className="text-xs text-red-500 mt-1">{t(errors.fullName as TKey)}</p>}
+                </div>
+                <div>
+                  <label htmlFor="reg-company" className="sr-only">{t("form.companyName")}</label>
+                  <input
+                    id="reg-company"
+                    name="companyName"
+                    placeholder={t("form.companyName")}
+                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                  />
+                  {errors.companyName && <p className="text-xs text-red-500 mt-1">{t(errors.companyName as TKey)}</p>}
+                </div>
+                <div>
+                  <label htmlFor="reg-email" className="sr-only">{t("form.email")}</label>
+                  <input
+                    id="reg-email"
+                    name="email"
+                    type="email"
+                    placeholder={t("form.email")}
+                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                  />
+                  {errors.email && <p className="text-xs text-red-500 mt-1">{t(errors.email as TKey)}</p>}
+                </div>
+                <div>
+                  <label htmlFor="reg-whatsapp" className="sr-only">{t("form.whatsapp")}</label>
+                  <input
+                    id="reg-whatsapp"
+                    name="whatsapp"
+                    placeholder={t("form.whatsapp")}
+                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                  />
+                  {errors.whatsapp && <p className="text-xs text-red-500 mt-1">{t(errors.whatsapp as TKey)}</p>}
+                </div>
+                <div>
+                  <label htmlFor="reg-country" className="sr-only">{t("form.selectCountry")}</label>
+                  <select
+                    id="reg-country"
+                    name="country"
+                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm text-foreground/80 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                  >
+                    <option value="">{t("form.selectCountry")}</option>
+                    {COUNTRIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                  </select>
+                  {errors.country && <p className="text-xs text-red-500 mt-1">{t(errors.country as TKey)}</p>}
+                </div>
+                <div>
+                  <label htmlFor="reg-biz" className="sr-only">{t("form.selectBusinessType")}</label>
+                  <select
+                    id="reg-biz"
+                    name="businessType"
+                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm text-foreground/80 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                  >
+                    <option value="">{t("form.selectBusinessType")}</option>
+                    {BIZ_KEYS.map((k) => <option key={k} value={k}>{t(k)}</option>)}
+                  </select>
+                  {errors.businessType && <p className="text-xs text-red-500 mt-1">{t(errors.businessType as TKey)}</p>}
+                </div>
                 <button
                   type="submit"
                   className="group w-full flex items-center justify-center gap-3 bg-gold rounded-lg px-6 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold transition-all"
@@ -164,6 +247,12 @@ function HomePage() {
                   {t("common.joinZentra")}
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </button>
+                {status === "success" && (
+                  <p className="text-xs text-emerald-600 text-center">{t("form.submitSuccess")}</p>
+                )}
+                {status === "error" && (
+                  <p className="text-xs text-red-500 text-center">{t("form.submitError")}</p>
+                )}
                 <div className="flex items-center justify-center gap-2 text-[11px] text-foreground/50 pt-1">
                   <ShieldCheck className="h-3.5 w-3.5 text-gold" />
                   {t("form.secureGlobal")}
@@ -248,10 +337,10 @@ function HomePage() {
                       {t(c.titleKey)}
                     </h3>
                     <ul className="space-y-1.5 text-sm text-foreground/70">
-                      {c.items.map((it) => (
-                        <li key={it} className="flex items-center gap-2">
+                      {c.itemKeys.map((itk) => (
+                        <li key={itk} className="flex items-center gap-2">
                           <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-                          {it}
+                          {t(itk)}
                         </li>
                       ))}
                     </ul>
@@ -308,14 +397,14 @@ function HomePage() {
             {/* Distribution + live market */}
             <div className="grid sm:grid-cols-2 gap-3">
               <div className="rounded-xl bg-card border border-border p-5">
-                <div className="text-sm font-semibold mb-3 text-[color:var(--navy)] dark:text-foreground">Commodity Distribution</div>
+                <div className="text-sm font-semibold mb-3 text-[color:var(--navy)] dark:text-foreground">{t("dash.commodityDistribution")}</div>
                 <div className="flex items-center gap-4">
-                  <Donut data={DIST} />
+                  <Donut data={DIST.map(d => ({ label: t(d.labelKey), value: d.value, color: d.color }))} />
                   <ul className="space-y-1.5 text-xs">
                     {DIST.map((d) => (
-                      <li key={d.label} className="flex items-center gap-2">
+                      <li key={d.labelKey} className="flex items-center gap-2">
                         <span className="h-2 w-2 rounded-full" style={{ background: d.color }} />
-                        <span className="text-foreground/70">{d.label}</span>
+                        <span className="text-foreground/70">{t(d.labelKey)}</span>
                         <span className="ml-auto font-semibold">{d.value}%</span>
                       </li>
                     ))}
@@ -326,8 +415,8 @@ function HomePage() {
                 <div className="text-sm font-semibold mb-3 text-[color:var(--navy)] dark:text-foreground">{t("dash.liveMarket")}</div>
                 <ul className="space-y-2 text-xs">
                   {MARKET.map((m) => (
-                    <li key={m.name} className="flex items-center justify-between">
-                      <span className="text-foreground/70">{m.name}</span>
+                    <li key={m.nameKey} className="flex items-center justify-between">
+                      <span className="text-foreground/70">{t(m.nameKey)}</span>
                       <span className="flex items-baseline gap-2">
                         <span className="font-semibold">{m.price}</span>
                         <span className={m.up ? "text-emerald-600 font-bold" : "text-red-500 font-bold"}>{m.change}</span>
@@ -421,7 +510,7 @@ function MiniChart() {
       <path d={area} fill="url(#ga)" />
       <path d={path} fill="none" stroke="var(--gold)" strokeWidth="2" />
       {pts.map((v, i) => (
-        <circle key={i} cx={i * step} cy={h - (v / max) * h} r="2.5" fill="var(--gold)" />
+        <circle key={`pt-${i}`} cx={i * step} cy={h - (v / max) * h} r="2.5" fill="var(--gold)" />
       ))}
     </svg>
   );

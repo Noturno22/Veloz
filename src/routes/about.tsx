@@ -11,9 +11,9 @@ export const Route = createFileRoute("/about")({
       { title: "About Us — Zentra Trading" },
       { name: "description", content: "Zentra Trading facilitates global commodity business through an international network of trusted partners." },
       { property: "og:title", content: "About Us — Zentra Trading" },
-      { property: "og:url", content: "/about" },
+      { property: "og:url", content: "https://zentratrading.com/about" },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: "https://zentratrading.com/about" }],
   }),
   component: About,
 });

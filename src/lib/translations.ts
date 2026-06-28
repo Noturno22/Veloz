@@ -1,6 +1,71 @@
 export type Lang = "en" | "pt";
 
 const en = {
+  // commodity item names
+  "comm.item.coffee": "Coffee",
+  "comm.item.soybeans": "Soybeans",
+  "comm.item.corn": "Corn",
+  "comm.item.rice": "Rice",
+  "comm.item.gold": "Gold",
+  "comm.item.diamonds": "Diamonds",
+  "comm.item.copper": "Copper",
+  "comm.item.ironOre": "Iron Ore",
+  "comm.item.oil": "Oil",
+  "comm.item.naturalGas": "Natural Gas",
+  "comm.item.steel": "Steel",
+  "comm.item.cement": "Cement",
+  "comm.item.aluminum": "Aluminum",
+  "comm.item.crudeOil": "Crude Oil",
+  "comm.item.cocoa": "Cocoa",
+  "comm.item.sugar": "Sugar",
+  "comm.item.manganese": "Manganese",
+  "comm.item.bauxite": "Bauxite",
+  "comm.item.lpg": "LPG",
+  "comm.item.diesel": "Diesel",
+  "comm.item.jetFuel": "Jet Fuel",
+  "comm.item.constructionMaterials": "Construction Materials",
+
+  // opportunity titles
+  "opp.title.coffeeExport": "Coffee Export",
+  "opp.title.goldTrading": "Gold Trading",
+  "opp.title.crudeOilSupply": "Crude Oil Supply",
+  "opp.title.steelProducts": "Steel Products",
+  "opp.title.soybeansBulk": "Soybeans Bulk",
+  "opp.title.copperCathodes": "Copper Cathodes",
+
+  // opportunity routes
+  "opp.route.angolaEurope": "Angola → Europe",
+  "opp.route.africaAsia": "Africa → Asia",
+  "opp.route.middleEastGlobal": "Middle East → Global",
+  "opp.route.chinaAfrica": "China → Africa",
+  "opp.route.brazilChina": "Brazil → China",
+  "opp.route.zambiaEurope": "Zambia → Europe",
+
+  // opportunity quantities
+  "opp.qty.coffee": "12,000 MT",
+  "opp.qty.gold": "200 kg",
+  "opp.qty.oil": "2M Barrels",
+  "opp.qty.steel": "8,500 MT",
+  "opp.qty.soybeans": "30,000 MT",
+  "opp.qty.copper": "1,500 MT",
+
+  // dashboard distribution labels
+  "dash.dist.energy": "Energy",
+  "dash.dist.minerals": "Minerals",
+  "dash.dist.agricultural": "Agricultural",
+  "dash.dist.industrial": "Industrial",
+
+  // market items
+  "dash.market.crudeOil": "Crude Oil",
+  "dash.market.gold": "Gold",
+  "dash.market.copper": "Copper",
+  "dash.market.naturalGas": "Natural Gas",
+
+  // form validation messages
+  "form.required": "This field is required",
+  "form.invalidEmail": "Please enter a valid email address",
+  "form.submitSuccess": "Form submitted successfully! We'll be in touch shortly.",
+  "form.submitError": "Something went wrong. Please try again.",
   // nav
   "nav.home": "Home",
   "nav.about": "About Us",
@@ -261,9 +326,68 @@ const en = {
   "dash.exploreTitle": "Explore Our Commodities",
   "home.dashTitle": "Trading Dashboard",
   "home.dashSubtitle": "Real-time overview of the Zentra Trading network",
+  "dash.commodityDistribution": "Commodity Distribution",
 };
 
 const pt: Record<keyof typeof en, string> = {
+  "comm.item.coffee": "Café",
+  "comm.item.soybeans": "Soja",
+  "comm.item.corn": "Milho",
+  "comm.item.rice": "Arroz",
+  "comm.item.gold": "Ouro",
+  "comm.item.diamonds": "Diamantes",
+  "comm.item.copper": "Cobre",
+  "comm.item.ironOre": "Minério de Ferro",
+  "comm.item.oil": "Petróleo",
+  "comm.item.naturalGas": "Gás Natural",
+  "comm.item.steel": "Aço",
+  "comm.item.cement": "Cimento",
+  "comm.item.aluminum": "Alumínio",
+  "comm.item.crudeOil": "Petróleo Bruto",
+  "comm.item.cocoa": "Cacau",
+  "comm.item.sugar": "Açúcar",
+  "comm.item.manganese": "Manganês",
+  "comm.item.bauxite": "Bauxite",
+  "comm.item.lpg": "GLP",
+  "comm.item.diesel": "Diesel",
+  "comm.item.jetFuel": "Jet Fuel",
+  "comm.item.constructionMaterials": "Materiais de Construção",
+
+  "opp.title.coffeeExport": "Exportação de Café",
+  "opp.title.goldTrading": "Negociação de Ouro",
+  "opp.title.crudeOilSupply": "Fornecimento de Petróleo",
+  "opp.title.steelProducts": "Produtos de Aço",
+  "opp.title.soybeansBulk": "Soja a Granel",
+  "opp.title.copperCathodes": "Cátodos de Cobre",
+
+  "opp.route.angolaEurope": "Angola → Europa",
+  "opp.route.africaAsia": "África → Ásia",
+  "opp.route.middleEastGlobal": "Médio Oriente → Global",
+  "opp.route.chinaAfrica": "China → África",
+  "opp.route.brazilChina": "Brasil → China",
+  "opp.route.zambiaEurope": "Zâmbia → Europa",
+
+  "opp.qty.coffee": "12.000 MT",
+  "opp.qty.gold": "200 kg",
+  "opp.qty.oil": "2M Barris",
+  "opp.qty.steel": "8.500 MT",
+  "opp.qty.soybeans": "30.000 MT",
+  "opp.qty.copper": "1.500 MT",
+
+  "dash.dist.energy": "Energia",
+  "dash.dist.minerals": "Minerais",
+  "dash.dist.agricultural": "Agrícola",
+  "dash.dist.industrial": "Industrial",
+
+  "dash.market.crudeOil": "Petróleo Bruto",
+  "dash.market.gold": "Ouro",
+  "dash.market.copper": "Cobre",
+  "dash.market.naturalGas": "Gás Natural",
+
+  "form.required": "Este campo é obrigatório",
+  "form.invalidEmail": "Insira um endereço de e-mail válido",
+  "form.submitSuccess": "Formulário enviado com sucesso! Entraremos em contacto brevemente.",
+  "form.submitError": "Ocorreu um erro. Por favor, tente novamente.",
   "nav.home": "Início",
   "nav.about": "Sobre Nós",
   "nav.commodities": "Commodities",
@@ -504,6 +628,7 @@ const pt: Record<keyof typeof en, string> = {
   "dash.exploreTitle": "Explore as Nossas Commodities",
   "home.dashTitle": "Painel de Negociação",
   "home.dashSubtitle": "Visão em tempo real da rede Zentra Trading",
+  "dash.commodityDistribution": "Distribuição de Commodities",
 };
 
 export type TKey = keyof typeof en;

@@ -10,9 +10,9 @@ export const Route = createFileRoute("/partnership")({
       { title: "Partnership — Zentra Trading" },
       { name: "description", content: "Join 850+ partners trading globally with Zentra Trading. Become a producer, supplier, exporter, importer or investor partner." },
       { property: "og:title", content: "Partnership — Zentra Trading" },
-      { property: "og:url", content: "/partnership" },
+      { property: "og:url", content: "https://zentratrading.com/partnership" },
     ],
-    links: [{ rel: "canonical", href: "/partnership" }],
+    links: [{ rel: "canonical", href: "https://zentratrading.com/partnership" }],
   }),
   component: Partnership,
 });

@@ -1,4 +1,4 @@
-//#region node_modules/d3-timer/src/timer.js
+//#region node_modules/d3-transition/node_modules/d3-timer/src/timer.js
 var frame = 0, timeout = 0, interval = 0, pokeDelay = 1e3, taskHead, taskTail, clockLast = 0, clockNow = 0, clockSkew = 0, clock = typeof performance === "object" && performance.now ? performance : Date, setFrame = typeof window === "object" && window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : function(f) {
 	setTimeout(f, 17);
 };
@@ -87,7 +87,7 @@ function sleep(time) {
 	}
 }
 //#endregion
-//#region node_modules/d3-timer/src/timeout.js
+//#region node_modules/d3-transition/node_modules/d3-timer/src/timeout.js
 function timeout_default(callback, delay, time) {
 	var t = new Timer();
 	delay = delay == null ? 0 : +delay;

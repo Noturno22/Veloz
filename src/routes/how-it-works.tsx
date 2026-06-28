@@ -10,9 +10,9 @@ export const Route = createFileRoute("/how-it-works")({
       { title: "How It Works — Zentra Trading" },
       { name: "description", content: "Three simple steps and six core services to start trading globally with Zentra Trading." },
       { property: "og:title", content: "How It Works — Zentra Trading" },
-      { property: "og:url", content: "/how-it-works" },
+      { property: "og:url", content: "https://zentratrading.com/how-it-works" },
     ],
-    links: [{ rel: "canonical", href: "/how-it-works" }],
+    links: [{ rel: "canonical", href: "https://zentratrading.com/how-it-works" }],
   }),
   component: HowItWorks,
 });

@@ -20,12 +20,16 @@ export function SiteFooter() {
               <p>Luanda · São Paulo · Geneva · Singapore</p>
             </div>
             <div className="mt-6 flex gap-3">
-              {[Linkedin, Twitter, Facebook].map((Icon, i) => (
+              {([
+                { Icon: Linkedin, label: "LinkedIn" },
+                { Icon: Twitter, label: "Twitter" },
+                { Icon: Facebook, label: "Facebook" },
+              ] as const).map(({ Icon, label }) => (
                 <a
-                  key={i}
+                  key={label}
                   href="#"
                   className="h-10 w-10 grid place-items-center border border-white/15 hover:bg-gold hover:border-gold hover:text-[color:var(--gold-foreground)] transition"
-                  aria-label="Social"
+                  aria-label={label}
                 >
                   <Icon className="h-4 w-4" />
                 </a>

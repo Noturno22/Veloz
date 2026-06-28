@@ -1,4 +1,4 @@
-//#region node_modules/react-simple-maps/node_modules/d3-array/src/fsum.js
+//#region node_modules/react-simple-maps/node_modules/d3-geo/node_modules/d3-array/src/fsum.js
 var Adder = class {
 	constructor() {
 		this._partials = new Float64Array(32);
@@ -38,7 +38,7 @@ var Adder = class {
 	}
 };
 //#endregion
-//#region node_modules/react-simple-maps/node_modules/d3-array/src/merge.js
+//#region node_modules/react-simple-maps/node_modules/d3-geo/node_modules/d3-array/src/merge.js
 function* flatten(arrays) {
 	for (const array of arrays) yield* array;
 }
@@ -46,7 +46,7 @@ function merge(arrays) {
 	return Array.from(flatten(arrays));
 }
 //#endregion
-//#region node_modules/react-simple-maps/node_modules/d3-array/src/range.js
+//#region node_modules/react-simple-maps/node_modules/d3-geo/node_modules/d3-array/src/range.js
 function range_default(start, stop, step) {
 	start = +start, stop = +stop, step = (n = arguments.length) < 2 ? (stop = start, start = 0, 1) : n < 3 ? 1 : +step;
 	var i = -1, n = Math.max(0, Math.ceil((stop - start) / step)) | 0, range = new Array(n);

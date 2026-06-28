@@ -19,7 +19,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
       const initial: Lang = nav.startsWith("pt") ? "pt" : "en";
       setLangState(initial);
       document.documentElement.lang = initial;
-    } catch {}
+    } catch { console.error("Failed to read language from localStorage"); }
   }, []);
 
   const setLang = useCallback((l: Lang) => {
@@ -27,7 +27,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     try {
       localStorage.setItem("zentra-lang", l);
       document.documentElement.lang = l;
-    } catch {}
+    } catch { console.error("Failed to persist language to localStorage"); }
   }, []);
 
   const t = useCallback((k: TKey) => translations[lang][k] ?? translations.en[k] ?? k, [lang]);

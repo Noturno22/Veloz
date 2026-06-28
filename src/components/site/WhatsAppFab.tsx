@@ -13,7 +13,7 @@ export function WhatsAppFab() {
       style={{ background: "linear-gradient(135deg,#25D366,#128C7E)" }}
     >
       <MessageCircle className="h-7 w-7" />
-      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#25D366] opacity-25" />
+      <span aria-hidden="true" className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#25D366] opacity-25" />
     </a>
   );
 }

@@ -10,9 +10,9 @@ export const Route = createFileRoute("/opportunities")({
       { title: "Opportunities — Zentra Trading" },
       { name: "description", content: "Browse live trading opportunities across agricultural, mineral, energy and industrial markets." },
       { property: "og:title", content: "Opportunities — Zentra Trading" },
-      { property: "og:url", content: "/opportunities" },
+      { property: "og:url", content: "https://zentratrading.com/opportunities" },
     ],
-    links: [{ rel: "canonical", href: "/opportunities" }],
+    links: [{ rel: "canonical", href: "https://zentratrading.com/opportunities" }],
   }),
   component: Opportunities,
 });
@@ -26,13 +26,13 @@ const CAT_COLORS: Record<string, string> = {
 
 function Opportunities() {
   const { t } = useI18n();
-  const DEALS: { title: string; route: string; qty: string; typeKey: TKey; cat: keyof typeof CAT_COLORS; catKey: TKey }[] = [
-    { title: "Coffee Export", route: "Angola → Europe", qty: "12,000 MT", typeKey: "opp.type.export", cat: "Agricultural", catKey: "comm.agricultural" },
-    { title: "Gold Trading", route: "Africa → Asia", qty: "200 kg", typeKey: "opp.type.export", cat: "Minerals", catKey: "comm.minerals" },
-    { title: "Crude Oil Supply", route: "Middle East → Global", qty: "2M Barrels", typeKey: "opp.type.supply", cat: "Energy", catKey: "comm.energy" },
-    { title: "Steel Products", route: "China → Africa", qty: "8,500 MT", typeKey: "opp.type.import", cat: "Industrial", catKey: "comm.industrial" },
-    { title: "Soybeans Bulk", route: "Brazil → China", qty: "30,000 MT", typeKey: "opp.type.export", cat: "Agricultural", catKey: "comm.agricultural" },
-    { title: "Copper Cathodes", route: "Zambia → Europe", qty: "1,500 MT", typeKey: "opp.type.export", cat: "Minerals", catKey: "comm.minerals" },
+  const DEALS: { titleKey: TKey; routeKey: TKey; qtyKey: TKey; typeKey: TKey; cat: keyof typeof CAT_COLORS; catKey: TKey }[] = [
+    { titleKey: "opp.title.coffeeExport", routeKey: "opp.route.angolaEurope", qtyKey: "opp.qty.coffee", typeKey: "opp.type.export", cat: "Agricultural", catKey: "comm.agricultural" },
+    { titleKey: "opp.title.goldTrading", routeKey: "opp.route.africaAsia", qtyKey: "opp.qty.gold", typeKey: "opp.type.export", cat: "Minerals", catKey: "comm.minerals" },
+    { titleKey: "opp.title.crudeOilSupply", routeKey: "opp.route.middleEastGlobal", qtyKey: "opp.qty.oil", typeKey: "opp.type.supply", cat: "Energy", catKey: "comm.energy" },
+    { titleKey: "opp.title.steelProducts", routeKey: "opp.route.chinaAfrica", qtyKey: "opp.qty.steel", typeKey: "opp.type.import", cat: "Industrial", catKey: "comm.industrial" },
+    { titleKey: "opp.title.soybeansBulk", routeKey: "opp.route.brazilChina", qtyKey: "opp.qty.soybeans", typeKey: "opp.type.export", cat: "Agricultural", catKey: "comm.agricultural" },
+    { titleKey: "opp.title.copperCathodes", routeKey: "opp.route.zambiaEurope", qtyKey: "opp.qty.copper", typeKey: "opp.type.export", cat: "Minerals", catKey: "comm.minerals" },
   ];
   return (
     <>
@@ -70,15 +70,15 @@ function Opportunities() {
       </section>
       <section className="container-x pb-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {DEALS.map((d) => (
-          <article key={d.title} className="hover-lift group flex flex-col rounded-2xl border border-border bg-white p-6 shadow-card">
+          <article key={d.titleKey} className="hover-lift group flex flex-col rounded-2xl border border-border bg-white p-6 shadow-card">
             <div className="flex items-center justify-between">
               <span className={`text-xs font-semibold uppercase rounded-full px-2.5 py-1 ${CAT_COLORS[d.cat]}`}>{t(d.catKey)}</span>
               <span className="text-xs font-semibold text-gold">{t(d.typeKey)}</span>
             </div>
-            <h3 className="mt-4 font-display text-xl font-semibold text-[color:var(--navy)]">{d.title}</h3>
+            <h3 className="mt-4 font-display text-xl font-semibold text-[color:var(--navy)]">{t(d.titleKey)}</h3>
             <div className="mt-3 space-y-2 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2"><MapPin className="h-4 w-4 text-gold" />{d.route}</div>
-              <div className="flex items-center gap-2"><Package className="h-4 w-4 text-gold" />{d.qty}</div>
+              <div className="flex items-center gap-2"><MapPin className="h-4 w-4 text-gold" />{t(d.routeKey)}</div>
+              <div className="flex items-center gap-2"><Package className="h-4 w-4 text-gold" />{t(d.qtyKey)}</div>
             </div>
             <button className="mt-6 inline-flex items-center justify-between rounded-xl bg-[color:var(--accent)] px-4 py-2.5 text-sm font-semibold text-[color:var(--navy)] group-hover:bg-gradient-gold group-hover:text-[color:var(--gold-foreground)] transition">
               {t("common.viewOpportunity")} <ArrowRight className="h-4 w-4" />

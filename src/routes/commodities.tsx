@@ -13,20 +13,20 @@ export const Route = createFileRoute("/commodities")({
       { title: "Commodities — Zentra Trading" },
       { name: "description", content: "Agricultural, mineral, energy and industrial commodities traded across our global network." },
       { property: "og:title", content: "Commodities — Zentra Trading" },
-      { property: "og:url", content: "/commodities" },
+      { property: "og:url", content: "https://zentratrading.com/commodities" },
     ],
-    links: [{ rel: "canonical", href: "/commodities" }],
+    links: [{ rel: "canonical", href: "https://zentratrading.com/commodities" }],
   }),
   component: Commodities,
 });
 
 function Commodities() {
   const { t } = useI18n();
-  const GROUPS: { titleKey: TKey; descKey: TKey; img: string; items: string[] }[] = [
-    { titleKey: "commPage.agri.title", descKey: "commPage.agri.desc", img: agriImg, items: ["Coffee", "Soybeans", "Corn", "Rice", "Cocoa", "Sugar"] },
-    { titleKey: "commPage.min.title", descKey: "commPage.min.desc", img: mineralsImg, items: ["Gold", "Diamonds", "Copper", "Iron Ore", "Manganese", "Bauxite"] },
-    { titleKey: "commPage.ene.title", descKey: "commPage.ene.desc", img: energyImg, items: ["Crude Oil", "Natural Gas", "LPG", "Diesel", "Jet Fuel"] },
-    { titleKey: "commPage.ind.title", descKey: "commPage.ind.desc", img: industrialImg, items: ["Steel", "Aluminum", "Cement", "Construction Materials"] },
+  const GROUPS: { titleKey: TKey; descKey: TKey; img: string; itemKeys: TKey[] }[] = [
+    { titleKey: "commPage.agri.title", descKey: "commPage.agri.desc", img: agriImg, itemKeys: ["comm.item.coffee", "comm.item.soybeans", "comm.item.corn", "comm.item.rice", "comm.item.cocoa", "comm.item.sugar"] },
+    { titleKey: "commPage.min.title", descKey: "commPage.min.desc", img: mineralsImg, itemKeys: ["comm.item.gold", "comm.item.diamonds", "comm.item.copper", "comm.item.ironOre", "comm.item.manganese", "comm.item.bauxite"] },
+    { titleKey: "commPage.ene.title", descKey: "commPage.ene.desc", img: energyImg, itemKeys: ["comm.item.crudeOil", "comm.item.naturalGas", "comm.item.lpg", "comm.item.diesel", "comm.item.jetFuel"] },
+    { titleKey: "commPage.ind.title", descKey: "commPage.ind.desc", img: industrialImg, itemKeys: ["comm.item.steel", "comm.item.aluminum", "comm.item.cement", "comm.item.constructionMaterials"] },
   ];
   return (
     <>
@@ -46,8 +46,8 @@ function Commodities() {
               <h2 className="mt-2 font-display text-3xl md:text-4xl font-bold text-[color:var(--navy)]">{t(g.titleKey)}</h2>
               <p className="mt-3 text-muted-foreground">{t(g.descKey)}</p>
               <div className="mt-5 flex flex-wrap gap-2">
-                {g.items.map((it) => (
-                  <span key={it} className="rounded-full border border-border bg-white px-4 py-1.5 text-sm font-medium text-foreground/80">{it}</span>
+                {g.itemKeys.map((itk) => (
+                  <span key={itk} className="rounded-full border border-border bg-white px-4 py-1.5 text-sm font-medium text-foreground/80">{t(itk)}</span>
                 ))}
               </div>
             </div>

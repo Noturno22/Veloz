@@ -10,9 +10,9 @@ export const Route = createFileRoute("/insights")({
       { title: "Insights — Zentra Trading" },
       { name: "description", content: "Market intelligence, trade news and sector reports from Zentra Trading." },
       { property: "og:title", content: "Insights — Zentra Trading" },
-      { property: "og:url", content: "/insights" },
+      { property: "og:url", content: "https://zentratrading.com/insights" },
     ],
-    links: [{ rel: "canonical", href: "/insights" }],
+    links: [{ rel: "canonical", href: "https://zentratrading.com/insights" }],
   }),
   component: Insights,
 });
@@ -37,14 +37,14 @@ function Insights() {
       />
       <section className="container-x py-10 flex flex-wrap gap-2">
         {CATS.map((c, i) => (
-          <button key={c} className={`rounded-full px-4 py-2 text-sm font-medium border transition ${i===0 ? "bg-[color:var(--navy)] text-white border-[color:var(--navy)]" : "border-border bg-white hover:border-gold"}`}>
+          <button key={c} className={`rounded-full px-4 py-2 text-sm font-medium border transition ${i === 0 ? "bg-[color:var(--navy)] text-white border-[color:var(--navy)]" : "border-border bg-white hover:border-gold"}`}>
             {t(c)}
           </button>
         ))}
       </section>
       <section className="container-x pb-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {POSTS.map((p, i) => (
-          <article key={i} className="hover-lift group overflow-hidden rounded-2xl border border-border bg-white shadow-card">
+        {POSTS.map((p) => (
+          <article key={p.titleKey} className="hover-lift group overflow-hidden rounded-2xl border border-border bg-white shadow-card">
             <div className="h-44 bg-gradient-navy relative">
               <div
                 aria-hidden

@@ -33,8 +33,8 @@ export function WorldMap() {
         style={{ width: "100%", height: "auto" }}
       >
         <Geographies geography={GEO_URL}>
-          {({ geographies }: { geographies: any[] }) =>
-            geographies.map((geo: any) => (
+          {({ geographies }) =>
+            geographies.map((geo) => (
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
@@ -52,9 +52,9 @@ export function WorldMap() {
           }
         </Geographies>
 
-        {ROUTES.map(([a, b], i) => (
+        {ROUTES.map(([a, b]) => (
           <Line
-            key={i}
+            key={`${a}-${b}`}
             from={HUBS[a].coords}
             to={HUBS[b].coords}
             stroke="var(--gold)"

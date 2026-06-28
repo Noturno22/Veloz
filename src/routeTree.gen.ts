@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PartnershipRouteImport } from './routes/partnership'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -26,6 +27,11 @@ const PartnershipRoute = PartnershipRouteImport.update({
 const OpportunitiesRoute = OpportunitiesRouteImport.update({
   id: '/opportunities',
   path: '/opportunities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InsightsRoute = InsightsRouteImport.update({
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/how-it-works': typeof HowItWorksRoute
   '/insights': typeof InsightsRoute
+  '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
   '/partnership': typeof PartnershipRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/how-it-works': typeof HowItWorksRoute
   '/insights': typeof InsightsRoute
+  '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
   '/partnership': typeof PartnershipRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/how-it-works': typeof HowItWorksRoute
   '/insights': typeof InsightsRoute
+  '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
   '/partnership': typeof PartnershipRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/how-it-works'
     | '/insights'
+    | '/login'
     | '/opportunities'
     | '/partnership'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/how-it-works'
     | '/insights'
+    | '/login'
     | '/opportunities'
     | '/partnership'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/how-it-works'
     | '/insights'
+    | '/login'
     | '/opportunities'
     | '/partnership'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   HowItWorksRoute: typeof HowItWorksRoute
   InsightsRoute: typeof InsightsRoute
+  LoginRoute: typeof LoginRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
   PartnershipRoute: typeof PartnershipRoute
 }
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/opportunities'
       fullPath: '/opportunities'
       preLoaderRoute: typeof OpportunitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/insights': {
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   HowItWorksRoute: HowItWorksRoute,
   InsightsRoute: InsightsRoute,
+  LoginRoute: LoginRoute,
   OpportunitiesRoute: OpportunitiesRoute,
   PartnershipRoute: PartnershipRoute,
 }

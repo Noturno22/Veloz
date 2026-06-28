@@ -1,5 +1,5 @@
 import { i as __toESM } from "../_runtime.mjs";
-import { r as require_react } from "./react+tanstack__react-query.mjs";
+import { j as require_react } from "./@tanstack/react-router+[...].mjs";
 import { t as require_prop_types } from "./prop-types.mjs";
 import { n as path_default, r as graticule, t as src_exports } from "./d3-geo.mjs";
 import { r as select_default } from "./d3-drag+d3-selection.mjs";
