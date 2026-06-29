@@ -411,7 +411,7 @@ function HomeContent() {
                   key={idx}
                   src={img.src}
                   alt={img.alt}
-                  className={`w-full block transition-opacity duration-700 ${idx === currentImage ? "opacity-100" : "opacity-0 absolute inset-0"}`}
+                  className={`w-full aspect-video object-cover block transition-opacity duration-700 ${idx === currentImage ? "opacity-100" : "opacity-0 absolute inset-0"}`}
                   fetchPriority={idx === 0 ? "high" : "low"}
                 />
               ))}
