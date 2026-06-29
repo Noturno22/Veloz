@@ -8,7 +8,7 @@ import industrialImg from "@/assets/commodity-industrial.jpg";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
 import { WorldMap } from "@/components/site/WorldMap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { registerSchema, submitRegister } from "@/lib/api";
 import type { RegisterInput } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
@@ -160,6 +160,14 @@ function LandingGate({ onGoogleSignIn }: { onGoogleSignIn: () => Promise<void> }
 
 function HomeContent() {
   const { t } = useI18n();
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % 5);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   const COUNTRIES = ["United Kingdom", "Angola", "Nigeria", "South Africa", "Brazil", "China", "USA", "UAE", "Singapore"];
   const BIZ_KEYS: TKey[] = ["biz.producer", "biz.supplier", "biz.exporter", "biz.importer", "biz.investor"];
@@ -290,14 +298,33 @@ function HomeContent() {
               </p>
             </div>
 
-            <div className="mt-10 -mx-[1.25rem] md:-mx-[2rem]">
-              <div className="mx-[1.25rem] md:mx-[2rem] overflow-hidden rounded-xl border border-border/30 shadow-elegant">
-                <img
-                  src={heroImg}
-                  alt={t("home.hero.imgAlt")}
-                  className="w-full block"
-                  fetchPriority="high"
-                />
+            <div className="mt-10 mx-auto max-w-3xl">
+              <div className="overflow-hidden rounded-xl border border-border/30 shadow-elegant relative">
+                {[
+                  { src: heroImg, alt: "Trading" },
+                  { src: agriImg, alt: "Agricultural" },
+                  { src: mineralsImg, alt: "Minerals" },
+                  { src: energyImg, alt: "Energy" },
+                  { src: industrialImg, alt: "Industrial" },
+                ].map((img, idx) => (
+                  <img
+                    key={idx}
+                    src={img.src}
+                    alt={img.alt}
+                    className={`w-full block transition-opacity duration-700 ${idx === currentImage ? "opacity-100" : "opacity-0 absolute inset-0"}`}
+                    fetchPriority={idx === 0 ? "high" : "low"}
+                  />
+                ))}
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentImage(i)}
+                      className={`h-2 w-2 rounded-full transition-all ${i === currentImage ? "bg-gold w-6" : "bg-white/50 hover:bg-white/80"}`}
+                      aria-label={`Slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
