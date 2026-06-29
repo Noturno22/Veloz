@@ -45,11 +45,11 @@
   --shadow-elegant: 0 30px 80px -30px color-mix(in oklab, var(--navy) 35%, transparent);
   --shadow-card: 0 1px 2px rgba(11,31,58,0.04), 0 8px 24px -12px rgba(11,31,58,0.10);
   --shadow-green: 0 18px 40px -18px color-mix(in oklab, var(--brand-green) 55%, transparent);
-  --shadow-gold: 0 18px 40px -18px color-mix(in oklab, var(--brand-orange) 55%, transparent);
+  --shadow-gold: 0 18px 40px -18px color-mix(in oklab, var(--brand-darkblue) 55%, transparent);
 
   --gradient-navy: linear-gradient(135deg, oklch(0.22 0.06 255), oklch(0.28 0.07 260));
   --gradient-green: linear-gradient(135deg, oklch(0.51 0.11 153), oklch(0.45 0.10 155));
-  --gradient-gold: linear-gradient(135deg, oklch(0.65 0.19 44), oklch(0.55 0.17 46));
+  --gradient-gold: linear-gradient(135deg, oklch(0.42 0.14 255), oklch(0.38 0.16 260));
 }
 
 :root {
@@ -60,10 +60,10 @@
   --navy-foreground: oklch(0.98 0.005 100);
   --brand-green: oklch(0.51 0.11 153);     /* #277948 */
   --brand-blue: oklch(0.42 0.14 255);      /* #014b96 */
-  --brand-orange: oklch(0.65 0.19 44);     /* #e86012 */
-  --gold: var(--brand-orange);             /* alias — primary accent */
+  --brand-darkblue: oklch(0.38 0.16 260);  /* logo primary color */
+  --gold: var(--brand-darkblue);           /* alias — primary accent */
   --gold-foreground: oklch(0.98 0.005 100);
-  --gold-soft: oklch(0.85 0.15 50);
+  --gold-soft: oklch(0.78 0.12 260);
 
   --background: oklch(0.99 0.003 95);      /* warm off-white */
   --foreground: oklch(0.20 0.05 260);
@@ -154,7 +154,7 @@
   .bg-gradient-gold { background-image: var(--gradient-gold); }
   .text-green { color: var(--brand-green); }
   .text-blue { color: var(--brand-blue); }
-  .text-orange { color: var(--brand-orange); }
+  .text-orange { color: var(--brand-darkblue); }
   .text-gold { color: var(--gold); }
   .border-green { border-color: var(--brand-green); }
   .border-gold { border-color: var(--gold); }

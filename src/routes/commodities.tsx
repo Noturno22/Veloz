@@ -24,7 +24,7 @@ function Commodities() {
   const { t } = useI18n();
   const GROUPS: { titleKey: TKey; descKey: TKey; img: string; itemKeys: TKey[] }[] = [
     { titleKey: "commPage.agri.title", descKey: "commPage.agri.desc", img: agriImg, itemKeys: ["comm.item.coffee", "comm.item.soybeans", "comm.item.corn", "comm.item.rice", "comm.item.cocoa", "comm.item.sugar"] },
-    { titleKey: "commPage.min.title", descKey: "commPage.min.desc", img: mineralsImg, itemKeys: ["comm.item.gold", "comm.item.diamonds", "comm.item.copper", "comm.item.ironOre", "comm.item.manganese", "comm.item.bauxite"] },
+    { titleKey: "commPage.min.title", descKey: "commPage.min.desc", img: mineralsImg, itemKeys: ["comm.item.copper", "comm.item.ironOre", "comm.item.manganese", "comm.item.bauxite"] },
     { titleKey: "commPage.ene.title", descKey: "commPage.ene.desc", img: energyImg, itemKeys: ["comm.item.crudeOil", "comm.item.naturalGas", "comm.item.lpg", "comm.item.diesel", "comm.item.jetFuel"] },
     { titleKey: "commPage.ind.title", descKey: "commPage.ind.desc", img: industrialImg, itemKeys: ["comm.item.steel", "comm.item.aluminum", "comm.item.cement", "comm.item.constructionMaterials"] },
   ];

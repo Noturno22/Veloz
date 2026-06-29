@@ -179,14 +179,13 @@ function HomeContent() {
 
   const COMMODITIES: { titleKey: TKey; img: string; itemKeys: TKey[] }[] = [
     { titleKey: "comm.agricultural", img: agriImg, itemKeys: ["comm.item.coffee", "comm.item.soybeans", "comm.item.corn", "comm.item.rice"] },
-    { titleKey: "comm.minerals", img: mineralsImg, itemKeys: ["comm.item.gold", "comm.item.diamonds", "comm.item.copper", "comm.item.ironOre"] },
+    { titleKey: "comm.minerals", img: mineralsImg, itemKeys: ["comm.item.copper", "comm.item.ironOre"] },
     { titleKey: "comm.energy", img: energyImg, itemKeys: ["comm.item.oil", "comm.item.naturalGas"] },
     { titleKey: "comm.industrial", img: industrialImg, itemKeys: ["comm.item.steel", "comm.item.cement", "comm.item.aluminum"] },
   ];
 
   const MARKET: { nameKey: TKey; nameEn: string; price: string; change: string; up: boolean }[] = [
     { nameKey: "dash.market.crudeOil", nameEn: "Crude Oil", price: "$84.45", change: "+2.35%", up: true },
-    { nameKey: "dash.market.gold", nameEn: "Gold", price: "$2,395.50", change: "+1.25%", up: true },
     { nameKey: "dash.market.copper", nameEn: "Copper", price: "$9,125.00", change: "-0.45%", up: false },
     { nameKey: "dash.market.naturalGas", nameEn: "Natural Gas", price: "$2.75", change: "+3.45%", up: true },
   ];

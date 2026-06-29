@@ -28,7 +28,6 @@ function Opportunities() {
   const { t } = useI18n();
   const DEALS: { titleKey: TKey; routeKey: TKey; qtyKey: TKey; typeKey: TKey; cat: keyof typeof CAT_COLORS; catKey: TKey }[] = [
     { titleKey: "opp.title.coffeeExport", routeKey: "opp.route.angolaEurope", qtyKey: "opp.qty.coffee", typeKey: "opp.type.export", cat: "Agricultural", catKey: "comm.agricultural" },
-    { titleKey: "opp.title.goldTrading", routeKey: "opp.route.africaAsia", qtyKey: "opp.qty.gold", typeKey: "opp.type.export", cat: "Minerals", catKey: "comm.minerals" },
     { titleKey: "opp.title.crudeOilSupply", routeKey: "opp.route.middleEastGlobal", qtyKey: "opp.qty.oil", typeKey: "opp.type.supply", cat: "Energy", catKey: "comm.energy" },
     { titleKey: "opp.title.steelProducts", routeKey: "opp.route.chinaAfrica", qtyKey: "opp.qty.steel", typeKey: "opp.type.import", cat: "Industrial", catKey: "comm.industrial" },
     { titleKey: "opp.title.soybeansBulk", routeKey: "opp.route.brazilChina", qtyKey: "opp.qty.soybeans", typeKey: "opp.type.export", cat: "Agricultural", catKey: "comm.agricultural" },

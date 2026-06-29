@@ -6,8 +6,6 @@ const en = {
   "comm.item.soybeans": "Soybeans",
   "comm.item.corn": "Corn",
   "comm.item.rice": "Rice",
-  "comm.item.gold": "Gold",
-  "comm.item.diamonds": "Diamonds",
   "comm.item.copper": "Copper",
   "comm.item.ironOre": "Iron Ore",
   "comm.item.oil": "Oil",
@@ -27,7 +25,6 @@ const en = {
 
   // opportunity titles
   "opp.title.coffeeExport": "Coffee Export",
-  "opp.title.goldTrading": "Gold Trading",
   "opp.title.crudeOilSupply": "Crude Oil Supply",
   "opp.title.steelProducts": "Steel Products",
   "opp.title.soybeansBulk": "Soybeans Bulk",
@@ -43,7 +40,6 @@ const en = {
 
   // opportunity quantities
   "opp.qty.coffee": "12,000 MT",
-  "opp.qty.gold": "200 kg",
   "opp.qty.oil": "2M Barrels",
   "opp.qty.steel": "8,500 MT",
   "opp.qty.soybeans": "30,000 MT",
@@ -57,7 +53,6 @@ const en = {
 
   // market items
   "dash.market.crudeOil": "Crude Oil",
-  "dash.market.gold": "Gold",
   "dash.market.copper": "Copper",
   "dash.market.naturalGas": "Natural Gas",
 
@@ -165,7 +160,7 @@ const en = {
   "comm.commoditiesWord": "Commodities",
   "comm.agriBlurb": "Coffee, soybeans, corn, rice, cocoa and sugar across origin and destination hubs.",
   "comm.energyBlurb": "Crude oil, natural gas, LPG and refined fuels for global energy markets.",
-  "comm.mineralsBlurb": "Gold, diamonds, copper, iron ore and base metal concentrates from certified sources.",
+  "comm.mineralsBlurb": "Copper, iron ore and base metal concentrates from certified sources.",
   "home.commTitle": "Portfolio",
   "home.divisions.title": "Core Commodity Divisions",
   "home.divisions.desc": "We operate at every stage of the commodity lifecycle, connecting production to consumption on a global scale.",
@@ -290,7 +285,7 @@ const en = {
   "insights.p3": "African coffee exports hit record volumes in Q2",
   "insights.p4": "Trade corridors connecting Africa and Asia expand",
   "insights.p5": "Industrial materials demand reshapes shipping routes",
-  "insights.p6": "Gold remains the safe-haven of choice for institutions",
+  "insights.p6": "Copper demand surges as global electrification accelerates",
 
   // Partnership
   "partner.eyebrow": "Partnership",
@@ -402,8 +397,6 @@ const pt: Record<keyof typeof en, string> = {
   "comm.item.soybeans": "Soja",
   "comm.item.corn": "Milho",
   "comm.item.rice": "Arroz",
-  "comm.item.gold": "Ouro",
-  "comm.item.diamonds": "Diamantes",
   "comm.item.copper": "Cobre",
   "comm.item.ironOre": "Minério de Ferro",
   "comm.item.oil": "Petróleo",
@@ -422,7 +415,6 @@ const pt: Record<keyof typeof en, string> = {
   "comm.item.constructionMaterials": "Materiais de Construção",
 
   "opp.title.coffeeExport": "Exportação de Café",
-  "opp.title.goldTrading": "Negociação de Ouro",
   "opp.title.crudeOilSupply": "Fornecimento de Petróleo",
   "opp.title.steelProducts": "Produtos de Aço",
   "opp.title.soybeansBulk": "Soja a Granel",
@@ -436,7 +428,6 @@ const pt: Record<keyof typeof en, string> = {
   "opp.route.zambiaEurope": "Zâmbia → Europa",
 
   "opp.qty.coffee": "12.000 MT",
-  "opp.qty.gold": "200 kg",
   "opp.qty.oil": "2M Barris",
   "opp.qty.steel": "8.500 MT",
   "opp.qty.soybeans": "30.000 MT",
@@ -448,7 +439,6 @@ const pt: Record<keyof typeof en, string> = {
   "dash.dist.industrial": "Industrial",
 
   "dash.market.crudeOil": "Petróleo Bruto",
-  "dash.market.gold": "Ouro",
   "dash.market.copper": "Cobre",
   "dash.market.naturalGas": "Gás Natural",
 
@@ -547,7 +537,7 @@ const pt: Record<keyof typeof en, string> = {
   "comm.commoditiesWord": "Commodities",
   "comm.agriBlurb": "Café, soja, milho, arroz, cacau e açúcar entre hubs de origem e destino.",
   "comm.energyBlurb": "Petróleo bruto, gás natural, GLP e combustíveis refinados para mercados globais de energia.",
-  "comm.mineralsBlurb": "Ouro, diamantes, cobre, minério de ferro e concentrados de metais básicos certificados.",
+  "comm.mineralsBlurb": "Cobre, minério de ferro e concentrados de metais básicos certificados.",
   "home.commTitle": "Portfólio",
   "home.divisions.title": "Divisões Estratégicas de Commodities",
   "home.divisions.desc": "Operamos em todas as etapas do ciclo das commodities, conectando produção e consumo em escala global.",
@@ -664,7 +654,7 @@ const pt: Record<keyof typeof en, string> = {
   "insights.p3": "Exportações africanas de café atingem volumes recorde no 2º trimestre",
   "insights.p4": "Corredores comerciais entre África e Ásia em expansão",
   "insights.p5": "Procura por materiais industriais redesenha rotas marítimas",
-  "insights.p6": "Ouro mantém-se o ativo de refúgio preferido das instituições",
+  "insights.p6": "Procura por cobre acelera com a eletrificação global",
 
   "partner.eyebrow": "Parcerias",
   "partner.titleA": "Cresça com uma",
