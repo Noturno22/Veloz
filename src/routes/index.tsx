@@ -298,7 +298,7 @@ function HomeContent() {
               </p>
             </div>
 
-            <div className="mt-10 mx-auto max-w-3xl">
+            <div className="mt-10 mx-auto max-w-6xl">
               <div className="overflow-hidden rounded-xl border border-border/30 shadow-elegant relative">
                 {[
                   { src: heroImg, alt: "Trading" },
