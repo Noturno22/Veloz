@@ -10,7 +10,7 @@ export function SiteFooter() {
         <div className="flex flex-col md:flex-row justify-between items-start border-b border-white/10 pb-16 gap-12">
           <div className="max-w-sm">
             <div className="flex items-center">
-              <img src="/zentra-logo.png" alt="Veloz" className="h-56 w-auto object-contain" />
+              <img src="/zentra-logo.png" alt="Veloz" className="h-auto w-80 max-w-full object-contain" />
             </div>
             <p className="mt-5 text-sm text-white/50 leading-relaxed">{t("footer.tagline")}</p>
             <div className="mt-6 space-y-1 text-white/30 text-[10px] uppercase tracking-[0.3em] font-bold">
