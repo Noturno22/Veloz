@@ -5,6 +5,11 @@ import agriImg from "@/assets/commodity-agricultural.jpg";
 import mineralsImg from "@/assets/commodity-minerals.jpg";
 import energyImg from "@/assets/commodity-energy.jpg";
 import industrialImg from "@/assets/commodity-industrial.jpg";
+import carrocel1 from "@/assets/carrocel/1.jpeg";
+import carrocel2 from "@/assets/carrocel/2.jpeg";
+import carrocel3 from "@/assets/carrocel/3.jpeg";
+import carrocel4 from "@/assets/carrocel/4.jpeg";
+import carrocel5 from "@/assets/carrocel/5.jpeg";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
 import { WorldMap } from "@/components/site/WorldMap";
@@ -401,11 +406,11 @@ function HomeContent() {
           <div className="mt-16 mx-auto max-w-[80%]">
             <div className="overflow-hidden rounded-xl border border-border/30 shadow-elegant relative">
               {[
-                { src: heroImg, alt: "Trading" },
-                { src: agriImg, alt: "Agricultural" },
-                { src: mineralsImg, alt: "Minerals" },
-                { src: energyImg, alt: "Energy" },
-                { src: industrialImg, alt: "Industrial" },
+                { src: carrocel1, alt: "Slide 1" },
+                { src: carrocel2, alt: "Slide 2" },
+                { src: carrocel3, alt: "Slide 3" },
+                { src: carrocel4, alt: "Slide 4" },
+                { src: carrocel5, alt: "Slide 5" },
               ].map((img, idx) => (
                 <img
                   key={idx}
