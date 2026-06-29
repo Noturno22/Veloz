@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import { LogOut, UserRound, BarChart3, Globe2, Handshake, TrendingUp, ArrowRight, Activity, Clock, Sparkles, Shield, Mail, Calendar, ExternalLink, Zap, MapPin, Package, Target, LineChart } from "lucide-react";
+import { UserRound, BarChart3, Globe2, Handshake, TrendingUp, ArrowRight, Activity, Clock, Sparkles, Shield, Mail, Calendar, ExternalLink, Zap, MapPin, Package, Target, LineChart } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
 import { auth } from "@/lib/firebase";
@@ -34,7 +34,7 @@ const COLOR_MAP: Record<string, { card: string; glow: string; text: string; spar
 
 function DashboardPage() {
   const { t } = useI18n();
-  const { user, loading, logout } = useAuth();
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
   const redirected = useRef(false);
 
@@ -91,13 +91,7 @@ function DashboardPage() {
               <ExternalLink className="h-3.5 w-3.5" />
               {t("nav.home")}
             </Link>
-            <button
-              onClick={logout}
-              className="inline-flex items-center gap-2 border border-border px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-foreground/60 hover:text-red-500 hover:border-red-500/30 hover:bg-red-500/5 transition-all rounded-xl"
-            >
-              <LogOut className="h-3.5 w-3.5" />
-              {t("dash.logout")}
-            </button>
+
           </div>
         </div>
 
