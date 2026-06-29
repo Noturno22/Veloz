@@ -79,7 +79,7 @@ function Opportunities() {
               <div className="flex items-center gap-2"><MapPin className="h-4 w-4 text-gold" />{t(d.routeKey)}</div>
               <div className="flex items-center gap-2"><Package className="h-4 w-4 text-gold" />{t(d.qtyKey)}</div>
             </div>
-            <button className="mt-6 inline-flex items-center justify-between rounded-xl bg-[color:var(--accent)] px-4 py-2.5 text-sm font-semibold text-[color:var(--navy)] group-hover:bg-gradient-gold group-hover:text-[color:var(--gold-foreground)] transition">
+            <button className="mt-6 inline-flex items-center justify-between rounded-xl bg-[color:var(--accent)] px-4 py-2.5 text-sm font-semibold text-white group-hover:bg-gradient-gold group-hover:text-[color:var(--gold-foreground)] transition">
               {t("common.viewOpportunity")} <ArrowRight className="h-4 w-4" />
             </button>
           </article>

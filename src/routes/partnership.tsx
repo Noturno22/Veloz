@@ -55,7 +55,7 @@ function Partnership() {
           </div>
           <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
             {["Nordbridge", "AuriCo", "MeridianAg", "Sahara Energy", "PortusLog", "ZenithSteel"].map((n) => (
-              <div key={n} className="grid h-16 place-items-center rounded-xl bg-[color:var(--accent)] text-sm font-semibold tracking-wider text-[color:var(--navy)]/70">
+              <div key={n} className="grid h-16 place-items-center rounded-xl bg-[color:var(--accent)] text-sm font-semibold tracking-wider text-white/70">
                 {n.toUpperCase()}
               </div>
             ))}
