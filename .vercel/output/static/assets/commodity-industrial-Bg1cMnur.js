@@ -1,1 +1,0 @@
-var e=`/assets/commodity-agricultural-CFhW1lwC.jpg`,t=`/assets/commodity-minerals-DnwX5vOo.jpg`,n=`/assets/commodity-energy-ANeOJy1e.jpg`,r=`/assets/commodity-industrial-DbcTuNMr.jpg`;export{e as i,n,t as r,r as t};
