@@ -202,4 +202,9 @@
     from { transform: translateX(0) }
     to { transform: translateX(-50%) }
   }
+  .animate-fadeIn { animation: fadeIn .3s ease-out both; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px) }
+    to { opacity: 1; transform: translateY(0) }
+  }
 }
