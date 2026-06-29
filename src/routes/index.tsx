@@ -257,171 +257,174 @@ function HomeContent() {
             backgroundSize: "56px 56px",
           }}
         />
-        <div className="relative container-x py-12 lg:py-20 grid lg:grid-cols-[1.25fr_1fr] gap-12 items-start">
-          {/* Left: copy + hero image */}
-          <div>
-            <div className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-6">
-              {t("home.hero.eyebrow")}
-            </div>
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] text-[color:var(--navy)] dark:text-foreground">
-              {t("home.hero.titleA")}<br />{t("home.hero.titleB")}
-            </h1>
-            <p className="mt-6 max-w-xl text-foreground/65 leading-relaxed">
-              {t("home.hero.desc")}
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                to="/partnership"
-                className="group inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold transition-all"
-              >
-                {t("common.becomeAPartner")}
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </Link>
-              <Link
-                to="/opportunities"
-                className="group inline-flex items-center gap-3 border-2 border-[color:var(--navy)]/15 dark:border-white/20 px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--navy)] dark:text-foreground hover:border-gold hover:text-gold transition-all"
-              >
-                {t("common.exploreOpportunities")}
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </Link>
-            </div>
-
-            <div className="mt-8 flex items-center gap-4">
-              <div className="flex -space-x-2">
-                {["var(--brand-green)", "#0A192F", "#3b82f6", "#10b981"].map((c) => (
-                  <div key={c} className="h-9 w-9 rounded-full border-2 border-background" style={{ background: c }} />
-                ))}
+        <div className="relative container-x py-12 lg:py-20">
+          <div className="grid lg:grid-cols-[1.25fr_1fr] gap-12 items-start">
+            {/* Left: copy */}
+            <div>
+              <div className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-6">
+                {t("home.hero.eyebrow")}
               </div>
-              <p className="text-sm text-foreground/60">
-                {t("home.hero.trustedBy")} <span className="font-semibold text-foreground">850+</span> {t("home.hero.trustedBySuffix")}
+              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] text-[color:var(--navy)] dark:text-foreground">
+                {t("home.hero.titleA")}<br />{t("home.hero.titleB")}
+              </h1>
+              <p className="mt-6 max-w-xl text-foreground/65 leading-relaxed">
+                {t("home.hero.desc")}
               </p>
-            </div>
 
-            <div className="mt-10 mx-auto max-w-6xl">
-              <div className="overflow-hidden rounded-xl border border-border/30 shadow-elegant relative">
-                {[
-                  { src: heroImg, alt: "Trading" },
-                  { src: agriImg, alt: "Agricultural" },
-                  { src: mineralsImg, alt: "Minerals" },
-                  { src: energyImg, alt: "Energy" },
-                  { src: industrialImg, alt: "Industrial" },
-                ].map((img, idx) => (
-                  <img
-                    key={idx}
-                    src={img.src}
-                    alt={img.alt}
-                    className={`w-full block transition-opacity duration-700 ${idx === currentImage ? "opacity-100" : "opacity-0 absolute inset-0"}`}
-                    fetchPriority={idx === 0 ? "high" : "low"}
-                  />
-                ))}
-                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-                  {[0, 1, 2, 3, 4].map((i) => (
-                    <button
-                      key={i}
-                      onClick={() => setCurrentImage(i)}
-                      className={`h-2 w-2 rounded-full transition-all ${i === currentImage ? "bg-gold w-6" : "bg-white/50 hover:bg-white/80"}`}
-                      aria-label={`Slide ${i + 1}`}
-                    />
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  to="/partnership"
+                  className="group inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold transition-all"
+                >
+                  {t("common.becomeAPartner")}
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  to="/opportunities"
+                  className="group inline-flex items-center gap-3 border-2 border-[color:var(--navy)]/15 dark:border-white/20 px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--navy)] dark:text-foreground hover:border-gold hover:text-gold transition-all"
+                >
+                  {t("common.exploreOpportunities")}
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </Link>
+              </div>
+
+              <div className="mt-8 flex items-center gap-4">
+                <div className="flex -space-x-2">
+                  {["var(--brand-green)", "#0A192F", "#3b82f6", "#10b981"].map((c) => (
+                    <div key={c} className="h-9 w-9 rounded-full border-2 border-background" style={{ background: c }} />
                   ))}
                 </div>
+                <p className="text-sm text-foreground/60">
+                  {t("home.hero.trustedBy")} <span className="font-semibold text-foreground">850+</span> {t("home.hero.trustedBySuffix")}
+                </p>
+              </div>
+            </div>
+
+            {/* Right: Join form card */}
+            <div className="lg:sticky lg:top-28">
+              <div className="rounded-2xl bg-card border border-border shadow-elegant p-8">
+                <h2 className="font-display text-2xl text-[color:var(--navy)] dark:text-foreground">
+                  {t("common.joinZentra")}
+                </h2>
+                <p className="mt-2 text-sm text-foreground/60">{t("form.heroIntro")}</p>
+
+                <form className="mt-6 space-y-3" onSubmit={handleRegister} noValidate>
+                  <div>
+                    <label htmlFor="reg-name" className="sr-only">{t("form.fullName")}</label>
+                    <input
+                      id="reg-name"
+                      name="fullName"
+                      placeholder={t("form.fullName")}
+                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                    />
+                    {errors.fullName && <p className="text-xs text-red-500 mt-1">{t(errors.fullName as TKey)}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="reg-company" className="sr-only">{t("form.companyName")}</label>
+                    <input
+                      id="reg-company"
+                      name="companyName"
+                      placeholder={t("form.companyName")}
+                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                    />
+                    {errors.companyName && <p className="text-xs text-red-500 mt-1">{t(errors.companyName as TKey)}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="reg-email" className="sr-only">{t("form.email")}</label>
+                    <input
+                      id="reg-email"
+                      name="email"
+                      type="email"
+                      placeholder={t("form.email")}
+                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                    />
+                    {errors.email && <p className="text-xs text-red-500 mt-1">{t(errors.email as TKey)}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="reg-whatsapp" className="sr-only">{t("form.whatsapp")}</label>
+                    <input
+                      id="reg-whatsapp"
+                      name="whatsapp"
+                      placeholder={t("form.whatsapp")}
+                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                    />
+                    {errors.whatsapp && <p className="text-xs text-red-500 mt-1">{t(errors.whatsapp as TKey)}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="reg-country" className="sr-only">{t("form.selectCountry")}</label>
+                    <select
+                      id="reg-country"
+                      name="country"
+                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm text-foreground/80 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                    >
+                      <option value="">{t("form.selectCountry")}</option>
+                      {COUNTRIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                    </select>
+                    {errors.country && <p className="text-xs text-red-500 mt-1">{t(errors.country as TKey)}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="reg-biz" className="sr-only">{t("form.selectBusinessType")}</label>
+                    <select
+                      id="reg-biz"
+                      name="businessType"
+                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm text-foreground/80 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                    >
+                      <option value="">{t("form.selectBusinessType")}</option>
+                      {BIZ_KEYS.map((k) => <option key={k} value={k}>{t(k)}</option>)}
+                    </select>
+                    {errors.businessType && <p className="text-xs text-red-500 mt-1">{t(errors.businessType as TKey)}</p>}
+                  </div>
+                  <button
+                    type="submit"
+                    className="group w-full flex items-center justify-center gap-3 bg-gold rounded-lg px-6 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold transition-all"
+                  >
+                    {t("common.joinZentra")}
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  </button>
+                  {status !== "idle" && (
+                    <p className={`text-xs rounded-lg px-3 py-2 text-center ${
+                      status === "success" ? "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30" : "text-red-500 bg-red-50 dark:bg-red-950/30"
+                    }`}>
+                      {submitMsg}
+                    </p>
+                  )}
+                  <div className="flex items-center justify-center gap-2 text-[11px] text-foreground/50 pt-1">
+                    <ShieldCheck className="h-3.5 w-3.5 text-gold" />
+                    {t("form.secureGlobal")}
+                  </div>
+                </form>
               </div>
             </div>
           </div>
 
-          {/* Right: Join form card */}
-          <div className="lg:sticky lg:top-28">
-            <div className="rounded-2xl bg-card border border-border shadow-elegant p-8">
-              <h2 className="font-display text-2xl text-[color:var(--navy)] dark:text-foreground">
-                {t("common.joinZentra")}
-              </h2>
-              <p className="mt-2 text-sm text-foreground/60">{t("form.heroIntro")}</p>
-
-              <form className="mt-6 space-y-3" onSubmit={handleRegister} noValidate>
-                <div>
-                  <label htmlFor="reg-name" className="sr-only">{t("form.fullName")}</label>
-                  <input
-                    id="reg-name"
-                    name="fullName"
-                    placeholder={t("form.fullName")}
-                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+          {/* Carousel - 80% width centered */}
+          <div className="mt-16 mx-auto max-w-[80%]">
+            <div className="overflow-hidden rounded-xl border border-border/30 shadow-elegant relative">
+              {[
+                { src: heroImg, alt: "Trading" },
+                { src: agriImg, alt: "Agricultural" },
+                { src: mineralsImg, alt: "Minerals" },
+                { src: energyImg, alt: "Energy" },
+                { src: industrialImg, alt: "Industrial" },
+              ].map((img, idx) => (
+                <img
+                  key={idx}
+                  src={img.src}
+                  alt={img.alt}
+                  className={`w-full block transition-opacity duration-700 ${idx === currentImage ? "opacity-100" : "opacity-0 absolute inset-0"}`}
+                  fetchPriority={idx === 0 ? "high" : "low"}
+                />
+              ))}
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentImage(i)}
+                    className={`h-2 w-2 rounded-full transition-all ${i === currentImage ? "bg-gold w-6" : "bg-white/50 hover:bg-white/80"}`}
+                    aria-label={`Slide ${i + 1}`}
                   />
-                  {errors.fullName && <p className="text-xs text-red-500 mt-1">{t(errors.fullName as TKey)}</p>}
-                </div>
-                <div>
-                  <label htmlFor="reg-company" className="sr-only">{t("form.companyName")}</label>
-                  <input
-                    id="reg-company"
-                    name="companyName"
-                    placeholder={t("form.companyName")}
-                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
-                  />
-                  {errors.companyName && <p className="text-xs text-red-500 mt-1">{t(errors.companyName as TKey)}</p>}
-                </div>
-                <div>
-                  <label htmlFor="reg-email" className="sr-only">{t("form.email")}</label>
-                  <input
-                    id="reg-email"
-                    name="email"
-                    type="email"
-                    placeholder={t("form.email")}
-                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
-                  />
-                  {errors.email && <p className="text-xs text-red-500 mt-1">{t(errors.email as TKey)}</p>}
-                </div>
-                <div>
-                  <label htmlFor="reg-whatsapp" className="sr-only">{t("form.whatsapp")}</label>
-                  <input
-                    id="reg-whatsapp"
-                    name="whatsapp"
-                    placeholder={t("form.whatsapp")}
-                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
-                  />
-                  {errors.whatsapp && <p className="text-xs text-red-500 mt-1">{t(errors.whatsapp as TKey)}</p>}
-                </div>
-                <div>
-                  <label htmlFor="reg-country" className="sr-only">{t("form.selectCountry")}</label>
-                  <select
-                    id="reg-country"
-                    name="country"
-                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm text-foreground/80 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
-                  >
-                    <option value="">{t("form.selectCountry")}</option>
-                    {COUNTRIES.map((c) => <option key={c} value={c}>{c}</option>)}
-                  </select>
-                  {errors.country && <p className="text-xs text-red-500 mt-1">{t(errors.country as TKey)}</p>}
-                </div>
-                <div>
-                  <label htmlFor="reg-biz" className="sr-only">{t("form.selectBusinessType")}</label>
-                  <select
-                    id="reg-biz"
-                    name="businessType"
-                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm text-foreground/80 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
-                  >
-                    <option value="">{t("form.selectBusinessType")}</option>
-                    {BIZ_KEYS.map((k) => <option key={k} value={k}>{t(k)}</option>)}
-                  </select>
-                  {errors.businessType && <p className="text-xs text-red-500 mt-1">{t(errors.businessType as TKey)}</p>}
-                </div>
-                <button
-                  type="submit"
-                  className="group w-full flex items-center justify-center gap-3 bg-gold rounded-lg px-6 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold transition-all"
-                >
-                  {t("common.joinZentra")}
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                </button>
-                {status !== "idle" && (
-                  <p className={`text-xs rounded-lg px-3 py-2 text-center ${
-                    status === "success" ? "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30" : "text-red-500 bg-red-50 dark:bg-red-950/30"
-                  }`}>
-                    {submitMsg}
-                  </p>
-                )}
-                <div className="flex items-center justify-center gap-2 text-[11px] text-foreground/50 pt-1">
-                  <ShieldCheck className="h-3.5 w-3.5 text-gold" />
-                  {t("form.secureGlobal")}
-                </div>
-              </form>
+                ))}
+              </div>
             </div>
           </div>
         </div>
