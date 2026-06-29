@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Building2, ShieldCheck, BarChart3, Globe2, Handshake, TrendingUp, Briefcase } from "lucide-react";
+import { ArrowRight, Building2, ShieldCheck, BarChart3, Globe2, Handshake, TrendingUp, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
 import heroImg from "@/assets/hero-trading.jpg";
 import agriImg from "@/assets/commodity-agricultural.jpg";
 import mineralsImg from "@/assets/commodity-minerals.jpg";
@@ -13,7 +13,7 @@ import carrocel5 from "@/assets/carrocel/5.jpeg";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
 import { WorldMap } from "@/components/site/WorldMap";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { registerSchema, submitRegister } from "@/lib/api";
 import type { RegisterInput } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
@@ -166,13 +166,45 @@ function LandingGate({ onGoogleSignIn }: { onGoogleSignIn: () => Promise<void> }
 function HomeContent() {
   const { t } = useI18n();
   const [currentImage, setCurrentImage] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const progressRef = useRef(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval>>();
+
+  const goTo = useCallback((idx: number) => {
+    setCurrentImage(idx);
+    setProgress(0);
+    progressRef.current = 0;
+  }, []);
+
+  const goNext = useCallback(() => {
+    setCurrentImage((prev) => (prev + 1) % 5);
+    setProgress(0);
+    progressRef.current = 0;
+  }, []);
+
+  const goPrev = useCallback(() => {
+    setCurrentImage((prev) => (prev - 1 + 5) % 5);
+    setProgress(0);
+    progressRef.current = 0;
+  }, []);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % 5);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
+    if (isPaused) return;
+    const DURATION = 5000;
+    const TICK = 50;
+    const STEP = (TICK / DURATION) * 100;
+
+    intervalRef.current = setInterval(() => {
+      progressRef.current += STEP;
+      setProgress(Math.min(progressRef.current, 100));
+      if (progressRef.current >= 100) {
+        goNext();
+      }
+    }, TICK);
+
+    return () => clearInterval(intervalRef.current);
+  }, [isPaused, goNext]);
 
   const COUNTRIES = ["United Kingdom", "Angola", "Nigeria", "South Africa", "Brazil", "China", "USA", "UAE", "Singapore"];
   const BIZ_KEYS: TKey[] = ["biz.producer", "biz.supplier", "biz.exporter", "biz.importer", "biz.investor"];
@@ -403,8 +435,12 @@ function HomeContent() {
           </div>
 
           {/* Carousel - 80% width centered */}
-          <div className="mt-16 mx-auto max-w-[80%]">
-            <div className="overflow-hidden rounded-xl border border-border/30 shadow-elegant relative">
+          <div
+            className="mt-16 mx-auto max-w-[80%] group"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            <div className="overflow-hidden rounded-2xl border border-border/20 shadow-elegant relative bg-card">
               {[
                 { src: carrocel1, alt: "Slide 1" },
                 { src: carrocel2, alt: "Slide 2" },
@@ -416,17 +452,54 @@ function HomeContent() {
                   key={idx}
                   src={img.src}
                   alt={img.alt}
-                  className={`w-full aspect-video object-cover block transition-opacity duration-700 ${idx === currentImage ? "opacity-100" : "opacity-0 absolute inset-0"}`}
+                  className={`w-full aspect-video object-cover block transition-all duration-700 ease-out ${
+                    idx === currentImage
+                      ? "opacity-100 scale-100"
+                      : "opacity-0 scale-105 absolute inset-0"
+                  }`}
                   fetchPriority={idx === 0 ? "high" : "low"}
                 />
               ))}
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+
+              {/* Progress bar */}
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-white/10">
+                <div
+                  className="h-full bg-gold transition-none"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+
+              {/* Navigation arrows */}
+              <button
+                onClick={goPrev}
+                className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm hover:scale-105"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={goNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm hover:scale-105"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+
+              {/* Dots */}
+              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2.5">
                 {[0, 1, 2, 3, 4].map((i) => (
                   <button
                     key={i}
-                    onClick={() => setCurrentImage(i)}
-                    className={`h-2 w-2 rounded-full transition-all ${i === currentImage ? "bg-gold w-6" : "bg-white/50 hover:bg-white/80"}`}
-                    aria-label={`Slide ${i + 1}`}
+                    onClick={() => goTo(i)}
+                    className={`rounded-full transition-all duration-500 ease-out ${
+                      i === currentImage
+                        ? "bg-gold w-10 h-2.5"
+                        : "bg-white/50 hover:bg-white/80 w-2.5 h-2.5"
+                    }`}
+                    aria-label={`Go to slide ${i + 1}`}
                   />
                 ))}
               </div>
