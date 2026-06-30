@@ -69,8 +69,4 @@ export function formatTimestamp(ts: Timestamp | undefined): string {
   return ts.toDate().toLocaleString();
 }
 
-export function isAdminEmail(email: string | null): boolean {
-  if (!email) return false;
-  const adminEmails = ["admin@zentratrading.com", "fortuna@zentratrading.com"];
-  return adminEmails.includes(email.toLowerCase());
-}
+

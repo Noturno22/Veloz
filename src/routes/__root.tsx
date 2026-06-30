@@ -15,7 +15,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 import { ThemeProvider } from "@/lib/theme";
 import { I18nProvider } from "@/lib/i18n";
-import { AuthProvider } from "@/lib/auth";
+
 
 const initScript = `
 (function(){
@@ -124,17 +124,15 @@ function RootComponent() {
   return (
     <ThemeProvider>
       <I18nProvider>
-        <AuthProvider>
         <div className="flex min-h-screen flex-col bg-background text-foreground">
           <SiteHeader />
           <main className="flex-1">
             <Outlet />
           </main>
           <SiteFooter />
-            <WhatsAppFab />
-          </div>
-        </AuthProvider>
-        </I18nProvider>
+          <WhatsAppFab />
+        </div>
+      </I18nProvider>
       </ThemeProvider>
   );
 }

@@ -16,7 +16,6 @@ import { WorldMap } from "@/components/site/WorldMap";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { registerSchema, submitRegister } from "@/lib/api";
 import type { RegisterInput } from "@/lib/api";
-import { useAuth } from "@/lib/auth";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,133 +33,7 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  const { user, loading, signInWithGoogle } = useAuth();
-  const { t } = useI18n();
-
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-background">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-gold border-t-transparent" />
-      </div>
-    );
-  }
-
-  if (!user) {
-    return <LandingGate onGoogleSignIn={signInWithGoogle} />;
-  }
-
   return <HomeContent />;
-}
-
-function LandingGate({ onGoogleSignIn }: { onGoogleSignIn: () => Promise<void> }) {
-  const { t } = useI18n();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  async function handleGoogleSignIn() {
-    setLoading(true);
-    setError("");
-    try {
-      await onGoogleSignIn();
-    } catch (err: unknown) {
-      const e = err as { code?: string };
-      if (e.code === "auth/popup-closed-by-user") return;
-      if (e.code === "auth/popup-blocked") {
-        setError("Popup blocked. Please allow popups for this site and try again.");
-        return;
-      }
-      if (e.code === "auth/unauthorized-domain") {
-        setError("This domain is not authorized for Google sign-in. Contact the administrator.");
-        return;
-      }
-      setError(t("landing.error"));
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0">
-        <img
-          src={heroImg}
-          alt=""
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#06111F]/85 via-[#06111F]/60 to-[#06111F]/95" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#06111F]/50 to-transparent" />
-      </div>
-
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
-      <div className="absolute -top-48 -right-48 h-96 w-96 rounded-full bg-gold/5 blur-3xl" />
-      <div className="absolute -bottom-48 -left-48 h-96 w-96 rounded-full bg-gold/5 blur-3xl" />
-
-      <div className="absolute top-1/4 left-1/4 h-px w-32 rotate-45 bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
-      <div className="absolute bottom-1/3 right-1/4 h-px w-48 -rotate-12 bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
-
-      <div className="relative z-10 w-full max-w-md mx-auto px-4">
-        <div className="backdrop-blur-xl bg-white/5 rounded-3xl p-10 shadow-2xl border border-white/10 text-center">
-          <div className="flex justify-center mb-6">
-            <img
-              src="/zentra-logo.png"
-              alt="Veloz"
-              className="h-28 w-auto md:h-32 md:w-auto object-contain drop-shadow-lg"
-            />
-          </div>
-
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight">
-            Veloz
-          </h1>
-          <p className="text-white/50 text-sm mb-10 max-w-xs mx-auto leading-relaxed">
-            {t("landing.tagline")}
-          </p>
-
-          <button
-            onClick={handleGoogleSignIn}
-            disabled={loading}
-            className="group w-full flex items-center justify-center gap-3 bg-white hover:bg-white/90 text-[#1a1a1a] rounded-xl px-6 py-4 font-semibold text-sm transition-all hover:shadow-lg hover:shadow-white/20 disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            <svg className="h-5 w-5 shrink-0" viewBox="0 0 24 24">
-              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
-              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-            </svg>
-            {loading ? t("landing.signingIn") : t("landing.continueGoogle")}
-          </button>
-
-          {error && (
-            <p className="mt-4 text-xs text-red-400 bg-red-950/50 rounded-lg px-3 py-2">{error}</p>
-          )}
-
-          <div className="mt-8 flex items-center gap-3">
-            <span className="h-px flex-1 bg-white/10" />
-            <span className="text-[10px] uppercase tracking-[0.3em] text-white/30 font-bold">{t("landing.or")}</span>
-            <span className="h-px flex-1 bg-white/10" />
-          </div>
-
-          <p className="mt-6 text-xs text-white/40">
-            {t("landing.existingUser")}{" "}
-            <Link to="/login" className="text-gold font-semibold hover:underline transition-colors">
-              {t("landing.signInEmail")}
-            </Link>
-          </p>
-
-          <p className="mt-4 text-xs text-white/40">
-            {t("landing.newHere")}{" "}
-            <Link to="/register" className="text-gold font-semibold hover:underline transition-colors">
-              {t("landing.createAccount")}
-            </Link>
-          </p>
-
-          <div className="mt-8 flex items-center justify-center gap-2 text-[10px] text-white/30 uppercase tracking-[0.2em] font-bold">
-            <ShieldCheck className="h-3.5 w-3.5 text-gold" />
-            {t("landing.secured")}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 }
 
 function HomeContent() {

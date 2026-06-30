@@ -1,12 +1,10 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, UserRound, LogOut, Shield } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useI18n } from "@/lib/i18n";
-import { useAuth } from "@/lib/auth";
-import { isAdminEmail } from "@/lib/admin";
 import type { TKey } from "@/lib/translations";
 
 const NAV: { to: string; key: TKey }[] = [
@@ -24,7 +22,6 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { t } = useI18n();
-  const { user, logout } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -70,39 +67,6 @@ export function SiteHeader() {
         <div className="hidden lg:flex items-center gap-3">
           <LanguageSwitcher />
           <ThemeToggle />
-          {user ? (
-            <div className="flex items-center gap-2">
-              {isAdminEmail(user.email) && (
-                <Link
-                  to="/admin"
-                  className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-gold hover:brightness-110 transition-all"
-                >
-                  <Shield className="h-3 w-3" />
-                  Admin
-                </Link>
-              )}
-              <Link
-                to="/dashboard"
-                className="text-[10px] font-semibold text-foreground/60 hover:text-gold truncate max-w-28 transition-colors"
-              >
-                {user.email}
-              </Link>
-              <button
-                onClick={logout}
-                aria-label="Sign out"
-                className="inline-flex items-center gap-1.5 border border-border px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.15em] text-foreground/60 hover:text-red-500 hover:border-red-500/30 transition-all"
-              >
-                <LogOut className="h-3 w-3" />
-              </button>
-            </div>
-          ) : (
-            <Link
-              to="/login"
-              className="ml-1 inline-flex items-center gap-2 bg-gold px-7 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)] hover:brightness-110 transition-all"
-            >
-              <UserRound className="h-3.5 w-3.5" /> {t("nav.login")}
-            </Link>
-          )}
         </div>
 
         <div className="flex lg:hidden items-center gap-1">
@@ -134,38 +98,7 @@ export function SiteHeader() {
                 </Link>
               );
             })}
-            {user ? (
-              <>
-                {isAdminEmail(user.email) && (
-                  <Link
-                    to="/admin"
-                    className="rounded-md px-3 py-2.5 text-xs font-bold uppercase tracking-[0.25em] text-gold"
-                  >
-                    <Shield className="h-3.5 w-3.5 inline mr-1" />
-                    Admin
-                  </Link>
-                )}
-                <Link
-                  to="/dashboard"
-                  className="rounded-md px-3 py-2.5 text-xs font-bold uppercase tracking-[0.25em] text-gold"
-                >
-                  {t("dash.title")}
-                </Link>
-                <button
-                  onClick={logout}
-                  className="mt-2 border border-white/20 px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-foreground/60"
-                >
-                  Sign out ({user.email})
-                </button>
-              </>
-            ) : (
-              <Link
-                to="/login"
-                className="mt-2 bg-gold px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)]"
-              >
-                {t("nav.login")}
-              </Link>
-            )}
+
           </nav>
         </div>
       )}

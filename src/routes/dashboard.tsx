@@ -1,9 +1,6 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useRef } from "react";
-import { UserRound, ArrowRight, Shield, Mail, Calendar, Sparkles, ExternalLink, MapPin, Package, Target, LineChart } from "lucide-react";
-import { useAuth } from "@/lib/auth";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, ExternalLink, MapPin, Package, Target, LineChart, Mail } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
-import { auth } from "@/lib/firebase";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -20,29 +17,6 @@ export const Route = createFileRoute("/dashboard")({
 
 function DashboardPage() {
   const { t } = useI18n();
-  const { user, loading } = useAuth();
-  const navigate = useNavigate();
-  const redirected = useRef(false);
-
-  useEffect(() => {
-    if (!loading && !user && !auth.currentUser && !redirected.current) {
-      redirected.current = true;
-      navigate({ to: "/login" });
-    }
-  }, [user, loading, navigate]);
-
-  if (loading) {
-    return (
-      <div className="flex min-h-[calc(100vh-6rem)] items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-gold border-t-transparent" />
-      </div>
-    );
-  }
-
-  if (!user && !auth.currentUser) return null;
-
-  const initials = (user.email ?? "U").charAt(0).toUpperCase();
-  const memberSince = new Date(user.metadata?.creationTime ?? Date.now()).toLocaleDateString("en-US", { month: "long", year: "numeric" });
 
   return (
     <div className="min-h-[calc(100vh-6rem)] py-16 relative overflow-hidden">
@@ -52,7 +26,6 @@ function DashboardPage() {
       <div aria-hidden className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
       <div className="container-x relative z-10">
-        {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
           <div className="flex items-center gap-4">
             <div className="h-14 w-14 rounded-2xl bg-gradient-gold text-[var(--gold-foreground)] grid place-items-center shadow-gold">
@@ -63,8 +36,8 @@ function DashboardPage() {
                 {t("dash.title")}
               </h1>
               <p className="text-sm text-muted-foreground mt-0.5 flex items-center gap-2">
-                <Sparkles className="h-3.5 w-3.5 text-gold" />
-                {t("dash.welcome").replace("{name}", user.email?.split("@")[0] ?? "")}
+                <LineChart className="h-3.5 w-3.5 text-gold" />
+                Your trading command center
               </p>
             </div>
           </div>
@@ -77,58 +50,11 @@ function DashboardPage() {
           </Link>
         </div>
 
-        {/* Layout: profile + links */}
-        <div className="grid lg:grid-cols-3 gap-6">
-          {/* Profile Card */}
-          <div className="lg:col-span-2 rounded-2xl bg-card border border-border p-6 shadow-card">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="font-display text-xl text-[color:var(--navy)] dark:text-foreground flex items-center gap-2">
-                <UserRound className="h-5 w-5 text-gold" />
-                {t("dash.profile")}
-              </h2>
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
-                <Shield className="h-3 w-3 inline mr-1" />
-                Active
-              </span>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-6">
-              <div className="flex flex-col items-center gap-3">
-                <div className="h-20 w-20 rounded-2xl bg-gradient-gold text-[var(--gold-foreground)] grid place-items-center text-3xl font-bold font-display shadow-gold">
-                  {initials}
-                </div>
-                <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold flex items-center gap-1">
-                  <Calendar className="h-3 w-3" />
-                  {t("dash.memberSince") || "Member since"} {memberSince}
-                </span>
-              </div>
-              <div className="flex-1 space-y-3">
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-muted/50">
-                  <div className="h-8 w-8 rounded-lg bg-gold/10 text-gold grid place-items-center shrink-0">
-                    <Mail className="h-4 w-4" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Email</div>
-                    <div className="font-medium text-foreground text-sm truncate">{user.email}</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-muted/50">
-                  <div className="h-8 w-8 rounded-lg bg-gold/10 text-gold grid place-items-center shrink-0">
-                    <Shield className="h-4 w-4" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">UID</div>
-                    <div className="font-medium text-foreground text-xs font-mono truncate">{user.uid}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Links */}
+        <div className="max-w-lg mx-auto">
           <div className="rounded-2xl bg-card border border-border p-6 shadow-card">
             <h2 className="font-display text-xl text-[color:var(--navy)] dark:text-foreground mb-5 flex items-center gap-2">
               <LineChart className="h-5 w-5 text-gold" />
-              {t("dash.quickLinks") || "Quick Links"}
+              {t("dash.quickLinks")}
             </h2>
             <div className="space-y-2.5">
               {[

@@ -60,7 +60,7 @@ const en = {
   "form.required": "This field is required",
   "form.invalidEmail": "Please enter a valid email address",
   "form.submitSuccess": "Form submitted successfully! We'll be in touch shortly.",
-  "form.submitError": "Could not submit. Please check your connection or try creating an account at /register.",
+  "form.submitError": "Could not submit. Please check your connection and try again.",
   // nav
   "nav.home": "Home",
   "nav.about": "About Us",
@@ -69,7 +69,6 @@ const en = {
   "nav.insights": "Insights",
   "nav.partnership": "Partnership",
   "nav.contact": "Contact",
-  "nav.login": "Login",
   "nav.theme.light": "Light mode",
   "nav.theme.dark": "Dark mode",
 
@@ -89,18 +88,6 @@ const en = {
   "common.contactSeller": "Contact Seller",
   "common.whatsappAria": "Chat on WhatsApp",
   "common.openMenu": "Toggle menu",
-
-  // landing gate
-  "landing.tagline": "Global Commodity Trading Made Simple",
-  "landing.continueGoogle": "Continue with Google",
-  "landing.signingIn": "Signing in\u2026",
-  "landing.error": "Failed to sign in with Google. Please try again.",
-  "landing.or": "or",
-  "landing.existingUser": "Existing user?",
-  "landing.signInEmail": "Sign in with email",
-  "landing.newHere": "New here?",
-  "landing.createAccount": "Create account",
-  "landing.secured": "Secured with Firebase Authentication",
 
   // forms
   "form.fullName": "Full Name",
@@ -344,31 +331,10 @@ const en = {
   "home.dashSubtitle": "Real-time overview of the Veloz network",
   "dash.commodityDistribution": "Commodity Distribution",
 
-  // Register page
-  "register.title": "Create Account",
-  "register.subtitle": "Join Veloz and access global commodity opportunities.",
-  "register.passwordLabel": "Password",
-  "register.confirmPassword": "Confirm Password",
-  "register.haveAccount": "Already have an account?",
-  "register.signIn": "Sign in",
-  "register.passwordMismatch": "Passwords do not match.",
-  "register.weakPassword": "Password should be at least 6 characters.",
-  "register.emailInUse": "An account with this email already exists.",
-  "register.termsPrefix": "By creating an account, you agree to our ",
-  "register.termsLink": "Terms & Conditions",
-  "register.success": "Account created successfully! Welcome to Veloz.",
-
-  // Forgot password
-  "forgot.title": "Reset Password",
-  "forgot.subtitle": "Enter your email address and we'll send you a password reset link.",
-  "forgot.sent": "Password reset email sent. Check your inbox.",
-  "forgot.backToLogin": "Back to Login",
-
   // Dashboard
   "dash.title": "Dashboard",
   "dash.welcome": "Welcome back, {name}",
   "dash.profile": "My Profile",
-  "dash.logout": "Sign Out",
   "dash.quickLinks": "Quick Links",
   "dash.qlOppDesc": "Browse live trading deals",
   "dash.qlCommDesc": "View commodity portfolio",
@@ -383,9 +349,7 @@ const en = {
   "dash.actMarketDesc": "Crude oil prices up 3.2% this week",
   "dash.actVolume": "Volume Milestone",
   "dash.actVolumeDesc": "Total trading volume exceeded US$ 2.8B",
-  "dash.memberSince": "Member since",
   "dash.status": "Status",
-  "dash.verified": "Verified Account",
 
   // Admin
   "admin.title": "Admin Panel",
@@ -471,7 +435,7 @@ const pt: Record<keyof typeof en, string> = {
   "form.required": "Este campo é obrigatório",
   "form.invalidEmail": "Insira um endereço de e-mail válido",
   "form.submitSuccess": "Formulário enviado com sucesso! Entraremos em contacto brevemente.",
-  "form.submitError": "Não foi possível enviar. Verifique a sua conexão ou crie uma conta em /register.",
+  "form.submitError": "Não foi possível enviar. Verifique a sua conexão e tente novamente.",
   "nav.home": "Início",
   "nav.about": "Sobre Nós",
   "nav.commodities": "Commodities",
@@ -479,7 +443,6 @@ const pt: Record<keyof typeof en, string> = {
   "nav.insights": "Análises",
   "nav.partnership": "Parcerias",
   "nav.contact": "Contacto",
-  "nav.login": "Entrar",
   "nav.theme.light": "Modo claro",
   "nav.theme.dark": "Modo escuro",
 
@@ -498,18 +461,6 @@ const pt: Record<keyof typeof en, string> = {
   "common.contactSeller": "Contactar Vendedor",
   "common.whatsappAria": "Falar no WhatsApp",
   "common.openMenu": "Abrir menu",
-
-  // landing gate
-  "landing.tagline": "Negociação Global de Commodities Simplificada",
-  "landing.continueGoogle": "Continuar com o Google",
-  "landing.signingIn": "Entrando\u2026",
-  "landing.error": "Falha ao entrar com o Google. Tente novamente.",
-  "landing.or": "ou",
-  "landing.existingUser": "Já tem conta?",
-  "landing.signInEmail": "Entrar com e-mail",
-  "landing.newHere": "Novo por aqui?",
-  "landing.createAccount": "Criar conta",
-  "landing.secured": "Protegido com Firebase Authentication",
 
   "form.fullName": "Nome Completo",
   "form.companyName": "Nome da Empresa",
@@ -735,28 +686,9 @@ const pt: Record<keyof typeof en, string> = {
   "home.dashSubtitle": "Visão em tempo real da rede Veloz",
   "dash.commodityDistribution": "Distribuição de Commodities",
 
-  "register.title": "Criar Conta",
-  "register.subtitle": "Junte-se à Veloz e aceda a oportunidades globais de commodities.",
-  "register.passwordLabel": "Palavra-passe",
-  "register.confirmPassword": "Confirmar Palavra-passe",
-  "register.haveAccount": "Já tem uma conta?",
-  "register.signIn": "Entrar",
-  "register.passwordMismatch": "As palavras-passe não coincidem.",
-  "register.weakPassword": "A palavra-passe deve ter pelo menos 6 caracteres.",
-  "register.emailInUse": "Já existe uma conta com este e-mail.",
-  "register.termsPrefix": "Ao criar uma conta, aceita os nossos ",
-  "register.termsLink": "Termos e Condições",
-  "register.success": "Conta criada com sucesso! Bem-vindo à Veloz.",
-
-  "forgot.title": "Redefinir Palavra-passe",
-  "forgot.subtitle": "Insira o seu e-mail e enviaremos um link de redefinição de palavra-passe.",
-  "forgot.sent": "E-mail de redefinição enviado. Verifique a sua caixa de entrada.",
-  "forgot.backToLogin": "Voltar ao Login",
-
   "dash.title": "Painel",
   "dash.welcome": "Bem-vindo de volta, {name}",
   "dash.profile": "Meu Perfil",
-  "dash.logout": "Sair",
   "dash.quickLinks": "Atalhos",
   "dash.qlOppDesc": "Explorar negociações ativas",
   "dash.qlCommDesc": "Ver portfólio de commodities",
@@ -771,9 +703,7 @@ const pt: Record<keyof typeof en, string> = {
   "dash.actMarketDesc": "Preços do petróleo sobem 3,2% esta semana",
   "dash.actVolume": "Marco de Volume",
   "dash.actVolumeDesc": "Volume total de negociações excede US$ 2.8B",
-  "dash.memberSince": "Membro desde",
   "dash.status": "Estado",
-  "dash.verified": "Conta Verificada",
 
   "admin.title": "Painel Admin",
   "admin.leads": "Leads",

@@ -9,10 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PartnershipRouteImport } from './routes/partnership'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as DashboardRouteImport } from './routes/dashboard'
@@ -22,11 +20,6 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
-const RegisterRoute = RegisterRouteImport.update({
-  id: '/register',
-  path: '/register',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PartnershipRoute = PartnershipRouteImport.update({
   id: '/partnership',
   path: '/partnership',
@@ -35,11 +28,6 @@ const PartnershipRoute = PartnershipRouteImport.update({
 const OpportunitiesRoute = OpportunitiesRouteImport.update({
   id: '/opportunities',
   path: '/opportunities',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InsightsRoute = InsightsRouteImport.update({
@@ -92,10 +80,8 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/how-it-works': typeof HowItWorksRoute
   '/insights': typeof InsightsRoute
-  '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
   '/partnership': typeof PartnershipRoute
-  '/register': typeof RegisterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -106,10 +92,8 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/how-it-works': typeof HowItWorksRoute
   '/insights': typeof InsightsRoute
-  '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
   '/partnership': typeof PartnershipRoute
-  '/register': typeof RegisterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -121,10 +105,8 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/how-it-works': typeof HowItWorksRoute
   '/insights': typeof InsightsRoute
-  '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
   '/partnership': typeof PartnershipRoute
-  '/register': typeof RegisterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -137,10 +119,8 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/how-it-works'
     | '/insights'
-    | '/login'
     | '/opportunities'
     | '/partnership'
-    | '/register'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -151,10 +131,8 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/how-it-works'
     | '/insights'
-    | '/login'
     | '/opportunities'
     | '/partnership'
-    | '/register'
   id:
     | '__root__'
     | '/'
@@ -165,10 +143,8 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/how-it-works'
     | '/insights'
-    | '/login'
     | '/opportunities'
     | '/partnership'
-    | '/register'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -180,21 +156,12 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   HowItWorksRoute: typeof HowItWorksRoute
   InsightsRoute: typeof InsightsRoute
-  LoginRoute: typeof LoginRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
   PartnershipRoute: typeof PartnershipRoute
-  RegisterRoute: typeof RegisterRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/register': {
-      id: '/register'
-      path: '/register'
-      fullPath: '/register'
-      preLoaderRoute: typeof RegisterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/partnership': {
       id: '/partnership'
       path: '/partnership'
@@ -207,13 +174,6 @@ declare module '@tanstack/react-router' {
       path: '/opportunities'
       fullPath: '/opportunities'
       preLoaderRoute: typeof OpportunitiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/insights': {
@@ -284,10 +244,8 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   HowItWorksRoute: HowItWorksRoute,
   InsightsRoute: InsightsRoute,
-  LoginRoute: LoginRoute,
   OpportunitiesRoute: OpportunitiesRoute,
   PartnershipRoute: PartnershipRoute,
-  RegisterRoute: RegisterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

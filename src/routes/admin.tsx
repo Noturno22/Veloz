@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   ArrowLeft,
@@ -15,7 +15,6 @@ import {
   Phone,
   Building2,
 } from "lucide-react";
-import { useAuth } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
 import {
   fetchLeads,
@@ -25,7 +24,6 @@ import {
   updateLeadStatus,
   updateContactStatus,
   formatTimestamp,
-  isAdminEmail,
   type Lead,
   type Contact,
 } from "@/lib/admin";
@@ -44,8 +42,6 @@ type Tab = "overview" | "leads" | "contacts";
 
 function AdminPage() {
   const { t } = useI18n();
-  const { user, loading: authLoading } = useAuth();
-  const navigate = useNavigate();
   const [tab, setTab] = useState<Tab>("overview");
   const [leads, setLeads] = useState<Lead[]>([]);
   const [contacts, setContacts] = useState<Contact[]>([]);
@@ -53,13 +49,8 @@ function AdminPage() {
   const [actionLoading, setActionLoading] = useState<string | null>(null);
 
   useEffect(() => {
-    if (authLoading) return;
-    if (!user || !isAdminEmail(user.email)) {
-      navigate({ to: "/login" });
-      return;
-    }
     loadData();
-  }, [user, authLoading]);
+  }, []);
 
   async function loadData() {
     setLoading(true);
@@ -119,14 +110,6 @@ function AdminPage() {
     }
   }
 
-  if (authLoading) {
-    return (
-      <div className="flex min-h-[calc(100vh-6rem)] items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-gold" />
-      </div>
-    );
-  }
-
   const newLeads = leads.filter((l) => l.status !== "read");
   const newContacts = contacts.filter((c) => c.status !== "read");
 
@@ -153,7 +136,7 @@ function AdminPage() {
               {t("admin.title")}
             </h1>
           </div>
-          <span className="text-xs text-muted-foreground">{user?.email}</span>
+          <span className="text-xs text-muted-foreground">Admin</span>
         </div>
       </div>
 
