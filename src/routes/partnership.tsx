@@ -41,9 +41,6 @@ function Partnership() {
                 <li key={p} className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 mt-0.5 text-[color:var(--success)]" /> {t(p)}</li>
               ))}
             </ul>
-            <Link to="/contact" className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-gold px-5 py-2.5 text-sm font-semibold text-[color:var(--gold-foreground)] shadow-gold">
-              {t("common.apply")} <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
         ))}
       </section>
