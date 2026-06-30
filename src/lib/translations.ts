@@ -105,8 +105,6 @@ const en = {
   "form.secureGlobal": "Secure. Trusted. Global.",
   "form.secureConfidential": "Your information is secure and confidential.",
   "form.contactIntro": "Tell us about your business — we'll set up your trade profile.",
-  "form.heroIntro": "Create your account and unlock global trading opportunities.",
-
   // business types
   "biz.producer": "Producer",
   "biz.supplier": "Supplier",
@@ -477,8 +475,6 @@ const pt: Record<keyof typeof en, string> = {
   "form.secureGlobal": "Seguro. Confiável. Global.",
   "form.secureConfidential": "Os seus dados são seguros e confidenciais.",
   "form.contactIntro": "Conte-nos sobre o seu negócio — criamos o seu perfil de comércio.",
-  "form.heroIntro": "Crie a sua conta e desbloqueie oportunidades globais de comércio.",
-
   "biz.producer": "Produtor",
   "biz.supplier": "Fornecedor",
   "biz.exporter": "Exportador",

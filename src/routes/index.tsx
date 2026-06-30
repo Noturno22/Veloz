@@ -14,8 +14,6 @@ import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
 import { WorldMap } from "@/components/site/WorldMap";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { registerSchema, submitRegister } from "@/lib/api";
-import type { RegisterInput } from "@/lib/api";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -79,9 +77,6 @@ function HomeContent() {
     return () => clearInterval(intervalRef.current);
   }, [isPaused, goNext]);
 
-  const COUNTRIES = ["United Kingdom", "Angola", "Nigeria", "South Africa", "Brazil", "China", "USA", "UAE", "Singapore"];
-  const BIZ_KEYS: TKey[] = ["biz.producer", "biz.supplier", "biz.exporter", "biz.importer", "biz.investor"];
-
   const STEPS = [
     { n: "1", icon: Building2, titleKey: "steps.s1.title" as TKey, textKey: "steps.s1.text" as TKey },
     { n: "2", icon: ShieldCheck, titleKey: "steps.s2.title" as TKey, textKey: "steps.s2.text" as TKey },
@@ -115,45 +110,6 @@ function HomeContent() {
     { labelKey: "dash.dist.industrial", labelEn: "Industrial", value: 15, color: "#6366f1" },
   ];
 
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-  const [submitMsg, setSubmitMsg] = useState("");
-  const [errors, setErrors] = useState<Partial<Record<keyof RegisterInput, string>>>({});
-
-  async function handleRegister(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus("idle");
-    setSubmitMsg("");
-    setErrors({});
-    const form = new FormData(e.currentTarget);
-    const data: RegisterInput = {
-      fullName: form.get("fullName") as string,
-      companyName: form.get("companyName") as string,
-      email: form.get("email") as string,
-      whatsapp: form.get("whatsapp") as string,
-      country: form.get("country") as string,
-      businessType: form.get("businessType") as string,
-    };
-    const result = registerSchema.safeParse(data);
-    if (!result.success) {
-      const fieldErrors: Partial<Record<keyof RegisterInput, string>> = {};
-      for (const issue of result.error.issues) {
-        const field = issue.path[0] as keyof RegisterInput;
-        fieldErrors[field] = issue.message;
-      }
-      setErrors(fieldErrors);
-      return;
-    }
-    try {
-      await submitRegister(result.data);
-      setStatus("success");
-      setSubmitMsg(t("form.submitSuccess"));
-      (e.target as HTMLFormElement).reset();
-    } catch (err) {
-      setStatus("error");
-      setSubmitMsg(err instanceof Error ? err.message : t("form.submitError"));
-    }
-  }
-
   return (
     <div className="bg-background text-foreground">
       {/* HERO */}
@@ -168,8 +124,7 @@ function HomeContent() {
           }}
         />
         <div className="relative container-x py-12 lg:py-20">
-          <div className="grid lg:grid-cols-[1.25fr_1fr] gap-12 items-start">
-            {/* Left: copy */}
+          <div className="max-w-4xl">
             <div>
               <div className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-6">
                 {t("home.hero.eyebrow")}
@@ -210,101 +165,6 @@ function HomeContent() {
               </div>
             </div>
 
-            {/* Right: Join form card */}
-            <div className="lg:sticky lg:top-28">
-              <div className="rounded-2xl bg-card border border-border shadow-elegant p-8">
-                <h2 className="font-display text-2xl text-[color:var(--navy)] dark:text-foreground">
-                  {t("common.joinZentra")}
-                </h2>
-                <p className="mt-2 text-sm text-foreground/60">{t("form.heroIntro")}</p>
-
-                <form className="mt-6 space-y-3" onSubmit={handleRegister} noValidate>
-                  <div>
-                    <label htmlFor="reg-name" className="sr-only">{t("form.fullName")}</label>
-                    <input
-                      id="reg-name"
-                      name="fullName"
-                      placeholder={t("form.fullName")}
-                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
-                    />
-                    {errors.fullName && <p className="text-xs text-red-500 mt-1">{t(errors.fullName as TKey)}</p>}
-                  </div>
-                  <div>
-                    <label htmlFor="reg-company" className="sr-only">{t("form.companyName")}</label>
-                    <input
-                      id="reg-company"
-                      name="companyName"
-                      placeholder={t("form.companyName")}
-                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
-                    />
-                    {errors.companyName && <p className="text-xs text-red-500 mt-1">{t(errors.companyName as TKey)}</p>}
-                  </div>
-                  <div>
-                    <label htmlFor="reg-email" className="sr-only">{t("form.email")}</label>
-                    <input
-                      id="reg-email"
-                      name="email"
-                      type="email"
-                      placeholder={t("form.email")}
-                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
-                    />
-                    {errors.email && <p className="text-xs text-red-500 mt-1">{t(errors.email as TKey)}</p>}
-                  </div>
-                  <div>
-                    <label htmlFor="reg-whatsapp" className="sr-only">{t("form.whatsapp")}</label>
-                    <input
-                      id="reg-whatsapp"
-                      name="whatsapp"
-                      placeholder={t("form.whatsapp")}
-                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm placeholder:text-foreground/40 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
-                    />
-                    {errors.whatsapp && <p className="text-xs text-red-500 mt-1">{t(errors.whatsapp as TKey)}</p>}
-                  </div>
-                  <div>
-                    <label htmlFor="reg-country" className="sr-only">{t("form.selectCountry")}</label>
-                    <select
-                      id="reg-country"
-                      name="country"
-                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm text-foreground/80 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
-                    >
-                      <option value="">{t("form.selectCountry")}</option>
-                      {COUNTRIES.map((c) => <option key={c} value={c}>{c}</option>)}
-                    </select>
-                    {errors.country && <p className="text-xs text-red-500 mt-1">{t(errors.country as TKey)}</p>}
-                  </div>
-                  <div>
-                    <label htmlFor="reg-biz" className="sr-only">{t("form.selectBusinessType")}</label>
-                    <select
-                      id="reg-biz"
-                      name="businessType"
-                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-sm text-foreground/80 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
-                    >
-                      <option value="">{t("form.selectBusinessType")}</option>
-                      {BIZ_KEYS.map((k) => <option key={k} value={k}>{t(k)}</option>)}
-                    </select>
-                    {errors.businessType && <p className="text-xs text-red-500 mt-1">{t(errors.businessType as TKey)}</p>}
-                  </div>
-                  <button
-                    type="submit"
-                    className="group w-full flex items-center justify-center gap-3 bg-gold rounded-lg px-6 py-3.5 text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold transition-all"
-                  >
-                    {t("common.joinZentra")}
-                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                  </button>
-                  {status !== "idle" && (
-                    <p className={`text-xs rounded-lg px-3 py-2 text-center ${
-                      status === "success" ? "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30" : "text-red-500 bg-red-50 dark:bg-red-950/30"
-                    }`}>
-                      {submitMsg}
-                    </p>
-                  )}
-                  <div className="flex items-center justify-center gap-2 text-[11px] text-foreground/50 pt-1">
-                    <ShieldCheck className="h-3.5 w-3.5 text-gold" />
-                    {t("form.secureGlobal")}
-                  </div>
-                </form>
-              </div>
-            </div>
           </div>
 
           {/* Carousel - 80% width centered */}
