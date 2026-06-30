@@ -314,7 +314,7 @@ const en = {
   "contact.email": "Email",
   "contact.website": "Website",
   "contact.formTitle": "Entre em Contacto",
-  "contact.formSubtitle": "Preencha o formulário abaixo e enviaremos uma resposta por email dentro de 24 horas.",
+  "contact.formSubtitle": "Envie-nos uma mensagem por email.",
   "contact.formSend": "Enviar Mensagem",
 
   // Footer
@@ -672,7 +672,7 @@ const pt: Record<keyof typeof en, string> = {
   "contact.email": "E-mail",
   "contact.website": "Website",
   "contact.formTitle": "Entre em Contacto",
-  "contact.formSubtitle": "Preencha o formulário abaixo e enviaremos uma resposta por e-mail dentro de 24 horas.",
+  "contact.formSubtitle": "Envie-nos uma mensagem por e-mail.",
   "contact.formSend": "Enviar Mensagem",
 
   "footer.tagline": "Conectamos produtores, fornecedores, exportadores, importadores e investidores através de comércio global de commodities seguro.",

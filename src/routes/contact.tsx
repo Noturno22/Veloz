@@ -90,26 +90,9 @@ function Contact() {
         <form onSubmit={buildMailTo} noValidate className="rounded-2xl border border-border bg-white p-8 shadow-card">
           <h2 className="font-display text-3xl font-bold text-[color:var(--navy)]">{t("contact.formTitle")}</h2>
           <p className="mt-2 text-sm text-muted-foreground">{t("contact.formSubtitle")}</p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <div className="mt-6 space-y-4">
             <Field label={t("form.fullName")} name="fullName" />
-            <Field label={t("form.companyName")} name="companyName" />
             <Field label={t("form.emailShort")} name="email" type="email" />
-            <Field label={t("form.whatsappShort")} name="whatsapp" />
-            <SelectField
-              label={t("form.country")}
-              name="country"
-              placeholder={t("form.selectPlaceholder")}
-              options={["United Kingdom","Angola","Nigeria","South Africa","Brazil","China","USA","Other"]}
-            />
-            <SelectField
-              label={t("form.businessType")}
-              name="businessType"
-              placeholder={t("form.selectPlaceholder")}
-              options={["biz.producer","biz.supplier","biz.exporter","biz.importer","biz.investor"]}
-              i18n
-            />
-          </div>
-          <div className="mt-4">
             <Field label={t("form.tellUsTrade")} name="message" textarea />
           </div>
           <button type="submit" className="mt-6 group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-gold px-5 py-4 text-base font-semibold text-[color:var(--gold-foreground)] shadow-gold transition hover:translate-y-[-1px]">
@@ -137,15 +120,4 @@ function Field({ label, name, type = "text", textarea }: { label: string; name: 
   );
 }
 
-function SelectField({ label, name, options, placeholder, i18n }: { label: string; name: string; options: string[]; placeholder: string; i18n?: boolean }) {
-  const { t } = useI18n();
-  return (
-    <div>
-      <label htmlFor={`contact-${name}`} className="block text-sm font-medium text-foreground/70 mb-1.5">{label}</label>
-      <select id={`contact-${name}`} name={name} className="w-full rounded-lg border border-input bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gold/50">
-        <option value="">{placeholder}</option>
-        {options.map((o) => <option key={o} value={i18n ? o : o}>{i18n ? t(o as TKey) : o}</option>)}
-      </select>
-    </div>
-  );
-}
+
