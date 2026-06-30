@@ -313,6 +313,9 @@ const en = {
   "contact.phoneWa": "Phone / WhatsApp",
   "contact.email": "Email",
   "contact.website": "Website",
+  "contact.formTitle": "Entre em Contacto",
+  "contact.formSubtitle": "Preencha o formulário abaixo e enviaremos uma resposta por email dentro de 24 horas.",
+  "contact.formSend": "Enviar Mensagem",
 
   // Footer
   "footer.tagline": "Connecting producers, suppliers, exporters, importers and investors through secure global commodity trading.",
@@ -668,6 +671,9 @@ const pt: Record<keyof typeof en, string> = {
   "contact.phoneWa": "Telefone / WhatsApp",
   "contact.email": "E-mail",
   "contact.website": "Website",
+  "contact.formTitle": "Entre em Contacto",
+  "contact.formSubtitle": "Preencha o formulário abaixo e enviaremos uma resposta por e-mail dentro de 24 horas.",
+  "contact.formSend": "Enviar Mensagem",
 
   "footer.tagline": "Conectamos produtores, fornecedores, exportadores, importadores e investidores através de comércio global de commodities seguro.",
   "footer.company": "Empresa",
