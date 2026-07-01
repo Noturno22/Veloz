@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import { PageHero } from "@/components/site/PageHero";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { WorldMap } from "@/components/site/WorldMap";
@@ -44,13 +45,65 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const STATS = [
-  { value: "50+", key: "about.stats.countries" as TKey },
-  { value: "850+", key: "about.stats.partners" as TKey },
-  { value: "1,200+", key: "about.stats.projects" as TKey },
-  { value: "15+", key: "about.stats.experience" as TKey },
-  { value: "500+", key: "about.stats.clients" as TKey },
+const STATS: { value: string; numeric: number; suffix: string; key: TKey }[] = [
+  { value: "50+", numeric: 50, suffix: "+", key: "about.stats.countries" },
+  { value: "850+", numeric: 850, suffix: "+", key: "about.stats.partners" },
+  { value: "1,200+", numeric: 1200, suffix: "+", key: "about.stats.projects" },
+  { value: "15+", numeric: 15, suffix: "+", key: "about.stats.experience" },
+  { value: "500+", numeric: 500, suffix: "+", key: "about.stats.clients" },
 ];
+
+function AnimatedCounter({ target, suffix }: { target: number; suffix: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          const duration = 1500;
+          const steps = 30;
+          const increment = target / steps;
+          let current = 0;
+          const interval = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              setCount(target);
+              clearInterval(interval);
+            } else {
+              setCount(Math.floor(current));
+            }
+          }, duration / steps);
+        }
+      },
+      { threshold: 0.3 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [target]);
+
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
+}
+
+const ORG_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Veloz",
+  url: "https://zentratrading.com",
+  logo: "https://zentratrading.com/zentra-logo.png",
+  description:
+    "Veloz facilitates global commodity business through an international network of trusted partners.",
+  address: { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },
+};
 
 function About() {
   const { t } = useI18n();
@@ -131,6 +184,10 @@ function About() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }}
+      />
       <PageHero
         eyebrow={t("about.eyebrow")}
         title={
@@ -140,7 +197,25 @@ function About() {
           </>
         }
         description={t("about.desc")}
-      />
+      >
+        <div className="relative mt-8 md:mt-10 rounded-2xl overflow-hidden shadow-elegant animate-rise max-w-3xl">
+          <img
+            src="/images/about/hero.jpg"
+            alt=""
+            aria-hidden
+            className="w-full aspect-[21/9] object-cover opacity-40 md:opacity-50"
+            fetchPriority="high"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-gradient-to-t from-[color:var(--navy)]/80 via-transparent to-transparent"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-gradient-to-r from-[color:var(--gold)]/10 via-transparent to-[color:var(--gold)]/5"
+          />
+        </div>
+      </PageHero>
 
       <section className="container-x py-16 md:py-20">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -328,7 +403,7 @@ function About() {
               className="rounded-2xl border border-border bg-white p-6 text-center shadow-card"
             >
               <div className="font-display text-3xl font-bold text-gold">
-                {s.value}
+                <AnimatedCounter target={s.numeric} suffix={s.suffix} />
               </div>
               <div className="text-xs uppercase tracking-wider text-muted-foreground mt-1">
                 {t(s.key)}
