@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { BackgroundSlideshow } from "./BackgroundSlideshow";
 
 export function PageHero({
   eyebrow,
@@ -13,6 +14,7 @@ export function PageHero({
 }) {
   return (
     <section className="relative overflow-hidden bg-gradient-navy text-white">
+      <BackgroundSlideshow />
       <div
         aria-hidden
         className="absolute inset-0 opacity-[0.12]"
