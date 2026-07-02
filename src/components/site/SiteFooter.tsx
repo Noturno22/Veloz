@@ -9,7 +9,7 @@ const frameModules = import.meta.glob<{ default: string }>(
 );
 const frameUrls = Object.values(frameModules) as string[];
 
-function FooterBackground() {
+export function FooterBackground({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imgRef = useRef<HTMLImageElement[]>([]);
   const frameRef = useRef(0);
@@ -74,7 +74,7 @@ function FooterBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full opacity-15 pointer-events-none"
+      className={`absolute inset-0 w-full h-full pointer-events-none ${className ?? "opacity-15"}`}
     />
   );
 }
@@ -83,7 +83,6 @@ export function SiteFooter() {
   const { t } = useI18n();
   return (
     <footer className="relative mt-24 bg-[#06111F] text-white border-t border-white/5 overflow-hidden">
-      <FooterBackground />
       <div className="relative container-x pt-10 pb-16">
         <div className="flex flex-col md:flex-row justify-between items-start border-b border-white/10 pb-16 gap-12">
           <div className="max-w-sm">

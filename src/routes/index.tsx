@@ -12,6 +12,7 @@ import carrocel4 from "@/assets/carrocel/4.jpeg";
 import carrocel5 from "@/assets/carrocel/5.jpeg";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
+import { FooterBackground } from "@/components/site/SiteFooter";
 
 import { useState, useEffect, useRef, useCallback } from "react";
 
@@ -114,6 +115,7 @@ function HomeContent() {
     <div className="bg-background text-foreground">
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-border">
+        <FooterBackground className="opacity-40" />
         <div
           aria-hidden
           className="absolute inset-0 opacity-[0.04]"
