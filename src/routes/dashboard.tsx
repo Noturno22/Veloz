@@ -43,7 +43,7 @@ function DashboardPage() {
           </div>
           <Link
             to="/"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-gold transition-colors px-3 py-2 rounded-lg hover:bg-muted/50"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-gold px-3 py-2 rounded-lg hover:bg-muted/50"
           >
             <ExternalLink className="h-3.5 w-3.5" />
             {t("nav.home")}
@@ -66,17 +66,17 @@ function DashboardPage() {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-muted/50 border border-transparent transition-all group"
+                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-muted/50 border border-transparent group"
                 >
-                  <div className="h-9 w-9 rounded-lg bg-gold-soft text-gold grid place-items-center shrink-0 group-hover:bg-gold group-hover:text-[var(--gold-foreground)] transition-all">
+                  <div className="h-9 w-9 rounded-lg bg-gold-soft text-gold grid place-items-center shrink-0 group-hover:bg-gold group-hover:text-[var(--gold-foreground)]">
                     <link.icon className="h-4 w-4" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-semibold text-foreground group-hover:text-gold transition-colors">
+                    <div className="text-sm font-semibold text-foreground group-hover:text-gold">
                       {link.label}
                     </div>
                   </div>
-                  <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-gold transition-colors shrink-0" />
+                  <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-gold shrink-0" />
                 </Link>
               ))}
             </div>

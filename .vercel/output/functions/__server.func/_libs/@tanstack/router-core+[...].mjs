@@ -1,7 +1,8 @@
 import { A as createLRUCache, M as decodePath, O as rootRouteId, S as getStylesheetHref, _ as GLOBAL_TSR, b as createInlineCssStyleAsset, j as invariant, v as TSR_SCRIPT_BARRIER_ID, y as createInlineCssPlaceholderAsset } from "./react-router+[...].mjs";
-import { b as globalthis_default, x as init_globalthis } from "../@firebase/app+[...].mjs";
+//#region node_modules/unenv/dist/runtime/polyfill/globalthis.mjs
+var globalthis_default = globalThis;
+//#endregion
 //#region node_modules/seroval/dist/esm/production/index.mjs
-init_globalthis();
 var M = ((i) => (i[i.AggregateError = 1] = "AggregateError", i[i.ArrowFunction = 2] = "ArrowFunction", i[i.ErrorPrototypeStack = 4] = "ErrorPrototypeStack", i[i.ObjectAssign = 8] = "ObjectAssign", i[i.BigIntTypedArray = 16] = "BigIntTypedArray", i[i.RegExp = 32] = "RegExp", i))(M || {});
 var v$1 = Symbol.asyncIterator, pr = Symbol.hasInstance, R = Symbol.isConcatSpreadable, C = Symbol.iterator, dr = Symbol.match, gr = Symbol.matchAll, yr = Symbol.replace, Nr = Symbol.search, br = Symbol.species, vr = Symbol.split, Cr = Symbol.toPrimitive, P$1 = Symbol.toStringTag, Ar = Symbol.unscopables;
 var tt = {

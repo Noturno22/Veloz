@@ -95,8 +95,8 @@ function Contact() {
             <Field label={t("form.emailShort")} name="email" type="email" />
             <Field label={t("form.tellUsTrade")} name="message" textarea />
           </div>
-          <button type="submit" className="mt-6 group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-gold px-5 py-4 text-base font-semibold text-[color:var(--gold-foreground)] shadow-gold transition hover:translate-y-[-1px]">
-            {t("contact.formSend")} <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
+          <button type="submit" className="mt-6 group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-gold px-5 py-4 text-base font-semibold text-[color:var(--gold-foreground)] shadow-gold">
+            {t("contact.formSend")} <ArrowRight className="h-5 w-5" />
           </button>
           {sent && (
             <p className="mt-4 text-sm text-emerald-600 text-center">Email opened in your default mail client. Please send it to complete.</p>

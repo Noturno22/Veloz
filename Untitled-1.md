@@ -1,0 +1,1 @@
+container-x relative py-20 md:py-28 tira a div que esta nesta area e add o ao fundo 100% um carrosel com as imagens da pasta assets/carrocel/home 

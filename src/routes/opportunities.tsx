@@ -134,7 +134,7 @@ function Opportunities() {
                 </div>
                 <button
                   onClick={() => toggleExpand(d.id)}
-                  className={`mt-6 w-full inline-flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-semibold transition-all ${
+                  className={`mt-6 w-full inline-flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-semibold ${
                     isOpen
                       ? "bg-muted text-foreground"
                       : "bg-gold text-[var(--gold-foreground)] hover:brightness-110 shadow-gold"
@@ -168,7 +168,7 @@ function Opportunities() {
                   <div className="flex flex-wrap gap-3">
                     <Link
                       to="/contact"
-                      className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[var(--gold-foreground)] hover:brightness-110 transition-all shadow-gold"
+                      className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[var(--gold-foreground)] hover:brightness-110 shadow-gold"
                     >
                       <Mail className="h-4 w-4" />
                       {t("common.contactSeller") || "Contact Seller"}
@@ -177,7 +177,7 @@ function Opportunities() {
                       href="https://wa.me/447700000000?text=I'm%20interested%20in%20this%20opportunity"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl border border-gold/40 text-gold px-5 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-gold hover:text-[var(--gold-foreground)] transition-all"
+                      className="inline-flex items-center gap-2 rounded-xl border border-gold/40 text-gold px-5 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-gold hover:text-[var(--gold-foreground)]"
                     >
                       <Phone className="h-4 w-4" />
                       WhatsApp

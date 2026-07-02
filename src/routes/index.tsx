@@ -22,10 +22,10 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Connecting producers, suppliers, exporters, importers and investors through secure and efficient global commodity trading solutions." },
       { property: "og:title", content: "Veloz — Global Commodity Trading Made Simple" },
       { property: "og:description", content: "Worldwide commodity marketplace for agricultural, mineral, energy and industrial trading." },
-      { property: "og:url", content: "https://veloz.com/" },
+      { property: "og:url", content: "https://zentratrading.com/" },
       { property: "og:image", content: heroImg },
     ],
-    links: [{ rel: "canonical", href: "https://veloz.com/" }],
+    links: [{ rel: "canonical", href: "https://zentratrading.com/" }],
   }),
   component: HomePage,
 });
@@ -34,17 +34,6 @@ function HomePage() {
   return <HomeContent />;
 }
 
-const TICKER_ITEMS = [
-  { name: "Crude Oil", price: "$84.45", change: "+2.35%", up: true },
-  { name: "Copper", price: "$9,125.00", change: "-0.45%", up: false },
-  { name: "Natural Gas", price: "$2.75", change: "+3.45%", up: true },
-  { name: "Coffee", price: "$4,820.00", change: "+1.12%", up: true },
-  { name: "Soybeans", price: "$1,345.00", change: "-0.28%", up: false },
-  { name: "Gold", price: "$2,678.00", change: "+0.82%", up: true },
-  { name: "Iron Ore", price: "$118.50", change: "-1.15%", up: false },
-  { name: "Cement", price: "$124.00", change: "+0.45%", up: true },
-];
-
 function HomeContent() {
   const { t } = useI18n();
   const [currentImage, setCurrentImage] = useState(0);
@@ -52,7 +41,6 @@ function HomeContent() {
   const [progress, setProgress] = useState(0);
   const progressRef = useRef(0);
   const intervalRef = useRef<ReturnType<typeof setInterval>>();
-  const [tickerPos, setTickerPos] = useState(0);
 
   const goTo = useCallback((idx: number) => {
     setCurrentImage(idx);
@@ -89,13 +77,6 @@ function HomeContent() {
     return () => clearInterval(intervalRef.current);
   }, [isPaused, goNext]);
 
-  useEffect(() => {
-    const anim = setInterval(() => {
-      setTickerPos((prev) => prev - 1);
-    }, 30);
-    return () => clearInterval(anim);
-  }, []);
-
   const STEPS = [
     { n: "1", icon: Building2, titleKey: "steps.s1.title" as TKey, textKey: "steps.s1.text" as TKey },
     { n: "2", icon: ShieldCheck, titleKey: "steps.s2.title" as TKey, textKey: "steps.s2.text" as TKey },
@@ -131,65 +112,44 @@ function HomeContent() {
 
   return (
     <div className="bg-background text-foreground">
-      {/* LIVE PRICE TICKER */}
-      <div className="relative overflow-hidden border-b border-border bg-muted/50 py-2">
-        <div className="flex whitespace-nowrap gap-12 text-xs font-semibold tracking-wide"
-          style={{ transform: `translateX(${tickerPos}px)`, transition: "none" }}
-        >
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 shrink-0">
-              <span className="text-foreground/80">{item.name}</span>
-              <span className="font-mono text-foreground">{item.price}</span>
-              <span className={`font-bold ${item.up ? "text-emerald-600" : "text-red-500"}`}>
-                {item.change}
-              </span>
-              <span className="text-border">|</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-border">
         <div
           aria-hidden
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
               "linear-gradient(var(--navy) 1px, transparent 1px), linear-gradient(90deg, var(--navy) 1px, transparent 1px)",
             backgroundSize: "56px 56px",
           }}
         />
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-gold/[0.03] to-transparent pointer-events-none" />
         <div className="relative container-x py-12 lg:py-20">
           <div className="max-w-4xl">
             <div>
-              <div className="inline-flex items-center gap-2 text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-6 bg-gold/5 px-4 py-2 rounded-full">
-                <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
+              <div className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-6">
                 {t("home.hero.eyebrow")}
               </div>
-              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05]">
-                <span className="text-[color:var(--navy)] dark:text-foreground">{t("home.hero.titleA")}</span><br />
-                <span className="bg-gradient-to-r from-gold to-brand-blue bg-clip-text text-transparent">{t("home.hero.titleB")}</span>
+              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] text-[color:var(--navy)] dark:text-foreground">
+                {t("home.hero.titleA")}<br />{t("home.hero.titleB")}
               </h1>
-              <p className="mt-6 max-w-xl text-foreground/65 leading-relaxed text-base md:text-lg">
+              <p className="mt-6 max-w-xl text-foreground/65 leading-relaxed">
                 {t("home.hero.desc")}
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   to="/partnership"
-                  className="group inline-flex items-center gap-3 bg-gold px-8 py-4 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold transition-all rounded-lg"
+                  className="group inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold"
                 >
                   {t("common.becomeAPartner")}
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   to="/opportunities"
-                  className="group inline-flex items-center gap-3 border-2 border-[color:var(--navy)]/15 dark:border-white/20 px-8 py-4 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--navy)] dark:text-foreground hover:border-gold hover:text-gold transition-all rounded-lg"
+                  className="group inline-flex items-center gap-3 border-2 border-[color:var(--navy)]/15 dark:border-white/20 px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--navy)] dark:text-foreground hover:border-gold hover:text-gold"
                 >
                   {t("common.exploreOpportunities")}
-                  <ChevronRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
 
@@ -204,6 +164,7 @@ function HomeContent() {
                 </p>
               </div>
             </div>
+
           </div>
 
           {/* Carousel - 80% width centered */}
@@ -233,8 +194,10 @@ function HomeContent() {
                 />
               ))}
 
+              {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
 
+              {/* Progress bar */}
               <div className="absolute top-0 left-0 right-0 h-0.5 bg-white/10">
                 <div
                   className="h-full bg-gold transition-none"
@@ -242,21 +205,23 @@ function HomeContent() {
                 />
               </div>
 
+              {/* Navigation arrows */}
               <button
                 onClick={goPrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm hover:scale-105"
+                className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center"
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 onClick={goNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm hover:scale-105"
+                className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center"
                 aria-label="Next slide"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
 
+              {/* Dots */}
               <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2.5">
                 {[0, 1, 2, 3, 4].map((i) => (
                   <button
@@ -279,20 +244,14 @@ function HomeContent() {
       {/* JOURNEY STEPS */}
       <section className="py-20 bg-muted/40">
         <div className="container-x">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-4 bg-gold/5 px-4 py-2 rounded-full">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-              {t("common.becomeAPartner")}
-            </div>
-            <h2 className="font-display text-3xl md:text-4xl text-[color:var(--navy)] dark:text-foreground">
-              {t("steps.title")}
-            </h2>
-          </div>
-          <div className="mt-10 grid md:grid-cols-3 gap-6 items-stretch">
+          <h2 className="font-display text-3xl md:text-4xl text-[color:var(--navy)] dark:text-foreground mb-12">
+            {t("steps.title")}
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6 items-stretch">
             {STEPS.map((s, i) => (
               <div key={s.n} className="relative flex">
-                <div className="flex-1 group bg-card border border-border rounded-2xl p-6 flex items-start gap-5 hover-lift">
-                  <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-gold/20 to-gold/5 border border-gold/20 text-gold grid place-items-center font-display text-xl shrink-0 group-hover:bg-gradient-gold group-hover:text-[color:var(--gold-foreground)] group-hover:border-transparent transition-all duration-300">
+                <div className="flex-1 group bg-card border border-border rounded-xl p-6 flex items-start gap-5 hover-lift">
+                  <div className="h-12 w-12 rounded-full border border-gold/40 text-gold grid place-items-center font-display text-xl shrink-0 group-hover:bg-gold group-hover:text-[color:var(--gold-foreground)]">
                     {s.n}
                   </div>
                   <div>
@@ -302,7 +261,7 @@ function HomeContent() {
                   </div>
                 </div>
                 {i < STEPS.length - 1 && (
-                  <div className="hidden md:flex items-center px-3 text-gold/40">
+                  <div className="hidden md:flex items-center px-3 text-gold">
                     <ArrowRight className="h-5 w-5" />
                   </div>
                 )}
@@ -311,7 +270,7 @@ function HomeContent() {
           </div>
 
           {/* STATS ROW */}
-          <div className="mt-12 rounded-2xl bg-card border border-border p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 shadow-card">
+          <div className="mt-10 rounded-2xl bg-card border border-border p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 shadow-card">
             {STATS.map((s) => (
               <div key={s.labelKey} className="flex items-center gap-4">
                 <div className="h-12 w-12 rounded-full bg-gold-soft text-gold grid place-items-center shrink-0">
@@ -332,10 +291,6 @@ function HomeContent() {
         <div className="container-x grid lg:grid-cols-2 gap-12">
           {/* Commodities cards */}
           <div>
-            <div className="inline-flex items-center gap-2 text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-4 bg-gold/5 px-4 py-2 rounded-full">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-              {t("comm.commoditiesWord")}
-            </div>
             <h2 className="font-display text-3xl md:text-4xl text-[color:var(--navy)] dark:text-foreground mb-8">
               {t("dash.exploreTitle")}
             </h2>
@@ -368,7 +323,7 @@ function HomeContent() {
                       ))}
                     </ul>
                     <div className="mt-4 flex justify-end">
-                      <span className="h-8 w-8 rounded-full bg-gold/15 text-gold grid place-items-center group-hover:bg-gold group-hover:text-[color:var(--gold-foreground)] transition-all">
+                      <span className="h-8 w-8 rounded-full bg-gold text-[color:var(--gold-foreground)] grid place-items-center group-hover:translate-x-1 transition-transform">
                         <ArrowRight className="h-4 w-4" />
                       </span>
                     </div>
@@ -381,10 +336,6 @@ function HomeContent() {
           {/* Dashboard mock */}
           <div className="space-y-5">
             <div>
-              <div className="inline-flex items-center gap-2 text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-4 bg-gold/5 px-4 py-2 rounded-full">
-                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-                {t("dash.title")}
-              </div>
               <h2 className="font-display text-3xl md:text-4xl text-[color:var(--navy)] dark:text-foreground">
                 {t("home.dashTitle")}
               </h2>
@@ -399,7 +350,7 @@ function HomeContent() {
                 { label: t("dash.globalPartners"), value: "850+", delta: "+21.3%" },
                 { label: t("dash.marketsAccess"), value: "50+", delta: "+10.5%" },
               ].map((k) => (
-                <div key={k.label} className="rounded-xl bg-card border border-border p-4 hover-lift">
+                <div key={k.label} className="rounded-xl bg-card border border-border p-4">
                   <div className="text-[10px] uppercase tracking-[0.18em] text-foreground/50 font-semibold">{k.label}</div>
                   <div className="mt-2 flex items-baseline justify-between">
                     <span className="font-display text-xl text-[color:var(--navy)] dark:text-foreground">{k.value}</span>
@@ -410,7 +361,7 @@ function HomeContent() {
             </div>
 
             {/* Trading overview chart */}
-            <div className="rounded-xl bg-card border border-border p-5 shadow-card">
+            <div className="rounded-xl bg-card border border-border p-5">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-sm font-semibold text-[color:var(--navy)] dark:text-foreground">{t("dash.tradingOverview")}</span>
                 <div className="flex gap-2 text-[10px] uppercase tracking-[0.15em]">
@@ -423,7 +374,7 @@ function HomeContent() {
 
             {/* Distribution + live market */}
             <div className="grid sm:grid-cols-2 gap-3">
-              <div className="rounded-xl bg-card border border-border p-5 shadow-card">
+              <div className="rounded-xl bg-card border border-border p-5">
                 <div className="text-sm font-semibold mb-3 text-[color:var(--navy)] dark:text-foreground">{t("dash.commodityDistribution")}</div>
                 <div className="flex items-center gap-4">
                   <Donut data={DIST.map(d => ({ label: t(d.labelKey), value: d.value, color: d.color }))} />
@@ -438,11 +389,11 @@ function HomeContent() {
                   </ul>
                 </div>
               </div>
-              <div className="rounded-xl bg-card border border-border p-5 shadow-card">
+              <div className="rounded-xl bg-card border border-border p-5">
                 <div className="text-sm font-semibold mb-3 text-[color:var(--navy)] dark:text-foreground">{t("dash.liveMarket")}</div>
                 <ul className="space-y-2 text-xs">
                   {MARKET.map((m) => (
-                    <li key={m.nameKey} className="flex items-center justify-between py-1.5 border-b border-border/50 last:border-0">
+                    <li key={m.nameKey} className="flex items-center justify-between">
                       <span className="text-foreground/70">{t(m.nameKey)}</span>
                       <span className="flex items-baseline gap-2">
                         <span className="font-semibold">{m.price}</span>
@@ -460,29 +411,28 @@ function HomeContent() {
       {/* WORLD MAP / GLOBAL REACH */}
       <section className="py-20 border-t border-border bg-muted/30">
         <div className="container-x grid lg:grid-cols-[1.5fr_1fr] gap-12 items-center">
-          <div className="rounded-2xl bg-card border border-border p-6 shadow-card hover-lift">
+          <div className="rounded-2xl bg-card border border-border p-6 shadow-card">
             <WorldMap />
           </div>
           <div>
-            <div className="inline-flex items-center gap-2 text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-5 bg-gold/5 px-4 py-2 rounded-full">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+            <div className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-5">
               {t("global.eyebrow")}
             </div>
             <h2 className="font-display text-3xl md:text-5xl leading-tight text-[color:var(--navy)] dark:text-foreground">
               {t("global.titleA")}<br />{t("global.titleB")}
             </h2>
             <p className="mt-5 text-foreground/65 leading-relaxed">{t("global.desc")}</p>
-            <ul className="mt-6 space-y-3 text-sm">
+            <ul className="mt-6 space-y-2.5 text-sm">
               {(["global.b1","global.b2","global.b3","global.b4"] as TKey[]).map((k) => (
                 <li key={k} className="flex items-start gap-3">
-                  <span className="mt-1.5 h-2 w-2 rounded-full bg-gold shrink-0" />
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-gold shrink-0" />
                   <span className="text-foreground/75">{t(k)}</span>
                 </li>
               ))}
             </ul>
             <Link
               to="/partnership"
-              className="mt-8 inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold transition-all rounded-lg"
+              className="mt-8 inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110"
             >
               {t("common.joinOurNetwork")} <ArrowRight className="h-4 w-4" />
             </Link>
@@ -491,30 +441,22 @@ function HomeContent() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-gradient-navy text-white relative overflow-hidden">
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 30% 40%, var(--gold) 0%, transparent 50%), radial-gradient(circle at 70% 60%, var(--gold) 0%, transparent 40%)",
-          }}
-        />
-        <div className="container-x text-center max-w-3xl mx-auto relative">
+      <section className="py-24 bg-gradient-navy text-white">
+        <div className="container-x text-center max-w-3xl mx-auto">
           <h2 className="font-display text-4xl md:text-5xl leading-tight">
             {t("cta.titleA")} <span className="italic text-gold">{t("cta.titleB")}</span>
           </h2>
-          <p className="mt-5 text-white/70 text-lg">{t("cta.desc")}</p>
-          <div className="mt-10 flex flex-wrap gap-4 justify-center">
+          <p className="mt-5 text-white/70">{t("cta.desc")}</p>
+          <div className="mt-8 flex flex-wrap gap-4 justify-center">
             <Link
               to="/partnership"
-              className="group inline-flex items-center gap-3 bg-gold px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold transition-all rounded-lg"
+              className="inline-flex items-center gap-3 bg-gold px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)] hover:brightness-110"
             >
-              {t("common.becomeAPartner")} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+              {t("common.becomeAPartner")} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-3 border border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[color:var(--navy)] transition-all rounded-lg"
+              className="inline-flex items-center gap-3 border border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[color:var(--navy)]"
             >
               {t("common.contactUs")}
             </Link>

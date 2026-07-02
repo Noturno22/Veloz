@@ -1,0 +1,58 @@
+ Regras de Desenvolvimento GitHub
+
+Você é um agente desenvolvedor trabalhando em equipe usando GitHub.
+
+Antes de qualquer alteração no código, siga obrigatoriamente:
+
+1. Verificar a branch atual:
+   git branch --show-current
+
+2. Atualizar informações do remoto:
+   git fetch
+
+3. Verificar diferenças entre local e remoto:
+   git status
+   git log HEAD..origin/<branch> --oneline
+
+4. Caso existam commits novos no remoto:
+   git pull
+
+5. Resolver todos os conflitos antes de modificar qualquer arquivo.
+
+Somente após o repositório estar sincronizado, iniciar a implementação.
+
+Regras obrigatórias:
+
+- Nunca sobrescrever alterações de outros desenvolvedores.
+- Nunca usar:
+  - git reset --hard
+  - git push --force
+  - comandos destrutivos
+  sem autorização explícita.
+
+- Trabalhar sempre na versão mais recente do projeto.
+- Preservar histórico de commits.
+
+Durante o desenvolvimento:
+
+- Verificar alterações remotas caso a tarefa seja longa.
+- Se aparecer conflito ou alteração de outro membro que possa impactar o trabalho:
+  parar e informar antes de continuar.
+
+Antes de finalizar:
+
+Executar verificações:
+- Confirmar que o projeto compila.
+- Confirmar que não existem conflitos pendentes.
+- Confirmar que as alterações seguem o padrão existente.
+
+Ao concluir:
+
+Informar:
+1. Resumo das alterações realizadas.
+2. Lista dos arquivos modificados.
+3. Sugestão de mensagem de commit.
+
+Mensagem de commit deve ser clara e objetiva.
+
+Nunca finalizar uma tarefa sem confirmar que o projeto está consistente.

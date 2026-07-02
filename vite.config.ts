@@ -22,5 +22,10 @@ export default defineConfig({
         preset: "vercel",
       }),
     ],
+    build: {
+      rolldownOptions: {
+        external: ["firebase", "firebase/app", "firebase/firestore"],
+      },
+    },
   },
 });

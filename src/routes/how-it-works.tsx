@@ -34,7 +34,7 @@ function HowItWorks() {
       <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {SERVICES.map((s) => (
           <div key={s.titleKey} className="hover-lift group rounded-2xl border border-border bg-white p-6 shadow-card">
-            <div className="grid h-12 w-12 place-items-center rounded-xl bg-[color:var(--gold-soft)] text-[color:var(--navy)] group-hover:bg-gradient-gold group-hover:text-[color:var(--gold-foreground)] transition">
+            <div className="grid h-12 w-12 place-items-center rounded-xl bg-[color:var(--gold-soft)] text-[color:var(--navy)] group-hover:bg-gradient-gold group-hover:text-[color:var(--gold-foreground)]">
               <s.icon className="h-6 w-6" />
             </div>
             <h3 className="mt-5 font-display text-lg font-semibold text-[color:var(--navy)]">{t(s.titleKey)}</h3>
