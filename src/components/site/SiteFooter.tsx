@@ -1,12 +1,90 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { useEffect, useRef } from "react";
+
+const frameModules = import.meta.glob<{ default: string }>(
+  "@/assets/onboarding/*.jpg",
+  { eager: true, query: "?url", import: "default" },
+);
+const frameUrls = Object.values(frameModules) as string[];
+
+function FooterBackground() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imgRef = useRef<HTMLImageElement[]>([]);
+  const frameRef = useRef(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || frameUrls.length === 0) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const imgs = frameUrls.map((url) => {
+      const img = new Image();
+      img.src = url;
+      return img;
+    });
+    imgRef.current = imgs;
+
+    let stopped = false;
+    let lastTime = 0;
+    const fps = 12;
+    const interval = 1000 / fps;
+
+    function resize() {
+      const parent = canvas!.parentElement;
+      if (!parent) return;
+      const w = parent.clientWidth;
+      const h = parent.clientHeight;
+      if (canvas!.width !== w || canvas!.height !== h) {
+        canvas!.width = w;
+        canvas!.height = h;
+      }
+    }
+
+    function animate(time: number) {
+      if (stopped) return;
+      resize();
+      const delta = time - lastTime;
+      if (delta >= interval) {
+        lastTime = time - (delta % interval);
+        const idx = frameRef.current % imgs.length;
+        const img = imgs[idx];
+        if (img.complete && img.naturalWidth > 0) {
+          const cw = canvas!.width;
+          const ch = canvas!.height;
+          const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+          const iw = img.naturalWidth * scale;
+          const ih = img.naturalHeight * scale;
+          const ix = (cw - iw) / 2;
+          const iy = (ch - ih) / 2;
+          ctx!.clearRect(0, 0, cw, ch);
+          ctx!.drawImage(img, ix, iy, iw, ih);
+        }
+        frameRef.current = (frameRef.current + 1) % imgs.length;
+      }
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+
+    return () => { stopped = true; };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full opacity-15 pointer-events-none"
+    />
+  );
+}
 
 export function SiteFooter() {
   const { t } = useI18n();
   return (
-    <footer className="mt-24 bg-[#06111F] text-white border-t border-white/5">
-      <div className="container-x pt-10 pb-16">
+    <footer className="relative mt-24 bg-[#06111F] text-white border-t border-white/5 overflow-hidden">
+      <FooterBackground />
+      <div className="relative container-x pt-10 pb-16">
         <div className="flex flex-col md:flex-row justify-between items-start border-b border-white/10 pb-16 gap-12">
           <div className="max-w-sm">
             <img src="/zentra-logo.png" alt="Veloz" className="w-72 h-auto object-contain" />
