@@ -168,13 +168,15 @@ function HomeContent() {
 
           </div>
 
-          {/* Carousel - 80% width centered */}
+        </div>
+
+          {/* Full-width carousel */}
           <div
-            className="mt-16 mx-auto max-w-[80%] group"
+            className="w-full group"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            <div className="overflow-hidden rounded-2xl border border-border/20 shadow-elegant relative bg-card">
+            <div className="overflow-hidden relative bg-card">
               {[
                 { src: carrocel1, alt: "Slide 1" },
                 { src: carrocel2, alt: "Slide 2" },
@@ -240,7 +242,6 @@ function HomeContent() {
               </div>
             </div>
           </div>
-        </div>
       </section>
 
       {/* JOURNEY STEPS */}
