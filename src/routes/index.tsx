@@ -139,17 +139,17 @@ function HomeContent() {
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   to="/partnership"
-                  className="group inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold transition-all"
+                  className="group inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold"
                 >
                   {t("common.becomeAPartner")}
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   to="/opportunities"
-                  className="group inline-flex items-center gap-3 border-2 border-[color:var(--navy)]/15 dark:border-white/20 px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--navy)] dark:text-foreground hover:border-gold hover:text-gold transition-all"
+                  className="group inline-flex items-center gap-3 border-2 border-[color:var(--navy)]/15 dark:border-white/20 px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--navy)] dark:text-foreground hover:border-gold hover:text-gold"
                 >
                   {t("common.exploreOpportunities")}
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
 
@@ -208,14 +208,14 @@ function HomeContent() {
               {/* Navigation arrows */}
               <button
                 onClick={goPrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm hover:scale-105"
+                className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center"
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 onClick={goNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm hover:scale-105"
+                className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center"
                 aria-label="Next slide"
               >
                 <ChevronRight className="h-5 w-5" />
@@ -251,7 +251,7 @@ function HomeContent() {
             {STEPS.map((s, i) => (
               <div key={s.n} className="relative flex">
                 <div className="flex-1 group bg-card border border-border rounded-xl p-6 flex items-start gap-5 hover-lift">
-                  <div className="h-12 w-12 rounded-full border border-gold/40 text-gold grid place-items-center font-display text-xl shrink-0 group-hover:bg-gold group-hover:text-[color:var(--gold-foreground)] transition-all">
+                  <div className="h-12 w-12 rounded-full border border-gold/40 text-gold grid place-items-center font-display text-xl shrink-0 group-hover:bg-gold group-hover:text-[color:var(--gold-foreground)]">
                     {s.n}
                   </div>
                   <div>
@@ -432,7 +432,7 @@ function HomeContent() {
             </ul>
             <Link
               to="/partnership"
-              className="mt-8 inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110 transition-all"
+              className="mt-8 inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110"
             >
               {t("common.joinOurNetwork")} <ArrowRight className="h-4 w-4" />
             </Link>
@@ -450,13 +450,13 @@ function HomeContent() {
           <div className="mt-8 flex flex-wrap gap-4 justify-center">
             <Link
               to="/partnership"
-              className="inline-flex items-center gap-3 bg-gold px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)] hover:brightness-110 transition-all"
+              className="inline-flex items-center gap-3 bg-gold px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)] hover:brightness-110"
             >
               {t("common.becomeAPartner")} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-3 border border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[color:var(--navy)] transition-all"
+              className="inline-flex items-center gap-3 border border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[color:var(--navy)]"
             >
               {t("common.contactUs")}
             </Link>

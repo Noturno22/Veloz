@@ -37,7 +37,7 @@ function Insights() {
       />
       <section className="container-x py-10 flex flex-wrap gap-2">
         {CATS.map((c, i) => (
-          <button key={c} className={`rounded-full px-4 py-2 text-sm font-medium border transition ${i === 0 ? "bg-[color:var(--brand-green)] text-white border-[color:var(--brand-green)]" : "border-border bg-card hover:border-gold"}`}>
+          <button key={c} className={`rounded-full px-4 py-2 text-sm font-medium border ${i === 0 ? "bg-[color:var(--brand-green)] text-white border-[color:var(--brand-green)]" : "border-border bg-card"}`}>
             {t(c)}
           </button>
         ))}
@@ -57,7 +57,7 @@ function Insights() {
             </div>
             <div className="p-6">
               <div className="text-xs text-muted-foreground">{p.date} · {p.read} {t("common.minRead")}</div>
-              <h3 className="mt-2 font-display text-lg font-semibold text-[color:var(--navy)] group-hover:text-gold transition">
+              <h3 className="mt-2 font-display text-lg font-semibold text-[color:var(--navy)]">
                 {t(p.titleKey)}
               </h3>
               <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold underline-gold">

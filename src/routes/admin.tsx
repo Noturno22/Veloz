@@ -126,7 +126,7 @@ function AdminPage() {
           <div className="flex items-center gap-4">
             <Link
               to="/"
-              className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-gold transition-colors"
+              className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-gold"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               {t("admin.backToSite")}
@@ -146,7 +146,7 @@ function AdminPage() {
             <button
               key={tItem.id}
               onClick={() => setTab(tItem.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider ${
                 tab === tItem.id
                   ? "bg-[color:var(--brand-green)] text-white shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
@@ -561,7 +561,7 @@ function IconButton({
       onClick={onClick}
       title={label}
       aria-label={label}
-      className={`p-2 rounded-lg transition ${
+      className={`p-2 rounded-lg ${
         danger
           ? "text-muted-foreground hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30"
           : "text-muted-foreground hover:text-gold hover:bg-gold-soft"

@@ -414,7 +414,7 @@ function About() {
         <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {TIMELINE.map((item, i) => (
             <div key={item.key} className="relative flex flex-col items-center text-center group">
-              <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-gold text-[color:var(--gold-foreground)] shadow-gold group-hover:scale-110 transition-transform duration-300">
+              <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-gold text-[color:var(--gold-foreground)] shadow-gold">
                 <span className="font-display text-sm font-bold">{i + 1}</span>
               </div>
               <div className="mt-3 font-display text-sm font-semibold text-[color:var(--navy)]">
@@ -548,7 +548,7 @@ function About() {
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-7 py-3.5 text-sm font-semibold text-white"
             >
               {t("about.cta.requestQuote")}
             </Link>

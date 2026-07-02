@@ -23,7 +23,7 @@ export function SiteFooter() {
                 <a
                   key={label}
                   href="#"
-                  className="h-10 w-10 grid place-items-center border border-white/15 hover:bg-gold hover:border-gold hover:text-[color:var(--gold-foreground)] transition"
+                  className="h-10 w-10 grid place-items-center border border-white/15 hover:bg-gold hover:border-gold hover:text-[color:var(--gold-foreground)]"
                   aria-label={label}
                 >
                   <Icon className="h-4 w-4" />
@@ -36,19 +36,19 @@ export function SiteFooter() {
             <div className="space-y-5">
               <h4 className="text-gold text-[10px] uppercase tracking-[0.3em] font-bold">{t("footer.company")}</h4>
               <nav className="flex flex-col space-y-3 text-white/50 text-sm">
-                <Link to="/about" className="hover:text-white transition-colors">{t("nav.about")}</Link>
-                <Link to="/how-it-works" className="hover:text-white transition-colors">{t("nav.howItWorks")}</Link>
-                <Link to="/partnership" className="hover:text-white transition-colors">{t("nav.partnership")}</Link>
-                <Link to="/insights" className="hover:text-white transition-colors">{t("nav.insights")}</Link>
+                <Link to="/about" className="hover:text-white">{t("nav.about")}</Link>
+                <Link to="/how-it-works" className="hover:text-white">{t("nav.howItWorks")}</Link>
+                <Link to="/partnership" className="hover:text-white">{t("nav.partnership")}</Link>
+                <Link to="/insights" className="hover:text-white">{t("nav.insights")}</Link>
               </nav>
             </div>
             <div className="space-y-5">
               <h4 className="text-gold text-[10px] uppercase tracking-[0.3em] font-bold">{t("footer.commoditiesH")}</h4>
               <nav className="flex flex-col space-y-3 text-white/50 text-sm">
-                <Link to="/commodities" className="hover:text-white transition-colors">{t("comm.agricultural")}</Link>
-                <Link to="/commodities" className="hover:text-white transition-colors">{t("comm.minerals")}</Link>
-                <Link to="/commodities" className="hover:text-white transition-colors">{t("comm.energy")}</Link>
-                <Link to="/commodities" className="hover:text-white transition-colors">{t("comm.industrial")}</Link>
+                <Link to="/commodities" className="hover:text-white">{t("comm.agricultural")}</Link>
+                <Link to="/commodities" className="hover:text-white">{t("comm.minerals")}</Link>
+                <Link to="/commodities" className="hover:text-white">{t("comm.energy")}</Link>
+                <Link to="/commodities" className="hover:text-white">{t("comm.industrial")}</Link>
               </nav>
             </div>
             <div className="space-y-5">

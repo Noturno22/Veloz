@@ -53,7 +53,7 @@ export function SiteHeader() {
                 key={item.to}
                 to={item.to}
                 aria-current={active ? "page" : undefined}
-                className={`relative whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors ${
+                className={`relative whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.18em] ${
                   active ? "text-gold" : "text-foreground/70 hover:text-gold"
                 }`}
               >

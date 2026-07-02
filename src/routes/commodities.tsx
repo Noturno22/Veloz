@@ -107,14 +107,14 @@ function Commodities() {
       {/* ====== Sticky Tab Navigation ====== */}
       <nav className="sticky top-20 z-20 container-x mb-8">
         <div className="rounded-xl bg-card border border-border shadow-card p-1.5 flex gap-1 overflow-x-auto">
-          <button onClick={() => setActiveTab("")} className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-lg transition-all whitespace-nowrap ${!activeTab ? "bg-gold text-[var(--gold-foreground)] shadow-gold" : "text-muted-foreground hover:text-foreground"}`}>
+          <button onClick={() => setActiveTab("")} className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-lg whitespace-nowrap ${!activeTab ? "bg-gold text-[var(--gold-foreground)] shadow-gold" : "text-muted-foreground"}`}>
             {t("commPage.all") || "All"}
           </button>
           {CATEGORIES.map((c) => (
             <button
               key={c.id}
               onClick={() => setActiveTab(c.id)}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-lg transition-all whitespace-nowrap ${activeTab === c.id ? "bg-gold text-[var(--gold-foreground)] shadow-gold" : "text-muted-foreground hover:text-foreground"}`}
+              className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-lg whitespace-nowrap ${activeTab === c.id ? "bg-gold text-[var(--gold-foreground)] shadow-gold" : "text-muted-foreground"}`}
             >
               {t(c.titleKey)}
             </button>
@@ -166,7 +166,7 @@ function Commodities() {
                       <Link
                         key={itk}
                         to="/opportunities"
-                        className={`rounded-full border ${cc.tag} px-4 py-1.5 text-sm font-medium text-foreground/80 transition-all`}
+                        className={`rounded-full border ${cc.tag} px-4 py-1.5 text-sm font-medium text-foreground/80`}
                       >
                         {t(itk)}
                       </Link>
@@ -176,7 +176,7 @@ function Commodities() {
                   {/* CTA */}
                   <Link
                     to="/opportunities"
-                    className="mt-6 inline-flex items-center gap-2 self-start rounded-xl bg-gold px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[var(--gold-foreground)] hover:brightness-110 transition-all shadow-gold"
+                    className="mt-6 inline-flex items-center gap-2 self-start rounded-xl bg-gold px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[var(--gold-foreground)] hover:brightness-110 shadow-gold"
                   >
                     {t("common.exploreOpportunities")} <ArrowRight className="h-4 w-4" />
                   </Link>
