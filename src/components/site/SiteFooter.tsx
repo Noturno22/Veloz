@@ -29,7 +29,7 @@ export function FooterBackground({ className }: { className?: string }) {
 
     let stopped = false;
     let lastTime = 0;
-    const fps = 12;
+    const fps = 6;
     const interval = 1000 / fps;
 
     function resize() {
