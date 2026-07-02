@@ -62,6 +62,7 @@ function Contact() {
         eyebrow={t("contact.eyebrow")}
         title={<>{t("contact.titleA")} <span className="text-gold">{t("contact.titleB")}</span></>}
         description={t("contact.desc")}
+        showSlideshow={false}
       />
       <section className="container-x py-16 grid lg:grid-cols-[1fr_1.5fr] gap-10">
         <div className="space-y-4">

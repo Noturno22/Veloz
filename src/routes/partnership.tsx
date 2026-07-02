@@ -30,6 +30,7 @@ function Partnership() {
         eyebrow={t("partner.eyebrow")}
         title={<>{t("partner.titleA")} <span className="text-gold">{t("partner.titleB")}</span></>}
         description={t("partner.desc")}
+        showSlideshow={false}
       />
       <section className="container-x py-16 grid gap-6 md:grid-cols-3">
         {TIERS.map((tier) => (

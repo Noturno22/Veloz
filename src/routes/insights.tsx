@@ -34,6 +34,7 @@ function Insights() {
         eyebrow={t("insights.eyebrow")}
         title={<>{t("insights.titleA")} <span className="text-gold">{t("insights.titleB")}</span></>}
         description={t("insights.desc")}
+        showSlideshow={false}
       />
       <section className="container-x py-10 flex flex-wrap gap-2">
         {CATS.map((c, i) => (

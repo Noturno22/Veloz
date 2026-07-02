@@ -6,15 +6,17 @@ export function PageHero({
   title,
   description,
   children,
+  showSlideshow = true,
 }: {
   eyebrow: string;
   title: ReactNode;
   description?: string;
   children?: ReactNode;
+  showSlideshow?: boolean;
 }) {
   return (
     <section className="relative text-white">
-      <BackgroundSlideshow />
+      {showSlideshow && <BackgroundSlideshow />}
       <div
         aria-hidden
         className="absolute inset-0 bg-gradient-to-b from-navy/40 to-navy/10 z-[2]"

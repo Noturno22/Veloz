@@ -80,6 +80,7 @@ function Commodities() {
         eyebrow={t("commPage.eyebrow")}
         title={<>{t("commPage.titleA")} <span className="text-gold">{t("commPage.titleB")}</span></>}
         description={t("commPage.desc")}
+        showSlideshow={false}
       />
 
       {/* ====== Top Stats Strip ====== */}
