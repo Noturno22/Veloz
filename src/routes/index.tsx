@@ -178,7 +178,7 @@ function HomeContent() {
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            <div className="overflow-hidden relative bg-card">
+            <div className="overflow-hidden relative bg-card h-[60vh] max-h-[600px]">
               {[
                 { src: carrocel1, alt: "Slide 1" },
                 { src: carrocel2, alt: "Slide 2" },
@@ -190,7 +190,7 @@ function HomeContent() {
                   key={idx}
                   src={img.src}
                   alt={img.alt}
-                  className={`w-full aspect-video object-cover block transition-all duration-700 ease-out ${
+                  className={`w-full h-full object-cover block transition-all duration-700 ease-out ${
                     idx === currentImage
                       ? "opacity-100 scale-100"
                       : "opacity-0 scale-105 absolute inset-0"
