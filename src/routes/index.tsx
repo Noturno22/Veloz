@@ -12,7 +12,7 @@ import carrocel4 from "@/assets/carrocel/4.jpeg";
 import carrocel5 from "@/assets/carrocel/5.jpeg";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
-import { WorldMap } from "@/components/site/WorldMap";
+
 import { useState, useEffect, useRef, useCallback } from "react";
 
 export const Route = createFileRoute("/")({
@@ -410,61 +410,7 @@ function HomeContent() {
         </div>
       </section>
 
-      {/* WORLD MAP / GLOBAL REACH */}
-      <section className="py-20 border-t border-border bg-muted/30">
-        <div className="container-x grid lg:grid-cols-[1.5fr_1fr] gap-12 items-center">
-          <div className="rounded-2xl bg-card border border-border p-6 shadow-card">
-            <WorldMap />
-          </div>
-          <div>
-            <div className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-5">
-              {t("global.eyebrow")}
-            </div>
-            <h2 className="font-display text-3xl md:text-5xl leading-tight text-[color:var(--navy)] dark:text-foreground">
-              {t("global.titleA")}<br />{t("global.titleB")}
-            </h2>
-            <p className="mt-5 text-foreground/65 leading-relaxed">{t("global.desc")}</p>
-            <ul className="mt-6 space-y-2.5 text-sm">
-              {(["global.b1","global.b2","global.b3","global.b4"] as TKey[]).map((k) => (
-                <li key={k} className="flex items-start gap-3">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-gold shrink-0" />
-                  <span className="text-foreground/75">{t(k)}</span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              to="/partnership"
-              className="mt-8 inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110"
-            >
-              {t("common.joinOurNetwork")} <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
 
-      {/* CTA */}
-      <section className="py-24 bg-gradient-navy text-white">
-        <div className="container-x text-center max-w-3xl mx-auto">
-          <h2 className="font-display text-4xl md:text-5xl leading-tight">
-            {t("cta.titleA")} <span className="italic text-gold">{t("cta.titleB")}</span>
-          </h2>
-          <p className="mt-5 text-white/70">{t("cta.desc")}</p>
-          <div className="mt-8 flex flex-wrap gap-4 justify-center">
-            <Link
-              to="/partnership"
-              className="inline-flex items-center gap-3 bg-gold px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--gold-foreground)] hover:brightness-110"
-            >
-              {t("common.becomeAPartner")} <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-3 border border-white/30 px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[color:var(--navy)]"
-            >
-              {t("common.contactUs")}
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
