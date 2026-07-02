@@ -40,7 +40,6 @@ export function BackgroundSlideshow() {
           }}
         />
       ))}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10 z-[2]" />
     </div>
   );
 }

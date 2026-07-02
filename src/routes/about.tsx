@@ -25,6 +25,11 @@ import {
   CheckCircle,
   ChevronRight,
 } from "lucide-react";
+import carrocel1 from "@/assets/carrocel/1.jpeg";
+import carrocel2 from "@/assets/carrocel/2.jpeg";
+import carrocel3 from "@/assets/carrocel/3.jpeg";
+import carrocel4 from "@/assets/carrocel/4.jpeg";
+import carrocel5 from "@/assets/carrocel/5.jpeg";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
 
@@ -141,11 +146,11 @@ function About() {
   ];
 
   const COMMODITIES: { img: string; key: TKey }[] = [
-    { img: "/images/about/agriculture.jpg", key: "about.commodities.agriculture" },
-    { img: "/images/about/metals.jpg", key: "about.commodities.metals" },
-    { img: "/images/about/energy.jpg", key: "about.commodities.energy" },
-    { img: "/images/about/chemicals.jpg", key: "about.commodities.chemicals" },
-    { img: "/images/about/raw-materials.jpg", key: "about.commodities.rawMaterials" },
+    { img: carrocel1, key: "about.commodities.agriculture" },
+    { img: carrocel2, key: "about.commodities.metals" },
+    { img: carrocel3, key: "about.commodities.energy" },
+    { img: carrocel4, key: "about.commodities.chemicals" },
+    { img: carrocel5, key: "about.commodities.rawMaterials" },
   ];
 
   const SERVICES: { icon: typeof Globe; key: TKey }[] = [
