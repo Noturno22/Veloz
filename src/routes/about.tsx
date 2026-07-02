@@ -50,13 +50,6 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const HOME_IMAGES = Object.values(
-  import.meta.glob("/src/assets/IMG/Home/*.jpg", { eager: true, query: "?url", import: "default" }),
-) as string[];
-
-const CARROCEL_IMAGES = Object.values(
-  import.meta.glob("/src/assets/carrocel/home/*.jpg", { eager: true, query: "?url", import: "default" }),
-) as string[];
 
 const STATS: { value: string; numeric: number; suffix: string; key: TKey }[] = [
   { value: "50+", numeric: 50, suffix: "+", key: "about.stats.countries" },
@@ -212,53 +205,7 @@ function About() {
         description={t("about.desc")}
       />
 
-      <section className="container-x relative py-20 md:py-28">
-        <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4 pb-6 gap-4">
-          {CARROCEL_IMAGES.map((img, i) => (
-            <div
-              key={i}
-              className="snap-start shrink-0 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] first:ml-0 last:mr-4"
-            >
-              <div className="rounded-2xl overflow-hidden shadow-elegant aspect-[16/10] bg-navy/50">
-                <img
-                  src={img}
-                  alt={`Veloz carousel ${i + 1}`}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                  loading={i < 3 ? "eager" : "lazy"}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent"
-        />
-      </section>
 
-      <section className="relative overflow-hidden bg-gradient-navy">
-        <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4 pb-6 gap-4">
-          {HOME_IMAGES.map((img, i) => (
-            <div
-              key={i}
-              className="snap-start shrink-0 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] first:ml-0 last:mr-4"
-            >
-              <div className="rounded-2xl overflow-hidden shadow-elegant aspect-[16/10] bg-navy/50">
-                <img
-                  src={img}
-                  alt={`Veloz global operations ${i + 1}`}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                  loading={i < 3 ? "eager" : "lazy"}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[color:var(--navy)] to-transparent"
-        />
-      </section>
 
       <section className="container-x py-16 md:py-20">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">

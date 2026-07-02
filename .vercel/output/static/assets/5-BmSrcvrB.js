@@ -1,1 +1,0 @@
-import{s as e}from"./index-D-JPqt07.js";var t=e(`chevron-right`,[[`path`,{d:`m9 18 6-6-6-6`,key:`mthhwq`}]]),n=`/assets/1-D49BDDZx.jpeg`,r=`/assets/2-rV88IuqX.jpeg`,i=`/assets/3-DhPRFmc0.jpeg`,a=`/assets/4-BbDdnKnz.jpeg`,o=`/assets/5-CReW2kNo.jpeg`;export{n as a,r as i,a as n,t as o,i as r,o as t};
