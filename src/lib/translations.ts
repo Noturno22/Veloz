@@ -1,4 +1,4 @@
-export type Lang = "en" | "pt";
+export type Lang = "en" | "pt" | "fr" | "zh" | "kg" | "ar" | "es" | "ru";
 
 const en = {
   // commodity item names
@@ -890,5 +890,12 @@ const pt: Record<keyof typeof en, string> = {
   "admin.backToSite": "Voltar ao Site",
 };
 
+const fr: Record<TKey, string> = { ...en };
+const zh: Record<TKey, string> = { ...en };
+const kg: Record<TKey, string> = { ...en };
+const ar: Record<TKey, string> = { ...en };
+const es: Record<TKey, string> = { ...en };
+const ru: Record<TKey, string> = { ...en };
+
 export type TKey = keyof typeof en;
-export const translations: Record<Lang, Record<TKey, string>> = { en, pt };
+export const translations: Record<Lang, Record<TKey, string>> = { en, pt, fr, zh, kg, ar, es, ru };

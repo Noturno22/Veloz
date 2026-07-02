@@ -6,6 +6,12 @@ import type { Lang } from "@/lib/translations";
 const LANGS: { code: Lang; label: string; flag: string }[] = [
   { code: "en", label: "English", flag: "🇬🇧" },
   { code: "pt", label: "Português", flag: "🇵🇹" },
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "zh", label: "中文", flag: "🇨🇳" },
+  { code: "kg", label: "Kikongo", flag: "🇨🇩" },
+  { code: "ar", label: "العربية", flag: "🇸🇦" },
+  { code: "es", label: "Español", flag: "🇪🇸" },
+  { code: "ru", label: "Русский", flag: "🇷🇺" },
 ];
 
 export function LanguageSwitcher({ className = "" }: { className?: string }) {
