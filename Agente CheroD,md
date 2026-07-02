@@ -1,0 +1,145 @@
+# CONTINUAÇÃO DO PROJETO – NÃO ALTERAR O DESIGN EXISTENTE
+
+Quero que modifies APENAS esta secção:
+
+```html
+container-x relative py-20 md:py-28
+Objetivo
+
+Transformar este container num HERO com slideshow/carrossel de imagens em BACKGROUND.
+
+IMPORTANTE
+NÃO alterar absolutamente nada da estrutura atual.
+NÃO modificar os textos.
+NÃO modificar os botões.
+NÃO modificar as animações existentes.
+NÃO alterar os espaçamentos.
+NÃO alterar as cores da interface.
+NÃO alterar o layout responsivo.
+NÃO alterar os componentes React.
+NÃO alterar Tailwind existente.
+Apenas adicionar a funcionalidade do background em slideshow.
+O que deve acontecer
+
+O container deve continuar exatamente igual.
+
+A única diferença é que atrás de todo o conteúdo deverá existir um slideshow fullscreen ocupando 100% do container.
+
+As imagens devem trocar automaticamente.
+
+Todo o conteúdo (título, descrição, botões, estatísticas, badges, etc.) deve permanecer acima das imagens.
+
+As imagens
+
+Já existe uma pasta criada no projeto contendo todas as imagens.
+
+Liga automaticamente essa pasta ao componente.
+
+Não criar novas imagens.
+
+Não usar URLs externas.
+
+Importar diretamente todas as imagens da pasta.
+
+Efeito
+
+Adicionar:
+
+Fade suave entre imagens
+Zoom muito lento (efeito Ken Burns)
+Transição elegante
+Alta performance
+Loop infinito
+Sem flickering
+Sem travamentos
+Overlay
+
+Adicionar um overlay escuro elegante sobre as imagens para garantir perfeita leitura dos textos.
+
+Exemplo:
+
+preto 55%
+gradiente
+blur extremamente leve
+Camadas
+
+Estrutura correta:
+
+Background Images
+↓
+
+Dark Overlay
+
+↓
+
+Todo o conteúdo atual (z-index maior)
+
+Nenhum elemento do conteúdo pode desaparecer.
+
+Responsividade
+
+Desktop:
+
+ocupar todo o hero
+
+Tablet:
+
+manter qualidade
+
+Mobile:
+
+continuar cobrindo todo o container
+
+background-size: cover
+
+background-position: center
+
+Performance
+
+Usar:
+
+lazy loading
+preload da primeira imagem
+animação usando opacity
+GPU acceleration
+requestAnimationFrame quando necessário
+evitar re-renderizações
+Código
+
+Gerar código limpo.
+
+Código profissional.
+
+Separar a lógica do slideshow.
+
+Utilizar React + Tailwind da mesma arquitetura do projeto.
+
+NÃO FAZER
+
+Não criar outro hero.
+
+Não duplicar sections.
+
+Não remover classes.
+
+Não alterar IDs.
+
+Não alterar textos.
+
+Não alterar botões.
+
+Não alterar o conteúdo existente.
+
+Não alterar a estrutura HTML.
+
+Não alterar SEO.
+
+Não alterar animações atuais.
+
+Não alterar componentes.
+
+Resultado esperado
+
+O utilizador deverá ver exatamente o mesmo Hero que existe hoje.
+
+A única diferença será que o fundo deixará de ser estático e passará a mostrar automaticamente as imagens já existentes na pasta, em forma de slideshow premium, com transições cinematográficas suaves, mantendo todos os elementos atuais perfeitamente visíveis acima do fundo.
