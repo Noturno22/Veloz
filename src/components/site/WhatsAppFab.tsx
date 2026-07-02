@@ -5,7 +5,7 @@ export function WhatsAppFab() {
   const { t } = useI18n();
   return (
     <a
-      href="https://wa.me/244926599991"
+      href="https://wa.me/447564155651"
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t("common.whatsappAria")}
