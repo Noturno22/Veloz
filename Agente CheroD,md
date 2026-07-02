@@ -5,7 +5,7 @@ Quero que modifies APENAS esta secção:
 ```html
 container-x relative py-20 md:py-28
 Objetivo
-
+a
 Transformar este container num HERO com slideshow/carrossel de imagens em BACKGROUND.
 
 IMPORTANTE
