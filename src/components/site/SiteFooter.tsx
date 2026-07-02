@@ -6,7 +6,7 @@ export function SiteFooter() {
   const { t } = useI18n();
   return (
     <footer className="mt-24 bg-[#06111F] text-white border-t border-white/5">
-      <div className="container-x py-16">
+      <div className="container-x pt-10 pb-16">
         <div className="flex flex-col md:flex-row justify-between items-start border-b border-white/10 pb-16 gap-12">
           <div className="max-w-sm">
             <img src="/zentra-logo.png" alt="Veloz" className="w-72 h-auto object-contain" />
