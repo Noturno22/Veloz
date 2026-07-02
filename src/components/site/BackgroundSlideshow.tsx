@@ -31,18 +31,18 @@ export function BackgroundSlideshow() {
             backgroundImage: `url(${src})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
+            filter: "brightness(1.2) contrast(1.05)",
             opacity: idx === active ? 1 : 0,
             transform: idx === active ? "scale(1.08)" : "scale(1)",
             transition:
               "opacity 1.5s ease-in-out, transform 8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
             willChange: "opacity, transform",
             zIndex: idx === active ? 1 : 0,
-            imageRendering: "auto",
           }}
         />
       ))}
-      <div className="absolute inset-0 bg-black/60 z-[2]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50 z-[2]" />
+      <div className="absolute inset-0 bg-black/20 z-[2]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/30 z-[2]" />
     </div>
   );
 }
