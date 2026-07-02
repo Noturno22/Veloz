@@ -71,6 +71,7 @@ function Opportunities() {
         eyebrow={t("opp.eyebrow")}
         title={<>{t("opp.titleA")} <span className="text-gold">{t("opp.titleB")}</span></>}
         description={t("opp.desc")}
+        showSlideshow={false}
       />
       <section className="container-x py-12">
         <div className="rounded-2xl border border-border bg-white dark:bg-card p-4 shadow-card grid gap-3 md:grid-cols-[1fr_auto_auto_auto_auto] md:items-center">
