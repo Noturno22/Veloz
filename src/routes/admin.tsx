@@ -16,6 +16,7 @@ import {
   Building2,
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import type { TKey } from "@/lib/translations";
 import {
   fetchLeads,
   fetchContacts,
@@ -204,7 +205,7 @@ function OverviewTab({
 }: {
   leads: Lead[];
   contacts: Contact[];
-  t: (k: string) => string;
+  t: (k: TKey) => string;
 }) {
   const newLeads = leads.filter((l) => l.status !== "read");
   const newContacts = contacts.filter((c) => c.status !== "read");
@@ -319,7 +320,7 @@ function LeadsTab({
   onDelete: (id: string) => void;
   onMarkRead: (id: string) => void;
   actionLoading: string | null;
-  t: (k: string) => string;
+  t: (k: TKey) => string;
 }) {
   return (
     <div className="rounded-xl bg-card border border-border shadow-card overflow-hidden">
@@ -439,7 +440,7 @@ function ContactsTab({
   onDelete: (id: string) => void;
   onMarkRead: (id: string) => void;
   actionLoading: string | null;
-  t: (k: string) => string;
+  t: (k: TKey) => string;
 }) {
   return (
     <div className="space-y-4">

@@ -41,7 +41,7 @@ function HomeContent() {
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
   const progressRef = useRef(0);
-  const intervalRef = useRef<ReturnType<typeof setInterval>>();
+  const intervalRef = useRef<ReturnType<typeof setInterval>>(undefined);
 
   const goTo = useCallback((idx: number) => {
     setCurrentImage(idx);

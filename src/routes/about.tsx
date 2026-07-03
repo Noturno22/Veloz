@@ -181,7 +181,7 @@ function About() {
     { icon: Scale, key: "about.esg.compliance" },
   ];
 
-  const CERTIFICATIONS = [
+  const CERTIFICATIONS: TKey[] = [
     "about.certifications.iso",
     "about.certifications.sgs",
     "about.certifications.intertek",

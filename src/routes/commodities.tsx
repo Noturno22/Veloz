@@ -87,10 +87,10 @@ function Commodities() {
       <section className="container-x -mt-6 mb-8">
         <div className="rounded-2xl bg-card border border-border shadow-card p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { icon: Globe2, value: "103", label: t("commPage.statMarkets") || "Markets Served" },
-            { icon: Handshake, value: "880+", label: t("commPage.statDeals") || "Active Deals" },
-            { icon: TrendingUp, value: "US$ 3.1B+", label: t("commPage.statVolume") || "Annual Volume" },
-            { icon: BarChart3, value: "18", label: t("commPage.statCommodities") || "Commodities" },
+            { icon: Globe2, value: "103", label: t("commPage.statMarkets") },
+            { icon: Handshake, value: "880+", label: t("commPage.statDeals") },
+            { icon: TrendingUp, value: "US$ 3.1B+", label: t("commPage.statVolume") },
+            { icon: BarChart3, value: "18", label: t("commPage.statCommodities") },
           ].map((s) => (
             <div key={s.label} className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-xl bg-gold-soft text-gold grid place-items-center shrink-0">
@@ -109,7 +109,7 @@ function Commodities() {
       <nav className="sticky top-20 z-20 container-x mb-8">
         <div className="rounded-xl bg-card border border-border shadow-card p-1.5 flex gap-1 overflow-x-auto">
           <button onClick={() => setActiveTab("")} className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-lg whitespace-nowrap ${!activeTab ? "bg-gold text-[var(--gold-foreground)] shadow-gold" : "text-muted-foreground"}`}>
-            {t("commPage.all") || "All"}
+            {t("commPage.all")}
           </button>
           {CATEGORIES.map((c) => (
             <button
