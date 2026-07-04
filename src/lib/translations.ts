@@ -1,4 +1,4 @@
-export type Lang = "en" | "pt" | "fr" | "zh" | "ar" | "es" | "ru" | "kg";
+export type Lang = "en" | "pt" | "fr" | "zh" | "ar" | "es" | "ru" | "ln";
 
 const en = {
   "comm.item.coffee": "Coffee",
@@ -3156,7 +3156,7 @@ const ru = {
   "admin.backToSite": "Вернуться на сайт",
 };
 
-const kg = { ...en };
+const ln = { ...en };
 
 export type TKey = keyof typeof en;
-export const translations: Record<Lang, Record<TKey, string>> = { en, pt, fr, zh, ar, es, ru, kg };
+export const translations: Record<Lang, Record<TKey, string>> = { en, pt, fr, zh, ar, es, ru, ln };

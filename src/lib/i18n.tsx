@@ -10,7 +10,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const stored = localStorage.getItem("zentra-lang") as Lang | null;
-      if (stored === "en" || stored === "pt" || stored === "fr" || stored === "zh" || stored === "kg" || stored === "ar" || stored === "es" || stored === "ru") {
+      if (stored === "en" || stored === "pt" || stored === "fr" || stored === "zh" || stored === "ln" || stored === "ar" || stored === "es" || stored === "ru") {
         setLangState(stored);
         document.documentElement.lang = stored;
         return;

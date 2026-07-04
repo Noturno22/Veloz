@@ -8,7 +8,7 @@ const LANGS: { code: Lang; label: string; flag: string }[] = [
   { code: "pt", label: "Português", flag: "🇵🇹" },
   { code: "fr", label: "Français", flag: "🇫🇷" },
   { code: "zh", label: "中文", flag: "🇨🇳" },
-  { code: "kg", label: "Kikongo", flag: "🇨🇩" },
+  { code: "ln", label: "Lingala", flag: "🇨🇩" },
   { code: "ar", label: "العربية", flag: "🇸🇦" },
   { code: "es", label: "Español", flag: "🇪🇸" },
   { code: "ru", label: "Русский", flag: "🇷🇺" },
