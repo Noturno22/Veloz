@@ -6,16 +6,18 @@ const imagesMap = import.meta.glob<string>("/src/assets/IMG/Home/*.{jpg,png}", {
   import: "default",
 });
 
-const images = Object.keys(imagesMap).sort().map((key) => imagesMap[key]);
+const images = Object.keys(imagesMap)
+  .sort()
+  .map((key) => imagesMap[key]);
 
 export function BackgroundSlideshow() {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const DURATION = 5000;
+    const DURATION = 4000;
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % images.length);
-    }, DURATION + 1500);
+    }, DURATION + 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -33,8 +35,7 @@ export function BackgroundSlideshow() {
             backgroundPosition: "center",
             opacity: idx === active ? 1 : 0,
             transform: idx === active ? "scale(1.08)" : "scale(1)",
-            transition:
-              "opacity 1.5s ease-in-out, transform 8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+            transition: "opacity 1s ease-in-out, transform 6s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
             willChange: "opacity, transform",
             zIndex: idx === active ? 1 : 0,
           }}

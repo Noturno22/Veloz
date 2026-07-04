@@ -1,5 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Building2, ShieldCheck, BarChart3, Globe2, Handshake, TrendingUp, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ArrowRight,
+  Building2,
+  ShieldCheck,
+  BarChart3,
+  Globe2,
+  Handshake,
+  TrendingUp,
+  Briefcase,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import heroImg from "@/assets/hero-trading.jpg";
 import agriImg from "@/assets/commodity-agricultural.jpg";
 import mineralsImg from "@/assets/commodity-minerals.jpg";
@@ -20,9 +31,17 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Veloz — Global Commodity Trading Made Simple" },
-      { name: "description", content: "Connecting producers, suppliers, exporters, importers and investors through secure and efficient global commodity trading solutions." },
+      {
+        name: "description",
+        content:
+          "Connecting producers, suppliers, exporters, importers and investors through secure and efficient global commodity trading solutions.",
+      },
       { property: "og:title", content: "Veloz — Global Commodity Trading Made Simple" },
-      { property: "og:description", content: "Worldwide commodity marketplace for agricultural, mineral, energy and industrial trading." },
+      {
+        property: "og:description",
+        content:
+          "Worldwide commodity marketplace for agricultural, mineral, energy and industrial trading.",
+      },
       { property: "og:url", content: "https://zentratrading.com/" },
       { property: "og:image", content: heroImg },
     ],
@@ -63,7 +82,7 @@ function HomeContent() {
 
   useEffect(() => {
     if (isPaused) return;
-    const DURATION = 5000;
+    const DURATION = 4000;
     const TICK = 50;
     const STEP = (TICK / DURATION) * 100;
 
@@ -79,9 +98,24 @@ function HomeContent() {
   }, [isPaused, goNext]);
 
   const STEPS = [
-    { n: "1", icon: Building2, titleKey: "steps.s1.title" as TKey, textKey: "steps.s1.text" as TKey },
-    { n: "2", icon: ShieldCheck, titleKey: "steps.s2.title" as TKey, textKey: "steps.s2.text" as TKey },
-    { n: "3", icon: BarChart3, titleKey: "steps.s3.title" as TKey, textKey: "steps.s3.text" as TKey },
+    {
+      n: "1",
+      icon: Building2,
+      titleKey: "steps.s1.title" as TKey,
+      textKey: "steps.s1.text" as TKey,
+    },
+    {
+      n: "2",
+      icon: ShieldCheck,
+      titleKey: "steps.s2.title" as TKey,
+      textKey: "steps.s2.text" as TKey,
+    },
+    {
+      n: "3",
+      icon: BarChart3,
+      titleKey: "steps.s3.title" as TKey,
+      textKey: "steps.s3.text" as TKey,
+    },
   ];
 
   const STATS = [
@@ -92,16 +126,50 @@ function HomeContent() {
   ];
 
   const COMMODITIES: { titleKey: TKey; img: string; itemKeys: TKey[] }[] = [
-    { titleKey: "comm.agricultural", img: agriImg, itemKeys: ["comm.item.coffee", "comm.item.soybeans", "comm.item.corn", "comm.item.rice"] },
-    { titleKey: "comm.minerals", img: mineralsImg, itemKeys: ["comm.item.copper", "comm.item.ironOre"] },
-    { titleKey: "comm.energy", img: energyImg, itemKeys: ["comm.item.oil", "comm.item.naturalGas"] },
-    { titleKey: "comm.industrial", img: industrialImg, itemKeys: ["comm.item.steel", "comm.item.cement", "comm.item.aluminum"] },
+    {
+      titleKey: "comm.agricultural",
+      img: agriImg,
+      itemKeys: ["comm.item.coffee", "comm.item.soybeans", "comm.item.corn", "comm.item.rice"],
+    },
+    {
+      titleKey: "comm.minerals",
+      img: mineralsImg,
+      itemKeys: ["comm.item.copper", "comm.item.ironOre"],
+    },
+    {
+      titleKey: "comm.energy",
+      img: energyImg,
+      itemKeys: ["comm.item.oil", "comm.item.naturalGas"],
+    },
+    {
+      titleKey: "comm.industrial",
+      img: industrialImg,
+      itemKeys: ["comm.item.steel", "comm.item.cement", "comm.item.aluminum"],
+    },
   ];
 
   const MARKET: { nameKey: TKey; nameEn: string; price: string; change: string; up: boolean }[] = [
-    { nameKey: "dash.market.crudeOil", nameEn: "Crude Oil", price: "$84.45", change: "+2.35%", up: true },
-    { nameKey: "dash.market.copper", nameEn: "Copper", price: "$9,125.00", change: "-0.45%", up: false },
-    { nameKey: "dash.market.naturalGas", nameEn: "Natural Gas", price: "$2.75", change: "+3.45%", up: true },
+    {
+      nameKey: "dash.market.crudeOil",
+      nameEn: "Crude Oil",
+      price: "$84.45",
+      change: "+2.35%",
+      up: true,
+    },
+    {
+      nameKey: "dash.market.copper",
+      nameEn: "Copper",
+      price: "$9,125.00",
+      change: "-0.45%",
+      up: false,
+    },
+    {
+      nameKey: "dash.market.naturalGas",
+      nameEn: "Natural Gas",
+      price: "$2.75",
+      change: "+3.45%",
+      up: true,
+    },
   ];
 
   const DIST: { labelKey: TKey; labelEn: string; value: number; color: string }[] = [
@@ -133,7 +201,9 @@ function HomeContent() {
                 {t("home.hero.eyebrow")}
               </div>
               <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] text-[color:var(--navy)] dark:text-foreground">
-                {t("home.hero.titleA")}<br />{t("home.hero.titleB")}
+                {t("home.hero.titleA")}
+                <br />
+                {t("home.hero.titleB")}
               </h1>
               <p className="mt-6 max-w-xl text-foreground/65 leading-relaxed">
                 {t("home.hero.desc")}
@@ -159,15 +229,20 @@ function HomeContent() {
               <div className="mt-8 flex items-center gap-4">
                 <div className="flex -space-x-2">
                   {["var(--brand-green)", "#0A192F", "#3b82f6", "#10b981"].map((c) => (
-                    <div key={c} className="h-9 w-9 rounded-full border-2 border-background" style={{ background: c }} />
+                    <div
+                      key={c}
+                      className="h-9 w-9 rounded-full border-2 border-background"
+                      style={{ background: c }}
+                    />
                   ))}
                 </div>
                 <p className="text-sm text-foreground/60">
-                  {t("home.hero.trustedBy")} <span className="font-semibold text-foreground">850+</span> {t("home.hero.trustedBySuffix")}
+                  {t("home.hero.trustedBy")}{" "}
+                  <span className="font-semibold text-foreground">850+</span>{" "}
+                  {t("home.hero.trustedBySuffix")}
                 </p>
               </div>
             </div>
-
           </div>
 
         </div>
@@ -190,7 +265,7 @@ function HomeContent() {
                   key={idx}
                   src={img.src}
                   alt={img.alt}
-                  className={`w-full h-full object-cover block transition-all duration-700 ease-out ${
+                  className={`w-full h-full object-cover block transition-all duration-500 ease-out ${
                     idx === currentImage
                       ? "opacity-100 scale-100"
                       : "opacity-0 scale-105 absolute inset-0"
@@ -206,7 +281,7 @@ function HomeContent() {
               {/* Progress bar */}
               <div className="absolute top-0 left-0 right-0 h-0.5 bg-white/10">
                 <div
-                  className="h-full bg-gold transition-none"
+                  className="h-full bg-gold transition-[width] duration-[50ms] linear"
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -233,7 +308,7 @@ function HomeContent() {
                   <button
                     key={i}
                     onClick={() => goTo(i)}
-                    className={`rounded-full transition-all duration-500 ease-out ${
+                    className={`rounded-full transition-all duration-300 ease-out ${
                       i === currentImage
                         ? "bg-gold w-10 h-2.5"
                         : "bg-white/50 hover:bg-white/80 w-2.5 h-2.5"
@@ -261,8 +336,12 @@ function HomeContent() {
                   </div>
                   <div>
                     <s.icon className="h-6 w-6 text-gold mb-3" />
-                    <h3 className="font-display text-lg text-[color:var(--navy)] dark:text-foreground">{t(s.titleKey)}</h3>
-                    <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{t(s.textKey)}</p>
+                    <h3 className="font-display text-lg text-[color:var(--navy)] dark:text-foreground">
+                      {t(s.titleKey)}
+                    </h3>
+                    <p className="mt-2 text-sm text-foreground/60 leading-relaxed">
+                      {t(s.textKey)}
+                    </p>
                   </div>
                 </div>
                 {i < STEPS.length - 1 && (
@@ -282,7 +361,9 @@ function HomeContent() {
                   <s.icon className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="font-display text-2xl md:text-3xl text-[color:var(--navy)] dark:text-foreground">{s.value}</div>
+                  <div className="font-display text-2xl md:text-3xl text-[color:var(--navy)] dark:text-foreground">
+                    {s.value}
+                  </div>
                   <div className="text-xs text-foreground/55">{t(s.labelKey)}</div>
                 </div>
               </div>
@@ -356,9 +437,13 @@ function HomeContent() {
                 { label: t("dash.marketsAccess"), value: "50+", delta: "+10.5%" },
               ].map((k) => (
                 <div key={k.label} className="rounded-xl bg-card border border-border p-4">
-                  <div className="text-[10px] uppercase tracking-[0.18em] text-foreground/50 font-semibold">{k.label}</div>
+                  <div className="text-[10px] uppercase tracking-[0.18em] text-foreground/50 font-semibold">
+                    {k.label}
+                  </div>
                   <div className="mt-2 flex items-baseline justify-between">
-                    <span className="font-display text-xl text-[color:var(--navy)] dark:text-foreground">{k.value}</span>
+                    <span className="font-display text-xl text-[color:var(--navy)] dark:text-foreground">
+                      {k.value}
+                    </span>
                     <span className="text-[11px] font-bold text-emerald-600">{k.delta}</span>
                   </div>
                 </div>
@@ -368,10 +453,16 @@ function HomeContent() {
             {/* Trading overview chart */}
             <div className="rounded-xl bg-card border border-border p-5">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-sm font-semibold text-[color:var(--navy)] dark:text-foreground">{t("dash.tradingOverview")}</span>
+                <span className="text-sm font-semibold text-[color:var(--navy)] dark:text-foreground">
+                  {t("dash.tradingOverview")}
+                </span>
                 <div className="flex gap-2 text-[10px] uppercase tracking-[0.15em]">
-                  <span className="px-2.5 py-1 rounded-full bg-gold/15 text-gold font-bold">{t("dash.thisYear")}</span>
-                  <span className="px-2.5 py-1 rounded-full text-foreground/50">{t("dash.lastYear")}</span>
+                  <span className="px-2.5 py-1 rounded-full bg-gold/15 text-gold font-bold">
+                    {t("dash.thisYear")}
+                  </span>
+                  <span className="px-2.5 py-1 rounded-full text-foreground/50">
+                    {t("dash.lastYear")}
+                  </span>
                 </div>
               </div>
               <MiniChart />
@@ -380,9 +471,17 @@ function HomeContent() {
             {/* Distribution + live market */}
             <div className="grid sm:grid-cols-2 gap-3">
               <div className="rounded-xl bg-card border border-border p-5">
-                <div className="text-sm font-semibold mb-3 text-[color:var(--navy)] dark:text-foreground">{t("dash.commodityDistribution")}</div>
+                <div className="text-sm font-semibold mb-3 text-[color:var(--navy)] dark:text-foreground">
+                  {t("dash.commodityDistribution")}
+                </div>
                 <div className="flex items-center gap-4">
-                  <Donut data={DIST.map(d => ({ label: t(d.labelKey), value: d.value, color: d.color }))} />
+                  <Donut
+                    data={DIST.map((d) => ({
+                      label: t(d.labelKey),
+                      value: d.value,
+                      color: d.color,
+                    }))}
+                  />
                   <ul className="space-y-1.5 text-xs">
                     {DIST.map((d) => (
                       <li key={d.labelKey} className="flex items-center gap-2">
@@ -395,14 +494,20 @@ function HomeContent() {
                 </div>
               </div>
               <div className="rounded-xl bg-card border border-border p-5">
-                <div className="text-sm font-semibold mb-3 text-[color:var(--navy)] dark:text-foreground">{t("dash.liveMarket")}</div>
+                <div className="text-sm font-semibold mb-3 text-[color:var(--navy)] dark:text-foreground">
+                  {t("dash.liveMarket")}
+                </div>
                 <ul className="space-y-2 text-xs">
                   {MARKET.map((m) => (
                     <li key={m.nameKey} className="flex items-center justify-between">
                       <span className="text-foreground/70">{t(m.nameKey)}</span>
                       <span className="flex items-baseline gap-2">
                         <span className="font-semibold">{m.price}</span>
-                        <span className={m.up ? "text-emerald-600 font-bold" : "text-red-500 font-bold"}>{m.change}</span>
+                        <span
+                          className={m.up ? "text-emerald-600 font-bold" : "text-red-500 font-bold"}
+                        >
+                          {m.change}
+                        </span>
                       </span>
                     </li>
                   ))}
@@ -412,8 +517,6 @@ function HomeContent() {
           </div>
         </div>
       </section>
-
-
     </div>
   );
 }
