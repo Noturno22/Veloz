@@ -29,7 +29,7 @@ export function FooterBackground({ className }: { className?: string }) {
 
     let stopped = false;
     let lastTime = 0;
-    const fps = 6;
+    const fps = 3;
     const interval = 1000 / fps;
 
     function resize() {
@@ -54,7 +54,7 @@ export function FooterBackground({ className }: { className?: string }) {
         if (img.complete && img.naturalWidth > 0) {
           const cw = canvas!.width;
           const ch = canvas!.height;
-          const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+          const scale = Math.min(cw / img.naturalWidth, ch / img.naturalHeight);
           const iw = img.naturalWidth * scale;
           const ih = img.naturalHeight * scale;
           const ix = (cw - iw) / 2;
