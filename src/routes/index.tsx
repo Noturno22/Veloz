@@ -452,7 +452,7 @@ function HomeContent() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <div className="overflow-hidden relative bg-card h-[30vh] max-h-[350px]">
+          <div className="overflow-hidden relative bg-card h-[45vh] max-h-[500px]">
             {[
               { src: carrocel1, alt: "Slide 1" },
               { src: carrocel2, alt: "Slide 2" },
