@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
+import partnerBg1 from "@/assets/carrocel/home/17.jpg";
+import partnerBg2 from "@/assets/carrocel/home/18.jpg";
+import partnerBg3 from "@/assets/carrocel/home/19.jpg";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import {
   CheckCircle2,
@@ -161,7 +164,7 @@ function Partnership() {
           </>
         }
         description={t("partner.desc")}
-        showSlideshow={false}
+        bgImages={[partnerBg1, partnerBg2, partnerBg3]}
       />
       <section className="container-x py-16 grid gap-6 md:grid-cols-3">
         {TIERS.map((tier) => (

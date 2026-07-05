@@ -1,5 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
+import oppBg1 from "@/assets/carrocel/home/13.jpg";
+import oppBg2 from "@/assets/carrocel/home/14.jpg";
+import oppBg3 from "@/assets/carrocel/home/15.jpg";
 import { Search, MapPin, Package, ArrowRight, X, Building2, ShieldCheck, Phone, Mail } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
@@ -71,7 +74,7 @@ function Opportunities() {
         eyebrow={t("opp.eyebrow")}
         title={<>{t("opp.titleA")} <span className="text-gold">{t("opp.titleB")}</span></>}
         description={t("opp.desc")}
-        showSlideshow={false}
+        bgImages={[oppBg1, oppBg2, oppBg3]}
       />
       <section className="container-x py-12">
         <div className="rounded-2xl border border-border bg-white dark:bg-card p-4 shadow-card grid gap-3 md:grid-cols-[1fr_auto_auto_auto_auto] md:items-center">

@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
+import insightBg1 from "@/assets/carrocel/home/9.jpg";
+import insightBg2 from "@/assets/carrocel/home/10.jpg";
+import insightBg3 from "@/assets/carrocel/home/11.jpg";
 import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
@@ -34,7 +37,7 @@ function Insights() {
         eyebrow={t("insights.eyebrow")}
         title={<>{t("insights.titleA")} <span className="text-gold">{t("insights.titleB")}</span></>}
         description={t("insights.desc")}
-        showSlideshow={false}
+        bgImages={[insightBg1, insightBg2, insightBg3]}
       />
       <section className="container-x py-10 flex flex-wrap gap-2">
         {CATS.map((c, i) => (

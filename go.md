@@ -1,3 +1,10 @@
-o problema é que relative container-x py-12 lg:py-20 grid lg:grid-cols-[1.25fr_1fr] gap-12 items-start tem uma separação no mei que não permite que a div onde esta o carrocel ocupe 80% do width da pagina do site
+# Todos
 
-
+[x] BackgroundSlideshow.tsx: Add optional images prop para aceitar imagens customizadas por página
+[x] PageHero.tsx: Sincronizar timing fadeInUp (1s) com crossfade do slideshow + fix fill-mode do eyebrow + add bgImages prop
+[x] commodities.tsx: Adicionar bgImages com imagens específicas da página
+[x] contact.tsx: Adicionar bgImages com imagens específicas da página
+[x] insights.tsx: Adicionar bgImages com imagens específicas da página
+[x] opportunities.tsx: Adicionar bgImages com imagens específicas da página
+[x] partnership.tsx: Adicionar bgImages com imagens específicas da página
+[x] Verificar LSP diagnostics em todos os ficheiros alterados

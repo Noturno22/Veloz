@@ -1,25 +1,27 @@
 import { useState, useEffect } from "react";
 
-const imagesMap = import.meta.glob<string>("/src/assets/IMG/Home/*.{jpg,png}", {
+const defaultImagesMap = import.meta.glob<string>("/src/assets/IMG/Home/*.{jpg,png}", {
   eager: true,
   query: "?url",
   import: "default",
 });
 
-const images = Object.keys(imagesMap)
+const defaultImages = Object.keys(defaultImagesMap)
   .sort()
-  .map((key) => imagesMap[key]);
+  .map((key) => defaultImagesMap[key]);
 
-export function BackgroundSlideshow() {
+export function BackgroundSlideshow({ images: customImages }: { images?: string[] }) {
+  const images = customImages ?? defaultImages;
   const [active, setActive] = useState(0);
 
   useEffect(() => {
+    if (images.length <= 1) return;
     const DURATION = 4000;
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % images.length);
     }, DURATION + 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
   if (images.length === 0) return null;
 

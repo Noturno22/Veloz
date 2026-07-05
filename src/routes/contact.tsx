@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
+import contactBg1 from "@/assets/carrocel/home/5.jpg";
+import contactBg2 from "@/assets/carrocel/home/6.jpg";
+import contactBg3 from "@/assets/carrocel/home/7.jpg";
 import { Mail, Phone, MapPin, Globe2, ArrowRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
@@ -62,7 +65,7 @@ function Contact() {
         eyebrow={t("contact.eyebrow")}
         title={<>{t("contact.titleA")} <span className="text-gold">{t("contact.titleB")}</span></>}
         description={t("contact.desc")}
-        showSlideshow={false}
+        bgImages={[contactBg1, contactBg2, contactBg3]}
       />
       <section className="container-x py-16 grid lg:grid-cols-[1fr_1.5fr] gap-10">
         <div className="space-y-4">
