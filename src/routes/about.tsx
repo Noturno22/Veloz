@@ -30,6 +30,7 @@ import carrocel2 from "@/assets/carrocel/2.jpeg";
 import carrocel3 from "@/assets/carrocel/3.jpeg";
 import carrocel4 from "@/assets/carrocel/4.jpeg";
 import carrocel5 from "@/assets/carrocel/5.jpeg";
+import sedeImg from "@/assets/IMG/SEDE.png";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
 
@@ -219,9 +220,9 @@ function About() {
           <div className="relative">
             <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-navy shadow-elegant">
               <img
-                src="/images/about/company.jpg"
+                src={sedeImg}
                 alt={t("about.whoWeAre.imgAlt")}
-                className="w-full h-full object-cover opacity-50"
+                className="w-full h-full object-cover"
                 loading="lazy"
               />
             </div>
