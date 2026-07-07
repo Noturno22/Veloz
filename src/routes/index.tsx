@@ -267,49 +267,49 @@ function HomeContent() {
           }}
         />
 
-        <div className="relative container-x py-12 lg:py-20">
+        <div className="relative container-x py-12 sm:py-16 lg:py-20">
           <div className="max-w-4xl">
             <div>
               <div className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-6">
                 {t("home.hero.eyebrow")}
               </div>
-              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] text-[color:var(--navy)] dark:text-foreground">
+              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] text-[color:var(--navy)] dark:text-foreground">
                 {t("home.hero.titleA")}
                 <br />
                 {t("home.hero.titleB")}
               </h1>
-              <p className="mt-6 max-w-xl text-foreground/65 leading-relaxed">
+              <p className="mt-4 sm:mt-6 max-w-xl text-foreground/65 leading-relaxed text-sm sm:text-base">
                 {t("home.hero.desc")}
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-4">
+              <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
                   to="/partnership"
-                  className="group inline-flex items-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold"
+                  className="group inline-flex items-center justify-center gap-3 bg-gold px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--gold-foreground)] hover:brightness-110 shadow-gold w-full sm:w-auto"
                 >
                   {t("common.becomeAPartner")}
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-4 w-4 shrink-0" />
                 </Link>
                 <Link
                   to="/opportunities"
-                  className="group inline-flex items-center gap-3 border-2 border-[color:var(--navy)]/15 dark:border-white/20 px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--navy)] dark:text-foreground hover:border-gold hover:text-gold"
+                  className="group inline-flex items-center justify-center gap-3 border-2 border-[color:var(--navy)]/15 dark:border-white/20 px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-[color:var(--navy)] dark:text-foreground hover:border-gold hover:text-gold w-full sm:w-auto"
                 >
                   {t("common.exploreOpportunities")}
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-4 w-4 shrink-0" />
                 </Link>
               </div>
 
-              <div className="mt-8 flex items-center gap-4">
-                <div className="flex -space-x-2">
+              <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+                <div className="flex -space-x-2 shrink-0">
                   {["var(--brand-green)", "#0A192F", "#3b82f6", "#10b981"].map((c) => (
                     <div
                       key={c}
-                      className="h-9 w-9 rounded-full border-2 border-background"
+                      className="h-8 sm:h-9 w-8 sm:w-9 rounded-full border-2 border-background"
                       style={{ background: c }}
                     />
                   ))}
                 </div>
-                <p className="text-sm text-foreground/60">
+                <p className="text-xs sm:text-sm text-foreground/60 text-center sm:text-left">
                   {t("home.hero.trustedBy")}{" "}
                   <span className="font-semibold text-foreground">850+</span>{" "}
                   {t("home.hero.trustedBySuffix")}
