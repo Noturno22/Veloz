@@ -102,7 +102,7 @@ function HeroCarousel() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="overflow-hidden relative bg-card h-[30vh] max-h-[350px]">
+      <div className="overflow-hidden relative bg-card h-[45vh] max-h-[500px]">
         {[
           { src: carrocel1, alt: "Slide 1" },
           { src: carrocel2, alt: "Slide 2" },
@@ -319,7 +319,6 @@ function HomeContent() {
           </div>
 
         </div>
-          <HeroCarousel />
       </section>
 
       {/* JOURNEY STEPS */}
@@ -519,79 +518,8 @@ function HomeContent() {
         </div>
       </section>
 
-      {/* Full-width carousel */}
       <section className="border-t border-border">
-        <div
-          className="w-full group"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          <div className="overflow-hidden relative bg-card h-[45vh] max-h-[500px]">
-            {[
-              { src: carrocel1, alt: "Slide 1" },
-              { src: carrocel2, alt: "Slide 2" },
-              { src: carrocel3, alt: "Slide 3" },
-              { src: carrocel4, alt: "Slide 4" },
-              { src: carrocel5, alt: "Slide 5" },
-            ].map((img, idx) => (
-              <img
-                key={idx}
-                src={img.src}
-                alt={img.alt}
-                className={`w-full h-full object-cover block transition-all duration-500 ease-out ${
-                  idx === currentImage
-                    ? "opacity-100 scale-100"
-                    : "opacity-0 scale-105 absolute inset-0"
-                }`}
-                fetchPriority={idx === 0 ? "high" : "low"}
-                style={{ filter: "brightness(1.35) contrast(1.12) saturate(1.08)" }}
-              />
-            ))}
-
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-
-            {/* Progress bar */}
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-white/10">
-              <div
-                className="h-full bg-gold transition-[width] duration-[50ms] linear"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-
-            {/* Navigation arrows */}
-            <button
-              onClick={goPrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <button
-              onClick={goNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-
-            {/* Dots */}
-            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2.5">
-              {[0, 1, 2, 3, 4].map((i) => (
-                <button
-                  key={i}
-                  onClick={() => goTo(i)}
-                  className={`rounded-full transition-all duration-300 ease-out ${
-                    i === currentImage
-                      ? "bg-gold w-10 h-2.5"
-                      : "bg-white/50 hover:bg-white/80 w-2.5 h-2.5"
-                  }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+        <HeroCarousel />
       </section>
     </div>
   );
