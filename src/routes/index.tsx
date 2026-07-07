@@ -255,7 +255,7 @@ function HomeContent() {
   return (
     <div className="bg-background text-foreground">
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-border">
+      <section className="relative overflow-hidden border-b border-border min-h-screen flex items-center">
         <FooterBackground className="opacity-40" />
         <div
           aria-hidden
@@ -267,7 +267,7 @@ function HomeContent() {
           }}
         />
 
-        <div className="relative container-x py-12 sm:py-16 lg:py-20">
+        <div className="relative w-full container-x py-12 sm:py-16 lg:py-20">
           <div className="max-w-4xl">
             <div>
               <div className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-6">
