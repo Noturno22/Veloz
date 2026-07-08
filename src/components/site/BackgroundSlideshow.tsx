@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
 
-const defaultImagesMap = import.meta.glob<string>("/src/assets/IMG/Home/*.{jpg,png}", {
-  eager: true,
-  query: "?url",
-  import: "default",
-});
+const FOLDER_GLOBS: Record<string, Record<string, string>> = {
+  Home: import.meta.glob<string>("/src/assets/IMG/Home/*.{jpg,jpeg,png,webp,svg}", { eager: true, query: "?url", import: "default" }),
+  Analises: import.meta.glob<string>("/src/assets/IMG/Analises/*.{jpg,jpeg,png,webp,svg}", { eager: true, query: "?url", import: "default" }),
+  Contacto: import.meta.glob<string>("/src/assets/IMG/Contacto/*.{jpg,jpeg,png,webp,svg}", { eager: true, query: "?url", import: "default" }),
+  Parcerias: import.meta.glob<string>("/src/assets/IMG/Parcerias/*.{jpg,jpeg,png,webp,svg}", { eager: true, query: "?url", import: "default" }),
+  commodites: import.meta.glob<string>("/src/assets/IMG/commodites/*.{jpg,jpeg,png,webp,svg}", { eager: true, query: "?url", import: "default" }),
+};
 
-const defaultImages = Object.keys(defaultImagesMap)
-  .sort()
-  .map((key) => defaultImagesMap[key]);
+function getImages(folder: string): string[] {
+  const map = FOLDER_GLOBS[folder] ?? FOLDER_GLOBS["Home"];
+  return Object.keys(map).sort().map((key) => map[key]);
+}
 
-export function BackgroundSlideshow({ images: customImages }: { images?: string[] }) {
-  const images = customImages ?? defaultImages;
+const homeImages = getImages("Home");
+
+export function BackgroundSlideshow({ images: customImages, folder }: { images?: string[]; folder?: string }) {
+  const images = customImages ?? (folder ? getImages(folder) : homeImages);
   const [active, setActive] = useState(0);
 
   useEffect(() => {

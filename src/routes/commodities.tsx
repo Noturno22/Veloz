@@ -4,9 +4,6 @@ import agriImg from "@/assets/commodity-agricultural.jpg";
 import mineralsImg from "@/assets/commodity-minerals.jpg";
 import energyImg from "@/assets/commodity-energy.jpg";
 import industrialImg from "@/assets/commodity-industrial.jpg";
-import commBg1 from "@/assets/carrocel/home/1.jpg";
-import commBg2 from "@/assets/carrocel/home/2.jpg";
-import commBg3 from "@/assets/carrocel/home/3.jpg";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
 import { useState } from "react";
@@ -83,7 +80,7 @@ function Commodities() {
         eyebrow={t("commPage.eyebrow")}
         title={<>{t("commPage.titleA")} <span className="text-gold">{t("commPage.titleB")}</span></>}
         description={t("commPage.desc")}
-        bgImages={[commBg1, commBg2, commBg3]}
+        imageFolder="commodites"
       />
 
       {/* ====== Top Stats Strip ====== */}

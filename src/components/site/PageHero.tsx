@@ -8,6 +8,7 @@ export function PageHero({
   children,
   showSlideshow = true,
   bgImages,
+  imageFolder,
 }: {
   eyebrow: string;
   title: ReactNode;
@@ -15,13 +16,14 @@ export function PageHero({
   children?: ReactNode;
   showSlideshow?: boolean;
   bgImages?: string[];
+  imageFolder?: string;
 }) {
   return (
     <section className="relative text-white">
       <div className="absolute inset-0 z-0">
         {bgImages
           ? <BackgroundSlideshow images={bgImages} />
-          : showSlideshow && <BackgroundSlideshow />}
+          : showSlideshow && <BackgroundSlideshow folder={imageFolder} />}
       </div>
       <div
         aria-hidden
