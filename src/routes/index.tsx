@@ -255,7 +255,7 @@ function HomeContent() {
   return (
     <div className="bg-background text-foreground">
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-border min-h-screen flex items-center">
+      <section className="relative overflow-hidden border-b border-border min-h-[calc(100vh-96px)] flex items-center">
         <FooterBackground className="opacity-40" />
         <div
           aria-hidden
