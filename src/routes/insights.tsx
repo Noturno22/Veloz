@@ -20,13 +20,13 @@ export const Route = createFileRoute("/insights")({
 function Insights() {
   const { t } = useI18n();
   const CATS: TKey[] = ["insights.cat.all", "insights.cat.market", "insights.cat.export", "insights.cat.import", "insights.cat.energy", "insights.cat.agri"];
-  const POSTS: { catKey: TKey; titleKey: TKey; date: string; read: string; img: string }[] = [
-    { catKey: "insights.cat.market", titleKey: "insights.p1", date: "Jun 12, 2026", read: "5", img: "https://images.pexels.com/photos/7109239/pexels-photo-7109239.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { catKey: "insights.cat.energy", titleKey: "insights.p2", date: "Jun 04, 2026", read: "6", img: "https://images.pexels.com/photos/10653885/pexels-photo-10653885.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { catKey: "insights.cat.agri", titleKey: "insights.p3", date: "May 28, 2026", read: "4", img: "https://images.pexels.com/photos/5715854/pexels-photo-5715854.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { catKey: "insights.cat.export", titleKey: "insights.p4", date: "May 19, 2026", read: "7", img: "https://images.pexels.com/photos/21299740/pexels-photo-21299740.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { catKey: "insights.cat.import", titleKey: "insights.p5", date: "May 02, 2026", read: "5", img: "https://images.pexels.com/photos/30515366/pexels-photo-30515366.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { catKey: "insights.cat.market", titleKey: "insights.p6", date: "Apr 21, 2026", read: "6", img: "https://images.pexels.com/photos/33000099/pexels-photo-33000099.jpeg?auto=compress&cs=tinysrgb&w=800" },
+  const POSTS: { catKey: TKey; titleKey: TKey; date: string; read: string; img: string; url: string }[] = [
+    { catKey: "insights.cat.market", titleKey: "insights.p1", date: "Jun 12, 2026", read: "5", img: "https://images.pexels.com/photos/265085/pexels-photo-265085.jpeg?auto=compress&cs=tinysrgb&w=800", url: "https://www.reuters.com/markets/commodities/" },
+    { catKey: "insights.cat.energy", titleKey: "insights.p2", date: "Jun 04, 2026", read: "6", img: "https://images.pexels.com/photos/3855962/pexels-photo-3855962.jpeg?auto=compress&cs=tinysrgb&w=800", url: "https://oilprice.com/" },
+    { catKey: "insights.cat.agri", titleKey: "insights.p3", date: "May 28, 2026", read: "4", img: "https://images.pexels.com/photos/2310885/pexels-photo-2310885.jpeg?auto=compress&cs=tinysrgb&w=800", url: "https://www.reuters.com/business/food-agriculture/" },
+    { catKey: "insights.cat.export", titleKey: "insights.p4", date: "May 19, 2026", read: "7", img: "https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=800", url: "https://www.reuters.com/markets/commodities/" },
+    { catKey: "insights.cat.import", titleKey: "insights.p5", date: "May 02, 2026", read: "5", img: "https://images.pexels.com/photos/906982/pexels-photo-906982.jpeg?auto=compress&cs=tinysrgb&w=800", url: "https://gcaptain.com/" },
+    { catKey: "insights.cat.market", titleKey: "insights.p6", date: "Apr 21, 2026", read: "6", img: "https://images.pexels.com/photos/534216/pexels-photo-534216.jpeg?auto=compress&cs=tinysrgb&w=800", url: "https://www.mining.com/" },
   ];
   return (
     <>
@@ -57,9 +57,9 @@ function Insights() {
               <h3 className="mt-2 font-display text-lg font-semibold text-[color:var(--navy)]">
                 {t(p.titleKey)}
               </h3>
-              <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold underline-gold">
+              <a href={p.url} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold underline-gold">
                 {t("common.readArticle")} <ArrowRight className="h-4 w-4" />
-              </div>
+              </a>
             </div>
           </article>
         ))}
