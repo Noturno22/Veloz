@@ -3,11 +3,13 @@ import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useEffect, useRef } from "react";
 
-const frameModules = import.meta.glob<{ default: string }>(
+const frameModules = import.meta.glob<string>(
   "@/assets/onboarding/*.jpg",
   { eager: true, query: "?url", import: "default" },
 );
-const frameUrls = Object.values(frameModules) as string[];
+const frameUrls: string[] = Object.values(frameModules).map(
+  (m) => (typeof m === "string" ? m : (m as unknown as { default: string }).default),
+);
 
 export function FooterBackground({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);

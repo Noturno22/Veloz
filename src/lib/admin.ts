@@ -9,6 +9,7 @@ import {
   updateDoc,
   type DocumentData,
   type Timestamp,
+  type QueryDocumentSnapshot,
 } from "firebase/firestore";
 
 export type Lead = {
@@ -39,13 +40,13 @@ export type Contact = {
 export async function fetchLeads(): Promise<Lead[]> {
   const q = query(collection(db, "leads"), orderBy("createdAt", "desc"));
   const snap = await getDocs(q);
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() } as Lead));
+  return snap.docs.map((d: QueryDocumentSnapshot) => ({ id: d.id, ...d.data() } as Lead));
 }
 
 export async function fetchContacts(): Promise<Contact[]> {
   const q = query(collection(db, "contacts"), orderBy("createdAt", "desc"));
   const snap = await getDocs(q);
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() } as Contact));
+  return snap.docs.map((d: QueryDocumentSnapshot) => ({ id: d.id, ...d.data() } as Contact));
 }
 
 export async function deleteLead(id: string) {
