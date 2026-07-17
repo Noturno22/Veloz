@@ -21,7 +21,7 @@ function Insights() {
   const { t } = useI18n();
   const CATS: TKey[] = ["insights.cat.all", "insights.cat.market", "insights.cat.export", "insights.cat.import", "insights.cat.energy", "insights.cat.agri"];
   const POSTS: { catKey: TKey; titleKey: TKey; date: string; read: string; img: string; url: string }[] = [
-    { catKey: "insights.cat.market", titleKey: "insights.p1", date: "Jun 12, 2026", read: "5", img: "https://images.pexels.com/photos/265085/pexels-photo-265085.jpeg?auto=compress&cs=tinysrgb&w=800", url: "https://www.reuters.com/markets/commodities/" },
+    { catKey: "insights.cat.market", titleKey: "insights.p1", date: "Jun 12, 2026", read: "5", img: "https://images.pexels.com/photos/210607/pexels-photo-210607.jpeg?auto=compress&cs=tinysrgb&w=800", url: "https://www.reuters.com/markets/commodities/" },
     { catKey: "insights.cat.energy", titleKey: "insights.p2", date: "Jun 04, 2026", read: "6", img: "https://images.pexels.com/photos/3855962/pexels-photo-3855962.jpeg?auto=compress&cs=tinysrgb&w=800", url: "https://oilprice.com/" },
     { catKey: "insights.cat.agri", titleKey: "insights.p3", date: "May 28, 2026", read: "4", img: "https://images.pexels.com/photos/2310885/pexels-photo-2310885.jpeg?auto=compress&cs=tinysrgb&w=800", url: "https://www.reuters.com/business/food-agriculture/" },
     { catKey: "insights.cat.export", titleKey: "insights.p4", date: "May 19, 2026", read: "7", img: "https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=800", url: "https://www.reuters.com/markets/commodities/" },

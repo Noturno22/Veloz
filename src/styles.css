@@ -210,14 +210,6 @@
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
 
-  .animate-logo-glow {
-    animation: logoGlow 3s ease-in-out infinite alternate;
-    filter: drop-shadow(0 2px 20px rgba(255,255,255,0.3));
-  }
-  @keyframes logoGlow {
-    0% { filter: brightness(1.2) drop-shadow(0 2px 16px rgba(255,255,255,0.3)); }
-    100% { filter: brightness(1.35) drop-shadow(0 2px 28px rgba(212,175,55,0.45)); }
-  }
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
