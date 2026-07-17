@@ -15,9 +15,6 @@ import {
   Leaf,
   Award,
   ArrowRight,
-  Users,
-  Factory,
-  Landmark,
   Target,
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
@@ -139,17 +136,6 @@ function Partnership() {
     { icon: Leaf, label: "Sustainability" },
     { icon: Award, label: "Commitment" },
     { icon: Globe, label: "Credibility" },
-  ];
-
-  const HIGHLIGHTS = [
-    { icon: Users, value: "350+", label: "National Partnerships" },
-    { icon: Globe, value: "500+", label: "International Partnerships" },
-    { icon: Target, value: "120+", label: "Active Projects" },
-    { icon: Factory, value: "4", label: "Commodity Sectors" },
-    { icon: Landmark, value: "18", label: "Commodity Chains" },
-    { icon: Leaf, value: "25+", label: "Sustainable Initiatives" },
-    { icon: Award, value: "12", label: "Social Impact Programs" },
-    { icon: Network, value: "6", label: "Innovation Hubs" },
   ];
 
   return (
@@ -293,32 +279,6 @@ function Partnership() {
         </div>
       </section>
 
-      {/* Institutional Highlights */}
-      <section className="bg-muted/40 py-16">
-        <div className="container-x">
-          <SectionHeading
-            eyebrow={t("partner.highlights.eyebrow")}
-            title={t("partner.highlights.title")}
-            center
-          />
-          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-5">
-            {HIGHLIGHTS.map((h) => (
-              <div
-                key={h.label}
-                className="group hover-lift rounded-2xl border border-border bg-white p-6 shadow-card text-center"
-              >
-                <div className="h-10 w-10 rounded-xl bg-gold-soft text-gold grid place-items-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                  <h.icon className="h-5 w-5" />
-                </div>
-                <div className="font-display text-2xl font-bold text-[color:var(--navy)]">
-                  {h.value}
-                </div>
-                <div className="mt-1 text-xs text-muted-foreground">{h.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }
