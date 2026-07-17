@@ -608,7 +608,7 @@ const pt = {
     "Conectar mercados e criar oportunidades comerciais sustentáveis através de comércio transparente e seguro.",
   "about.vision.t": "A Nossa Visão",
   "about.vision.d":
-    "Ser a referência africana em intermediação internacional de commodities, reconhecida globalmente pela excelência.",
+    "Ser a referência mundial em intermediação internacional de commodities, reconhecida globalmente pela excelência.",
   "about.promise.t": "O Nosso Compromisso",
   "about.promise.d":
     "Serviço premium, apoio integral e integridade absoluta em cada transação que facilitamos.",
