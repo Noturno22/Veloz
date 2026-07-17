@@ -157,7 +157,7 @@ const en = {
     "Connect markets and create sustainable commercial opportunities through transparent, secure trading.",
   "about.vision.t": "Our Vision",
   "about.vision.d":
-    "To be the African reference in international commodity intermediation, recognized globally for excellence.",
+    "To be the global reference in international commodity intermediation, recognized globally for excellence.",
   "about.promise.t": "Our Promise",
   "about.promise.d":
     "Premium service, end-to-end support and uncompromising integrity in every transaction we facilitate.",
@@ -1063,7 +1063,7 @@ const fr = {
     "Connectez les marchés et créez des opportunités commerciales durables grâce à des échanges transparents et sécurisés.",
   "about.vision.t": "Notre vision",
   "about.vision.d":
-    "Être la référence africaine en matière d’intermédiation internationale des matières premières, reconnue mondialement pour son excellence.",
+    "Être la référence mondiale en matière d’intermédiation internationale des matières premières, reconnue mondialement pour son excellence.",
   "about.promise.t": "Notre promesse",
   "about.promise.d":
     "Service haut de gamme, assistance de bout en bout et intégrité sans compromis dans chaque transaction que nous facilitons.",
@@ -1519,7 +1519,7 @@ const zh = {
   "about.mission.t": "我们的使命",
   "about.mission.d": "通过透明、安全的交易连接市场并创造可持续的商业机会。",
   "about.vision.t": "我们的愿景",
-  "about.vision.d": "成为国际商品中介领域的非洲标杆，因卓越而获得全球认可。",
+  "about.vision.d": "成为国际商品中介领域的全球标杆，因卓越而获得全球认可。",
   "about.promise.t": "我们的承诺",
   "about.promise.d": "我们在每笔交易中都提供优质服务、端到端支持和毫不妥协的诚信。",
   "about.values.eyebrow": "我们的价值观",
@@ -1954,7 +1954,7 @@ const ar = {
   "about.mission.d": "ربط الأسواق وخلق فرص تجارية مستدامة من خلال التجارة الشفافة والآمنة.",
   "about.vision.t": "رؤيتنا",
   "about.vision.d":
-    "أن نكون المرجع الأفريقي في الوساطة السلعية الدولية، والمعترف به عالميًا للتميز.",
+    "أن نكون المرجع العالمي في الوساطة السلعية الدولية، والمعترف به عالميًا للتميز.",
   "about.promise.t": "وعدنا",
   "about.promise.d": "خدمة متميزة ودعم شامل ونزاهة لا هوادة فيها في كل معاملة نقوم بتسهيلها.",
   "about.values.eyebrow": "قيمنا",
@@ -2861,7 +2861,7 @@ const ru = {
     "Соедините рынки и создайте устойчивые коммерческие возможности посредством прозрачной и безопасной торговли.",
   "about.vision.t": "Наше видение",
   "about.vision.d":
-    "Быть африканским эталоном в области международного товарного посредничества, признанным во всем мире за выдающиеся достижения.",
+    "Быть мировым эталоном в области международного товарного посредничества, признанным во всем мире за выдающиеся достижения.",
   "about.promise.t": "Наше обещание",
   "about.promise.d":
     "Премиум-сервис, комплексная поддержка и бескомпромиссная честность в каждой транзакции, которую мы осуществляем.",
@@ -3314,7 +3314,7 @@ const ln: Record<TKey, string> = {
     "Kokangisa bazando mpe kosala ba opportunités ya mombongo ya libela na nzela ya mombongo ya polele mpe ya libateli.",
   "about.vision.t": "Elozɛlɛ na biso",
   "about.vision.d":
-    "Kozala motó ya Afríka kati na mombongo ya biloko ya mokili, eyebani na mokili mobimba mpo na mayɛ́lɛ.",
+    "Kozala motó ya mokili mobimba kati na mombongo ya biloko ya mokili, eyebani na mokili mobimba mpo na mayɛ́lɛ.",
   "about.promise.t": "Elaka na biso",
   "about.promise.d":
     "Mosala ya ntalo, lisalisi mobimba mpe motema malamu kati na mombongo nyonso oyo tosalaka.",
