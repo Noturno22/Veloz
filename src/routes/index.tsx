@@ -98,11 +98,11 @@ function HeroCarousel() {
 
   return (
     <div
-      className="w-full h-full group"
+      className="w-full group"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="overflow-hidden relative bg-card w-full h-full">
+      <div className="overflow-hidden relative bg-card h-[45vh] max-h-[500px]">
         {[
           { src: carrocel1, alt: "Slide 1" },
           { src: carrocel2, alt: "Slide 2" },
@@ -256,10 +256,6 @@ function HomeContent() {
     <div className="bg-background text-foreground">
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-border min-h-[calc(100vh-96px)] flex items-center">
-        {/* Carousel as full background */}
-        <div className="absolute inset-0">
-          <HeroCarousel />
-        </div>
         <FooterBackground className="opacity-40" />
         <div
           aria-hidden
@@ -520,6 +516,10 @@ function HomeContent() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="border-t border-border">
+        <HeroCarousel />
       </section>
     </div>
   );
