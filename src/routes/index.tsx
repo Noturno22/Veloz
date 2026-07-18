@@ -311,7 +311,7 @@ function HomeContent() {
                 </div>
                 <p className="text-xs sm:text-sm text-foreground/60 text-center sm:text-left">
                   {t("home.hero.trustedBy")}{" "}
-                  <span className="font-semibold text-foreground">850+</span>{" "}
+                  <span className="font-semibold text-foreground">12+</span>{" "}
                   {t("home.hero.trustedBySuffix")}
                 </p>
               </div>
@@ -431,9 +431,9 @@ function HomeContent() {
             {/* KPI grid */}
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: t("dash.totalVolume"), value: "US$ 2.8B+", delta: "+18.2%" },
-                { label: t("dash.activeTx"), value: "1,200+", delta: "+14.7%" },
-                { label: t("dash.globalPartners"), value: "850+", delta: "+21.3%" },
+                { label: t("dash.totalVolume"), value: "200k+", delta: "+18.2%" },
+                { label: t("dash.activeTx"), value: "27+", delta: "+14.7%" },
+                { label: t("dash.globalPartners"), value: "12+", delta: "+21.3%" },
                 { label: t("dash.marketsAccess"), value: "50+", delta: "+10.5%" },
               ].map((k) => (
                 <div key={k.label} className="rounded-xl bg-card border border-border p-4">

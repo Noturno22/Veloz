@@ -860,7 +860,7 @@ const pt = {
   "partner.t3.p2": "Avaliação de risco",
   "partner.t3.p3": "Co-investimento",
   "partner.trusted.eyebrow": "Confiança Global",
-  "partner.trusted.title": "Mais de 850 parceiros em cinco continentes",
+  "partner.trusted.title": "Mais de 12 parceiros em 5 continentes",
   "partner.benefits.eyebrow": "Porquê ser Parceiro",
   "partner.benefits.title": "Benefícios das Parcerias Estratégicas",
   "partner.process.eyebrow": "Como Funciona",
