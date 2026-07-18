@@ -25,11 +25,6 @@ import {
   CheckCircle,
   ChevronRight,
 } from "lucide-react";
-import carrocel1 from "@/assets/carrocel/1.jpeg";
-import carrocel2 from "@/assets/carrocel/2.jpeg";
-import carrocel3 from "@/assets/carrocel/3.jpeg";
-import carrocel4 from "@/assets/carrocel/4.jpeg";
-import carrocel5 from "@/assets/carrocel/5.jpeg";
 import sedeImg from "@/assets/IMG/SEDE.png";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
@@ -140,11 +135,11 @@ function About() {
   ];
 
   const COMMODITIES: { img: string; key: TKey }[] = [
-    { img: carrocel1, key: "about.commodities.agriculture" },
-    { img: carrocel2, key: "about.commodities.metals" },
-    { img: carrocel3, key: "about.commodities.energy" },
-    { img: carrocel4, key: "about.commodities.chemicals" },
-    { img: carrocel5, key: "about.commodities.rawMaterials" },
+    { img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80", key: "about.commodities.agriculture" },
+    { img: "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=600&q=80", key: "about.commodities.metals" },
+    { img: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80", key: "about.commodities.energy" },
+    { img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80", key: "about.commodities.chemicals" },
+    { img: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80", key: "about.commodities.rawMaterials" },
   ];
 
   const SERVICES: { icon: typeof Globe; key: TKey }[] = [
