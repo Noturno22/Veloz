@@ -49,7 +49,7 @@ export const Route = createFileRoute("/about")({
 
 const STATS: { value: string; numeric: number; suffix: string; key: TKey }[] = [
   { value: "50+", numeric: 50, suffix: "+", key: "about.stats.countries" },
-  { value: "850+", numeric: 850, suffix: "+", key: "about.stats.partners" },
+  { value: "12+", numeric: 12, suffix: "+", key: "about.stats.partners" },
   { value: "1,200+", numeric: 1200, suffix: "+", key: "about.stats.projects" },
   { value: "15+", numeric: 15, suffix: "+", key: "about.stats.experience" },
   { value: "500+", numeric: 500, suffix: "+", key: "about.stats.clients" },
