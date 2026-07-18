@@ -60,82 +60,82 @@ function Partnership() {
   const BENEFITS = [
     {
       icon: TrendingUp,
-      title: "Market Expansion",
-      desc: "Access new geographic markets and diversified commodity channels across our global network.",
+      titleKey: "partner.benefit.1.title" as TKey,
+      descKey: "partner.benefit.1.desc" as TKey,
     },
     {
       icon: Building2,
-      title: "Institutional Strength",
-      desc: "Strengthen your institutional presence with a trusted partner in global commodity trade.",
+      titleKey: "partner.benefit.2.title" as TKey,
+      descKey: "partner.benefit.2.desc" as TKey,
     },
     {
       icon: CircleDollarSign,
-      title: "Investment Access",
-      desc: "Gain access to vetted investment opportunities and trade financing solutions.",
+      titleKey: "partner.benefit.3.title" as TKey,
+      descKey: "partner.benefit.3.desc" as TKey,
     },
     {
       icon: Network,
-      title: "Technology & Innovation",
-      desc: "Leverage cutting-edge trade technology, real-time analytics and digital supply chain tools.",
+      titleKey: "partner.benefit.4.title" as TKey,
+      descKey: "partner.benefit.4.desc" as TKey,
     },
     {
       icon: Leaf,
-      title: "Sustainable Development",
-      desc: "Participate in ESG-driven initiatives and sustainable commodity sourcing programs.",
+      titleKey: "partner.benefit.5.title" as TKey,
+      descKey: "partner.benefit.5.desc" as TKey,
     },
     {
       icon: Globe,
-      title: "Global Opportunities",
-      desc: "Connect with international counterparties across 50+ countries and 5 continents.",
+      titleKey: "partner.benefit.6.title" as TKey,
+      descKey: "partner.benefit.6.desc" as TKey,
     },
     {
       icon: Handshake,
-      title: "Joint Growth",
-      desc: "Grow together through revenue-sharing models and co-investment structures.",
+      titleKey: "partner.benefit.7.title" as TKey,
+      descKey: "partner.benefit.7.desc" as TKey,
     },
   ];
 
   const PROCESS = [
     {
       icon: Handshake,
-      title: "Initial Contact",
-      desc: "Reach out through our form or direct channel. We respond within 24 hours.",
+      titleKey: "partner.process.step1.title" as TKey,
+      descKey: "partner.process.step1.desc" as TKey,
     },
     {
       icon: ShieldCheck,
-      title: "Evaluation",
-      desc: "Our team assesses your profile, business model and market alignment.",
+      titleKey: "partner.process.step2.title" as TKey,
+      descKey: "partner.process.step2.desc" as TKey,
     },
     {
       icon: Target,
-      title: "Strategic Alignment",
-      desc: "We align goals, define scope and outline the partnership framework.",
+      titleKey: "partner.process.step3.title" as TKey,
+      descKey: "partner.process.step3.desc" as TKey,
     },
     {
       icon: BadgeCheck,
-      title: "Formalization",
-      desc: "Sign the partnership agreement and complete compliance & documentation.",
+      titleKey: "partner.process.step4.title" as TKey,
+      descKey: "partner.process.step4.desc" as TKey,
     },
     {
       icon: Network,
-      title: "Implementation",
-      desc: "Onboarding, system integration and first trade operations begin.",
+      titleKey: "partner.process.step5.title" as TKey,
+      descKey: "partner.process.step5.desc" as TKey,
     },
     {
       icon: TrendingUp,
-      title: "Joint Growth",
-      desc: "Continuous support, performance reviews and expanding collaboration.",
+      titleKey: "partner.process.step6.title" as TKey,
+      descKey: "partner.process.step6.desc" as TKey,
     },
   ];
 
   const TRUST_ITEMS = [
-    { icon: BadgeCheck, label: "Transparency" },
-    { icon: ShieldCheck, label: "Security" },
-    { icon: Handshake, label: "Cooperation" },
-    { icon: TrendingUp, label: "Growth" },
-    { icon: Leaf, label: "Sustainability" },
-    { icon: Award, label: "Commitment" },
-    { icon: Globe, label: "Credibility" },
+    { icon: BadgeCheck, labelKey: "partner.trust.item1" as TKey },
+    { icon: ShieldCheck, labelKey: "partner.trust.item2" as TKey },
+    { icon: Handshake, labelKey: "partner.trust.item3" as TKey },
+    { icon: TrendingUp, labelKey: "partner.trust.item4" as TKey },
+    { icon: Leaf, labelKey: "partner.trust.item5" as TKey },
+    { icon: Award, labelKey: "partner.trust.item6" as TKey },
+    { icon: Globe, labelKey: "partner.trust.item7" as TKey },
   ];
 
   return (
@@ -180,20 +180,19 @@ function Partnership() {
               {t("partner.trusted.title")}
             </h2>
           </div>
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
             {[
-              "Nordbridge",
-              "AuriCo",
-              "MeridianAg",
-              "Sahara Energy",
-              "PortusLog",
-              "ZenithSteel",
-            ].map((n) => (
+              "continent.africa",
+              "continent.america",
+              "continent.asia",
+              "continent.europe",
+              "continent.oceania",
+            ].map((key) => (
               <div
-                key={n}
+                key={key}
                 className="grid h-16 place-items-center rounded-xl bg-[color:var(--accent)] text-sm font-semibold tracking-wider text-white/70"
               >
-                {n.toUpperCase()}
+                {t(key as TKey).toUpperCase()}
               </div>
             ))}
           </div>
@@ -210,16 +209,16 @@ function Partnership() {
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {BENEFITS.map((b) => (
             <div
-              key={b.title}
+              key={b.titleKey}
               className="group hover-lift rounded-2xl border border-border bg-white p-6 shadow-card"
             >
               <div className="h-10 w-10 rounded-xl bg-gold-soft text-gold grid place-items-center mb-4 group-hover:scale-110 transition-transform duration-300">
                 <b.icon className="h-5 w-5" />
               </div>
               <h3 className="font-display text-base font-semibold text-[color:var(--navy)]">
-                {b.title}
+                {t(b.titleKey)}
               </h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{t(b.descKey)}</p>
             </div>
           ))}
         </div>
@@ -235,7 +234,7 @@ function Partnership() {
           />
           <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
             {PROCESS.map((s, i) => (
-              <div key={s.title} className="relative">
+              <div key={s.titleKey} className="relative">
                 <div className="group flex flex-col items-center text-center rounded-2xl border border-border bg-white p-6 shadow-card hover-lift">
                   <div className="h-12 w-12 rounded-full bg-gold-soft text-gold grid place-items-center mb-4 group-hover:bg-gold group-hover:text-[color:var(--gold-foreground)] transition-colors duration-300">
                     <s.icon className="h-5 w-5" />
@@ -244,9 +243,9 @@ function Partnership() {
                     0{i + 1}
                   </span>
                   <h3 className="font-display text-sm font-semibold text-[color:var(--navy)]">
-                    {s.title}
+                    {t(s.titleKey)}
                   </h3>
-                  <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{s.desc}</p>
+                  <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{t(s.descKey)}</p>
                 </div>
                 {i < PROCESS.length - 1 && (
                   <div className="hidden xl:flex absolute top-1/2 -right-3 -translate-y-1/2 z-10 text-gold/40">
@@ -269,11 +268,11 @@ function Partnership() {
         <div className="mt-10 flex flex-wrap gap-3 justify-center">
           {TRUST_ITEMS.map((item) => (
             <div
-              key={item.label}
+              key={item.labelKey}
               className="group inline-flex items-center gap-2.5 rounded-full border border-border bg-white px-5 py-2.5 shadow-sm hover:border-gold/40 hover:shadow-md transition-all duration-300"
             >
               <item.icon className="h-4 w-4 text-gold" />
-              <span className="text-sm font-medium text-[color:var(--navy)]">{item.label}</span>
+              <span className="text-sm font-medium text-[color:var(--navy)]">{t(item.labelKey)}</span>
             </div>
           ))}
         </div>

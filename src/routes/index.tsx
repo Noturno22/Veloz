@@ -23,7 +23,7 @@ import carrocel4 from "@/assets/carrocel/4.jpeg";
 import carrocel5 from "@/assets/carrocel/5.jpeg";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
-import { FooterBackground } from "@/components/site/SiteFooter";
+import { BackgroundSlideshow } from "@/components/site/BackgroundSlideshow";
 
 import { useState, useEffect, useRef, useCallback } from "react";
 
@@ -193,9 +193,9 @@ function HomeContent() {
 
   const STATS = [
     { icon: Globe2, value: "50+", labelKey: "stats.countries" as TKey },
-    { icon: Handshake, value: "1,200+", labelKey: "stats.transactions" as TKey },
-    { icon: Briefcase, value: "850+", labelKey: "stats.partners" as TKey },
-    { icon: TrendingUp, value: "US$ 2.8B+", labelKey: "stats.volume" as TKey },
+    { icon: Handshake, value: "27+", labelKey: "stats.transactions" as TKey },
+    { icon: Briefcase, value: "12+", labelKey: "stats.partners" as TKey },
+    { icon: TrendingUp, value: "200k+", labelKey: "stats.volume" as TKey },
   ];
 
   const COMMODITIES: { titleKey: TKey; img: string; itemKeys: TKey[] }[] = [
@@ -256,7 +256,7 @@ function HomeContent() {
     <div className="bg-background text-foreground">
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-border min-h-[calc(100vh-96px)] flex items-center">
-        <FooterBackground className="opacity-40" />
+        <BackgroundSlideshow folder="Home" />
         <div
           aria-hidden
           className="absolute inset-0 opacity-[0.04]"

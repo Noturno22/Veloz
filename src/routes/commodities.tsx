@@ -88,8 +88,8 @@ function Commodities() {
         <div className="rounded-2xl bg-card border border-border shadow-card p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { icon: Globe2, value: "103", label: t("commPage.statMarkets") },
-            { icon: Handshake, value: "880+", label: t("commPage.statDeals") },
-            { icon: TrendingUp, value: "US$ 3.1B+", label: t("commPage.statVolume") },
+            { icon: Handshake, value: "50+", label: t("commPage.statDeals") },
+            { icon: TrendingUp, value: "300.5k+", label: t("commPage.statVolume") },
             { icon: BarChart3, value: "18", label: t("commPage.statCommodities") },
           ].map((s) => (
             <div key={s.label} className="flex items-center gap-3">
@@ -147,19 +147,6 @@ function Commodities() {
                     {t(g.titleKey)}
                   </h2>
                   <p className="mt-3 text-muted-foreground">{t(g.descKey)}</p>
-
-                  {/* Stats */}
-                  <div className="mt-6 grid grid-cols-3 gap-4">
-                    {g.stats.map((s) => (
-                      <div key={s.label}>
-                        <div className="flex items-center gap-1.5 text-gold">
-                          <s.icon className="h-3.5 w-3.5" />
-                          <span className="text-xs font-semibold text-muted-foreground">{s.label}</span>
-                        </div>
-                        <div className="font-display text-lg text-[color:var(--navy)] dark:text-foreground">{s.value}</div>
-                      </div>
-                    ))}
-                  </div>
 
                   {/* Tags */}
                   <div className="mt-6 flex flex-wrap gap-2">
