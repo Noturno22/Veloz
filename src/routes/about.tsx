@@ -135,11 +135,11 @@ function About() {
   ];
 
   const COMMODITIES: { img: string; key: TKey }[] = [
-    { img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80", key: "about.commodities.agriculture" },
-    { img: "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=600&q=80", key: "about.commodities.metals" },
-    { img: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80", key: "about.commodities.energy" },
-    { img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80", key: "about.commodities.chemicals" },
-    { img: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80", key: "about.commodities.rawMaterials" },
+    { img: "/images/commodities/agriculture.jpg", key: "about.commodities.agriculture" },
+    { img: "/images/commodities/metals.jpg", key: "about.commodities.metals" },
+    { img: "/images/commodities/energy.jpg", key: "about.commodities.energy" },
+    { img: "/images/commodities/chemicals.jpg", key: "about.commodities.chemicals" },
+    { img: "/images/commodities/raw-materials.jpg", key: "about.commodities.rawMaterials" },
   ];
 
   const SERVICES: { icon: typeof Globe; key: TKey }[] = [
