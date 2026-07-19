@@ -352,7 +352,7 @@ const en = {
   "partner.titleA": "Grow with a",
   "partner.titleB": "trusted global network.",
   "partner.desc":
-    "850+ partners across 50+ countries trust Veloz to connect them to the right counterparties. Choose your partnership tier.",
+    "12+ partners across 50+ countries trust Veloz to connect them to the right counterparties. Choose your partnership tier.",
   "partner.t1.title": "Producer Partner",
   "partner.t1.text": "Direct access to international buyers for your harvest or production.",
   "partner.t1.p1": "Verified buyer network",
@@ -843,7 +843,7 @@ const pt = {
   "partner.titleA": "Cresça com uma",
   "partner.titleB": "rede global de confiança.",
   "partner.desc":
-    "Mais de 850 parceiros em 50+ países confiam na Veloz para conectar-se às contrapartes certas. Escolha o seu nível de parceria.",
+    "Mais de 12 parceiros em 50+ países confiam na Veloz para conectar-se às contrapartes certas. Escolha o seu nível de parceria.",
   "partner.t1.title": "Parceiro Produtor",
   "partner.t1.text": "Acesso direto a compradores internacionais para a sua produção.",
   "partner.t1.p1": "Rede de compradores verificada",
@@ -1342,7 +1342,7 @@ const fr = {
   "partner.titleA": "Grandir avec un",
   "partner.titleB": "réseau mondial de confiance.",
   "partner.desc":
-    "Plus de 850 partenaires dans plus de 50 pays font confiance à Veloz pour les mettre en relation avec les bonnes contreparties. ",
+    "Plus de 12 partenaires dans plus de 50 pays font confiance à Veloz pour les mettre en relation avec les bonnes contreparties. ",
   "partner.t1.title": "Producteur partenaire",
   "partner.t1.text":
     "Accès direct aux acheteurs internationaux pour votre récolte ou votre production.",
@@ -1815,7 +1815,7 @@ const zh = {
   "partner.titleA": "与一个一起成长",
   "partner.titleB": "值得信赖的全球网络。",
   "partner.desc":
-    "50 多个国家/地区的 850 多个合作伙伴相信 Veloz 能够将他们与合适的交易对手联系起来。",
+    "50 多个国家/地区的 12 多个合作伙伴相信 Veloz 能够将他们与合适的交易对手联系起来。",
   "partner.t1.title": "制作人合伙人",
   "partner.t1.text": "直接接触国际买家，了解您的收获或生产情况。",
   "partner.t1.p1": "已验证的买家网络",
@@ -2296,7 +2296,7 @@ const ar = {
   "partner.titleA": "تنمو مع أ",
   "partner.titleB": "شبكة عالمية موثوقة.",
   "partner.desc":
-    "يثق أكثر من 850 شريكًا في أكثر من 50 دولة في شركة Veloz لربطهم بالأطراف المقابلة المناسبة. ",
+    "يثق أكثر من 12 شريكًا في أكثر من 50 دولة في شركة Veloz لربطهم بالأطراف المقابلة المناسبة. ",
   "partner.t1.title": "شريك منتج",
   "partner.t1.text": "الوصول المباشر إلى المشترين الدوليين للحصاد أو الإنتاج الخاص بك.",
   "partner.t1.p1": "شبكة المشتري التحقق منها",
@@ -2790,7 +2790,7 @@ const es = {
   "partner.titleA": "crecer con un",
   "partner.titleB": "Red global de confianza.",
   "partner.desc":
-    "Más de 850 socios en más de 50 países confían en Veloz para conectarlos con las contrapartes adecuadas. ",
+    "Más de 12 socios en más de 50 países confían en Veloz para conectarlos con las contrapartes adecuadas. ",
   "partner.t1.title": "Socio productor",
   "partner.t1.text": "Acceso directo a compradores internacionales para su cosecha o producción.",
   "partner.t1.p1": "Red de compradores verificados",
@@ -3286,7 +3286,7 @@ const ru = {
   "partner.titleA": "Расти с",
   "partner.titleB": "доверенная глобальная сеть.",
   "partner.desc":
-    "Более 850 партнеров в более чем 50 странах доверяют Veloz, чтобы связать их с нужными контрагентами. ",
+    "Более 12 партнеров в более чем 50 странах доверяют Veloz, чтобы связать их с нужными контрагентами. ",
   "partner.t1.title": "Продюсер-партнер",
   "partner.t1.text": "Прямой доступ к международным покупателям вашего урожая или продукции.",
   "partner.t1.p1": "Проверенная сеть покупателей",
@@ -3780,7 +3780,7 @@ const ln: Record<TKey, string> = {
   "partner.titleA": "Kola na réseau ya",
   "partner.titleB": "bazinga ya mokili.",
   "partner.desc":
-    "Bazinga 850+ na bikólo 50+ bázali kopesa Veloz motema mpo na kokangisa bango na bazinga ya malamu. Pona niveau ya boyokani na yo.",
+    "Bazinga 12+ na bikólo 50+ bázali kopesa Veloz motema mpo na kokangisa bango na bazinga ya malamu. Pona niveau ya boyokani na yo.",
   "partner.t1.title": "Moninga mobimbi",
   "partner.t1.text": "Nzelé ya mbala moko epai ya basombi ya mokili mpo na biloko na yo.",
   "partner.t1.p1": "Réseau ya basombi ya solo",
