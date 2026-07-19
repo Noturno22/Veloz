@@ -102,7 +102,7 @@ function HeroCarousel() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="overflow-hidden relative bg-card w-full h-[80vh]">
+      <div className="overflow-hidden relative bg-card w-screen relative left-1/2 -translate-x-1/2 h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh]">
         {[
           { src: carrocel1, alt: "Slide 1" },
           { src: carrocel2, alt: "Slide 2" },
@@ -135,28 +135,28 @@ function HeroCarousel() {
 
         <button
           onClick={goPrev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center"
+          className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center"
           aria-label="Previous slide"
         >
-          <ChevronLeft className="h-5 w-5" />
+          <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
         <button
           onClick={goNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center"
+          className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-black/30 hover:bg-gold text-white flex items-center justify-center"
           aria-label="Next slide"
         >
-          <ChevronRight className="h-5 w-5" />
+          <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
 
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2.5">
+        <div className="absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 sm:gap-2.5">
           {[0, 1, 2, 3, 4].map((i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
               className={`rounded-full transition-all duration-300 ease-out ${
                 i === currentImage
-                  ? "bg-gold w-10 h-2.5"
-                  : "bg-white/50 hover:bg-white/80 w-2.5 h-2.5"
+                  ? "bg-gold w-8 sm:w-10 h-2 sm:h-2.5"
+                  : "bg-white/50 hover:bg-white/80 w-2 sm:w-2.5 h-2 sm:h-2.5"
               }`}
               aria-label={`Go to slide ${i + 1}`}
             />
@@ -518,7 +518,7 @@ function HomeContent() {
         </div>
       </section>
 
-      <section className="border-t border-border">
+      <section className="border-t border-border overflow-hidden">
         <HeroCarousel />
       </section>
     </div>
