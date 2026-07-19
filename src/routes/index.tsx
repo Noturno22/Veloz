@@ -98,11 +98,12 @@ function HeroCarousel() {
 
   return (
     <div
-      className="w-full group"
+      className="group w-full"
+      style={{ width: "100vw", marginLeft: "calc(-50vw + 50%)" }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="overflow-hidden relative bg-card w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh]">
+      <div className="overflow-hidden relative bg-card h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh]" style={{ width: "100vw" }}>
         {[
           { src: carrocel1, alt: "Slide 1" },
           { src: carrocel2, alt: "Slide 2" },
@@ -253,7 +254,7 @@ function HomeContent() {
   ];
 
   return (
-    <div className="bg-background text-foreground">
+    <div className="bg-background text-foreground overflow-x-hidden">
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-border min-h-[calc(100vh-96px)] flex items-center">
         <FooterBackground className="opacity-40" />
@@ -518,7 +519,7 @@ function HomeContent() {
         </div>
       </section>
 
-      <section className="border-t border-border overflow-hidden">
+      <section className="border-t border-border overflow-x-hidden">
         <HeroCarousel />
       </section>
     </div>
