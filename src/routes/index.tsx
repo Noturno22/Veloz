@@ -102,7 +102,7 @@ function HeroCarousel() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="overflow-hidden relative bg-card h-[45vh] max-h-[500px]">
+      <div className="overflow-hidden relative bg-card w-full h-[80vh]">
         {[
           { src: carrocel1, alt: "Slide 1" },
           { src: carrocel2, alt: "Slide 2" },
