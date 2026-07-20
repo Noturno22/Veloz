@@ -196,7 +196,7 @@ function HomeContent() {
     { icon: Globe2, value: "50+", labelKey: "stats.countries" as TKey },
     { icon: Handshake, value: "27+", labelKey: "stats.transactions" as TKey },
     { icon: Briefcase, value: "12+", labelKey: "stats.partners" as TKey },
-    { icon: TrendingUp, value: "200k+", labelKey: "stats.volume" as TKey },
+    { icon: TrendingUp, value: "97M+", labelKey: "stats.volume" as TKey },
   ];
 
   const COMMODITIES: { titleKey: TKey; img: string; itemKeys: TKey[] }[] = [
@@ -432,7 +432,7 @@ function HomeContent() {
             {/* KPI grid */}
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: t("dash.totalVolume"), value: "200k+", delta: "+18.2%" },
+                { label: t("dash.totalVolume"), value: "97M+", delta: "+18.2%" },
                 { label: t("dash.activeTx"), value: "27+", delta: "+14.7%" },
                 { label: t("dash.globalPartners"), value: "12+", delta: "+21.3%" },
                 { label: t("dash.marketsAccess"), value: "50+", delta: "+10.5%" },
