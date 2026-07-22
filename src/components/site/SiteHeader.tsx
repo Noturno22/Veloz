@@ -33,11 +33,12 @@ export function SiteHeader() {
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 border-b ${
-        scrolled ? "navbar-glass-scrolled border-white/10" : "navbar-glass border-transparent"
-      }`}
-    >
+    <header className="sticky top-0 z-50">
+      <div
+        className={`border-b ${
+          scrolled ? "navbar-glass-scrolled border-white/10" : "navbar-glass border-transparent"
+        }`}
+      >
       <div className="container-x flex h-24 items-center justify-between gap-4">
         <Link to="/" aria-label="Veloz home" className="flex items-center shrink-0">
           <Logo />
@@ -100,6 +101,7 @@ export function SiteHeader() {
           </nav>
         </div>
       )}
+      </div>
     </header>
   );
 }
