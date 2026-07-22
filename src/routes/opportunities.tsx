@@ -7,6 +7,7 @@ import { Search, MapPin, Package, ArrowRight, X, Building2, ShieldCheck, Phone, 
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
 import { useState } from "react";
+import { RevealOnScroll } from "@/components/RevealOnScroll";
 
 export const Route = createFileRoute("/opportunities")({
   head: () => ({
@@ -125,7 +126,8 @@ function Opportunities() {
         ) : filtered.map((d) => {
           const isOpen = expandedId === d.id;
           return (
-            <article key={d.id} className={`flex flex-col rounded-2xl border bg-white dark:bg-card shadow-card transition-all duration-300 ${isOpen ? "border-gold/40 shadow-elegant col-span-full md:col-span-2 lg:col-span-3" : "border-border hover-lift"}`}>
+            <RevealOnScroll key={d.id}>
+              <article className={`flex flex-col rounded-2xl border bg-white dark:bg-card shadow-card transition-all duration-300 ${isOpen ? "border-gold/40 shadow-elegant col-span-full md:col-span-2 lg:col-span-3" : "border-border hover-lift"}`}>
               <div className={`p-6 ${isOpen ? "pb-4" : ""}`}>
                 <div className="flex items-center justify-between">
                   <span className={`text-xs font-semibold uppercase tracking-wider rounded-full px-2.5 py-1 ${CAT_COLORS[d.cat]}`}>{t(d.catKey)}</span>
@@ -190,6 +192,7 @@ function Opportunities() {
                 </div>
               )}
             </article>
+            </RevealOnScroll>
           );
         })}
       </section>

@@ -7,6 +7,7 @@ import industrialImg from "@/assets/commodity-industrial.jpg";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
 import { useState } from "react";
+import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { ArrowRight, Globe2, Handshake, TrendingUp, BarChart3 } from "lucide-react";
 
 export const Route = createFileRoute("/commodities")({
@@ -85,24 +86,26 @@ function Commodities() {
 
       {/* ====== Top Stats Strip ====== */}
       <section className="container-x -mt-6 mb-8">
-        <div className="rounded-2xl bg-card border border-border shadow-card p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            { icon: Globe2, value: "103", label: t("commPage.statMarkets") },
-            { icon: Handshake, value: "50+", label: t("commPage.statDeals") },
-            { icon: TrendingUp, value: "300.5k+", label: t("commPage.statVolume") },
-            { icon: BarChart3, value: "18", label: t("commPage.statCommodities") },
-          ].map((s) => (
-            <div key={s.label} className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-xl bg-gold-soft text-gold grid place-items-center shrink-0">
-                <s.icon className="h-5 w-5" />
+        <RevealOnScroll>
+          <div className="rounded-2xl bg-card border border-border shadow-card p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { icon: Globe2, value: "103", label: t("commPage.statMarkets") },
+              { icon: Handshake, value: "50+", label: t("commPage.statDeals") },
+              { icon: TrendingUp, value: "300.5k+", label: t("commPage.statVolume") },
+              { icon: BarChart3, value: "18", label: t("commPage.statCommodities") },
+            ].map((s) => (
+              <div key={s.label} className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-xl bg-gold-soft text-gold grid place-items-center shrink-0">
+                  <s.icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="font-display text-xl text-[color:var(--navy)] dark:text-foreground">{s.value}</div>
+                  <div className="text-[11px] text-muted-foreground">{s.label}</div>
+                </div>
               </div>
-              <div>
-                <div className="font-display text-xl text-[color:var(--navy)] dark:text-foreground">{s.value}</div>
-                <div className="text-[11px] text-muted-foreground">{s.label}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </RevealOnScroll>
       </section>
 
       {/* ====== Sticky Tab Navigation ====== */}
@@ -128,49 +131,51 @@ function Commodities() {
         {GROUPS.filter((g) => !activeTab || g.id === activeTab).map((g, i) => {
           const cc = CAT_COLORS[g.id === "agri" ? "emerald" : g.id === "min" ? "amber" : g.id === "ene" ? "orange" : "slate"];
           return (
-            <div key={g.id} className={`rounded-3xl ${cc.bg} border ${cc.border} overflow-hidden shadow-card`}>
-              <div className="grid lg:grid-cols-2">
-                {/* Image */}
-                <div className={`relative overflow-hidden h-64 lg:h-full min-h-[300px] ${i % 2 ? "lg:order-2" : ""}`}>
-                  <img src={g.img} alt={t(g.titleKey)} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-                  <div className="absolute bottom-4 left-4">
-                    <span className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full ${cc.text} bg-white/90 dark:bg-black/50 backdrop-blur-sm`}>
-                      {t("commPage.category")} {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-8 lg:p-10 flex flex-col justify-center">
-                  <h2 className="font-display text-3xl md:text-4xl font-bold text-[color:var(--navy)] dark:text-foreground">
-                    {t(g.titleKey)}
-                  </h2>
-                  <p className="mt-3 text-muted-foreground">{t(g.descKey)}</p>
-
-                  {/* Tags */}
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {g.itemKeys.map((itk) => (
-                      <Link
-                        key={itk}
-                        to="/opportunities"
-                        className={`rounded-full border ${cc.tag} px-4 py-1.5 text-sm font-medium text-foreground/80`}
-                      >
-                        {t(itk)}
-                      </Link>
-                    ))}
+            <RevealOnScroll key={g.id}>
+              <div className={`rounded-3xl ${cc.bg} border ${cc.border} overflow-hidden shadow-card`}>
+                <div className="grid lg:grid-cols-2">
+                  {/* Image */}
+                  <div className={`relative overflow-hidden h-64 lg:h-full min-h-[300px] ${i % 2 ? "lg:order-2" : ""}`}>
+                    <img src={g.img} alt={t(g.titleKey)} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+                    <div className="absolute bottom-4 left-4">
+                      <span className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full ${cc.text} bg-white/90 dark:bg-black/50 backdrop-blur-sm`}>
+                        {t("commPage.category")} {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </div>
                   </div>
 
-                  {/* CTA */}
-                  <Link
-                    to="/opportunities"
-                    className="mt-6 inline-flex items-center gap-2 self-start rounded-xl bg-gold px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[var(--gold-foreground)] hover:brightness-110 shadow-gold"
-                  >
-                    {t("common.exploreOpportunities")} <ArrowRight className="h-4 w-4" />
-                  </Link>
+                  {/* Content */}
+                  <div className="p-8 lg:p-10 flex flex-col justify-center">
+                    <h2 className="font-display text-3xl md:text-4xl font-bold text-[color:var(--navy)] dark:text-foreground">
+                      {t(g.titleKey)}
+                    </h2>
+                    <p className="mt-3 text-muted-foreground">{t(g.descKey)}</p>
+
+                    {/* Tags */}
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {g.itemKeys.map((itk) => (
+                        <Link
+                          key={itk}
+                          to="/opportunities"
+                          className={`rounded-full border ${cc.tag} px-4 py-1.5 text-sm font-medium text-foreground/80`}
+                        >
+                          {t(itk)}
+                        </Link>
+                      ))}
+                    </div>
+
+                    {/* CTA */}
+                    <Link
+                      to="/opportunities"
+                      className="mt-6 inline-flex items-center gap-2 self-start rounded-xl bg-gold px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[var(--gold-foreground)] hover:brightness-110 shadow-gold"
+                    >
+                      {t("common.exploreOpportunities")} <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
+            </RevealOnScroll>
           );
         })}
       </section>

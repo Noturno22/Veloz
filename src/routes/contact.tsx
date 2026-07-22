@@ -4,6 +4,7 @@ import { Mail, Phone, MapPin, Globe2, ArrowRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import type { TKey } from "@/lib/translations";
 import { useState } from "react";
+import { RevealOnScroll } from "@/components/RevealOnScroll";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -65,44 +66,48 @@ function Contact() {
         imageFolder="Contacto"
       />
       <section className="container-x py-16 grid lg:grid-cols-[1fr_1.5fr] gap-10">
-        <div className="space-y-4">
-          {CONTACTS.map((c) => (
-            <div key={c.labelKey} className="flex items-start gap-4 rounded-2xl border border-border bg-white p-5 shadow-card">
-              <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-gold text-[color:var(--gold-foreground)] shadow-gold">
-                <c.icon className="h-5 w-5" />
+        <RevealOnScroll>
+          <div className="space-y-4">
+            {CONTACTS.map((c) => (
+              <div key={c.labelKey} className="flex items-start gap-4 rounded-2xl border border-border bg-white p-5 shadow-card">
+                <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-gold text-[color:var(--gold-foreground)] shadow-gold">
+                  <c.icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="text-xs uppercase tracking-wider text-muted-foreground">{t(c.labelKey)}</div>
+                  <div className="font-display text-lg font-semibold text-[color:var(--navy)]">{c.value}</div>
+                </div>
               </div>
-              <div>
-                <div className="text-xs uppercase tracking-wider text-muted-foreground">{t(c.labelKey)}</div>
-                <div className="font-display text-lg font-semibold text-[color:var(--navy)]">{c.value}</div>
-              </div>
+            ))}
+            <div className="overflow-hidden rounded-2xl border border-border shadow-card">
+              <iframe
+                title="Veloz — London, UK"
+                src="https://www.google.com/maps?q=128+City+Road,+London,+EC1V+2NX,+UK&output=embed"
+                className="h-72 w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
-          ))}
-          <div className="overflow-hidden rounded-2xl border border-border shadow-card">
-            <iframe
-              title="Veloz — London, UK"
-              src="https://www.google.com/maps?q=128+City+Road,+London,+EC1V+2NX,+UK&output=embed"
-              className="h-72 w-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
           </div>
-        </div>
+        </RevealOnScroll>
 
-        <form onSubmit={buildMailTo} noValidate className="rounded-2xl border border-border bg-white p-8 shadow-card">
-          <h2 className="font-display text-3xl font-bold text-[color:var(--navy)]">{t("contact.formTitle")}</h2>
-          <p className="mt-2 text-sm text-muted-foreground">{t("contact.formSubtitle")}</p>
-          <div className="mt-6 space-y-4">
-            <Field label={t("form.fullName")} name="fullName" />
-            <Field label={t("form.emailShort")} name="email" type="email" />
-            <Field label={t("form.tellUsTrade")} name="message" textarea />
-          </div>
-          <button type="submit" className="mt-6 group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-gold px-5 py-4 text-base font-semibold text-[color:var(--gold-foreground)] shadow-gold">
-            {t("contact.formSend")} <ArrowRight className="h-5 w-5" />
-          </button>
-          {sent && (
-            <p className="mt-4 text-sm text-emerald-600 text-center">Email opened in your default mail client. Please send it to complete.</p>
-          )}
-        </form>
+        <RevealOnScroll>
+          <form onSubmit={buildMailTo} noValidate className="rounded-2xl border border-border bg-white p-8 shadow-card">
+            <h2 className="font-display text-3xl font-bold text-[color:var(--navy)]">{t("contact.formTitle")}</h2>
+            <p className="mt-2 text-sm text-muted-foreground">{t("contact.formSubtitle")}</p>
+            <div className="mt-6 space-y-4">
+              <Field label={t("form.fullName")} name="fullName" />
+              <Field label={t("form.emailShort")} name="email" type="email" />
+              <Field label={t("form.tellUsTrade")} name="message" textarea />
+            </div>
+            <button type="submit" className="mt-6 group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-gold px-5 py-4 text-base font-semibold text-[color:var(--gold-foreground)] shadow-gold">
+              {t("contact.formSend")} <ArrowRight className="h-5 w-5" />
+            </button>
+            {sent && (
+              <p className="mt-4 text-sm text-emerald-600 text-center">Email opened in your default mail client. Please send it to complete.</p>
+            )}
+          </form>
+        </RevealOnScroll>
       </section>
     </>
   );

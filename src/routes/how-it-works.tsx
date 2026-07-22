@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { PageHero } from "@/components/site/PageHero";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { RevealOnScroll } from "@/components/RevealOnScroll";
 import {
   ArrowRight, ShieldCheck, Globe2, Briefcase, Lightbulb, HandCoins, Truck,
   UserPlus, FileCheck, Handshake, Users, TrendingUp, HeartHandshake,
@@ -47,31 +48,6 @@ const TRUST: { icon: typeof CheckCircle; titleKey: TKey; descKey: TKey }[] = [
   { icon: ShieldCheck, titleKey: "how.trust.secure", descKey: "how.trust.secureDesc" },
   { icon: Sparkles, titleKey: "how.trust.support", descKey: "how.trust.supportDesc" },
 ];
-
-function RevealOnScroll({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold: 0.15 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
 
 function HowItWorks() {
   const { t } = useI18n();

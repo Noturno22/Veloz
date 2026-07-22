@@ -26,6 +26,7 @@ import type { TKey } from "@/lib/translations";
 import { FooterBackground } from "@/components/site/SiteFooter";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { RevealOnScroll } from "@/components/RevealOnScroll";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -325,51 +326,57 @@ function HomeContent() {
       {/* JOURNEY STEPS */}
       <section className="py-20 bg-muted/40">
         <div className="container-x">
-          <h2 className="font-display text-3xl md:text-4xl text-[color:var(--navy)] dark:text-foreground mb-12">
-            {t("steps.title")}
-          </h2>
+          <RevealOnScroll>
+            <h2 className="font-display text-3xl md:text-4xl text-[color:var(--navy)] dark:text-foreground mb-12">
+              {t("steps.title")}
+            </h2>
+          </RevealOnScroll>
           <div className="grid md:grid-cols-3 gap-6 items-stretch">
             {STEPS.map((s, i) => (
-              <div key={s.n} className="relative flex">
-                <div className="flex-1 group bg-card border border-border rounded-xl p-6 flex items-start gap-5 hover-lift">
-                  <div className="h-12 w-12 rounded-full border border-gold/40 text-gold grid place-items-center font-display text-xl shrink-0 group-hover:bg-gold group-hover:text-[color:var(--gold-foreground)]">
-                    {s.n}
+              <RevealOnScroll key={s.n}>
+                <div className="relative flex">
+                  <div className="flex-1 group bg-card border border-border rounded-xl p-6 flex items-start gap-5 hover-lift">
+                    <div className="h-12 w-12 rounded-full border border-gold/40 text-gold grid place-items-center font-display text-xl shrink-0 group-hover:bg-gold group-hover:text-[color:var(--gold-foreground)]">
+                      {s.n}
+                    </div>
+                    <div>
+                      <s.icon className="h-6 w-6 text-gold mb-3" />
+                      <h3 className="font-display text-lg text-[color:var(--navy)] dark:text-foreground">
+                        {t(s.titleKey)}
+                      </h3>
+                      <p className="mt-2 text-sm text-foreground/60 leading-relaxed">
+                        {t(s.textKey)}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <s.icon className="h-6 w-6 text-gold mb-3" />
-                    <h3 className="font-display text-lg text-[color:var(--navy)] dark:text-foreground">
-                      {t(s.titleKey)}
-                    </h3>
-                    <p className="mt-2 text-sm text-foreground/60 leading-relaxed">
-                      {t(s.textKey)}
-                    </p>
-                  </div>
+                  {i < STEPS.length - 1 && (
+                    <div className="hidden md:flex items-center px-3 text-gold">
+                      <ArrowRight className="h-5 w-5" />
+                    </div>
+                  )}
                 </div>
-                {i < STEPS.length - 1 && (
-                  <div className="hidden md:flex items-center px-3 text-gold">
-                    <ArrowRight className="h-5 w-5" />
-                  </div>
-                )}
-              </div>
+              </RevealOnScroll>
             ))}
           </div>
 
           {/* STATS ROW */}
-          <div className="mt-10 rounded-2xl bg-card border border-border p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 shadow-card">
-            {STATS.map((s) => (
-              <div key={s.labelKey} className="flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full bg-gold-soft text-gold grid place-items-center shrink-0">
-                  <s.icon className="h-5 w-5" />
-                </div>
-                <div>
-                  <div className="font-display text-2xl md:text-3xl text-[color:var(--navy)] dark:text-foreground">
-                    {s.value}
+          <RevealOnScroll>
+            <div className="mt-10 rounded-2xl bg-card border border-border p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 shadow-card">
+              {STATS.map((s) => (
+                <div key={s.labelKey} className="flex items-center gap-4">
+                  <div className="h-12 w-12 rounded-full bg-gold-soft text-gold grid place-items-center shrink-0">
+                    <s.icon className="h-5 w-5" />
                   </div>
-                  <div className="text-xs text-foreground/55">{t(s.labelKey)}</div>
+                  <div>
+                    <div className="font-display text-2xl md:text-3xl text-[color:var(--navy)] dark:text-foreground">
+                      {s.value}
+                    </div>
+                    <div className="text-xs text-foreground/55">{t(s.labelKey)}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </RevealOnScroll>
         </div>
       </section>
 
@@ -378,56 +385,61 @@ function HomeContent() {
         <div className="container-x grid lg:grid-cols-2 gap-12">
           {/* Commodities cards */}
           <div>
-            <h2 className="font-display text-3xl md:text-4xl text-[color:var(--navy)] dark:text-foreground mb-8">
-              {t("dash.exploreTitle")}
-            </h2>
+            <RevealOnScroll>
+              <h2 className="font-display text-3xl md:text-4xl text-[color:var(--navy)] dark:text-foreground mb-8">
+                {t("dash.exploreTitle")}
+              </h2>
+            </RevealOnScroll>
             <div className="grid sm:grid-cols-2 gap-5">
               {COMMODITIES.map((c) => (
-                <Link
-                  to="/commodities"
-                  key={c.titleKey}
-                  className="group block rounded-2xl bg-card border border-border overflow-hidden hover-lift"
-                >
-                  <div className="relative h-40 overflow-hidden">
-                    <img
-                      src={c.img}
-                      alt={t(c.titleKey)}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-display text-lg text-[color:var(--navy)] dark:text-foreground mb-3">
-                      {t(c.titleKey)}
-                    </h3>
-                    <ul className="space-y-1.5 text-sm text-foreground/70">
-                      {c.itemKeys.map((itk) => (
-                        <li key={itk} className="flex items-center gap-2">
-                          <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-                          {t(itk)}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-4 flex justify-end">
-                      <span className="h-8 w-8 rounded-full bg-gold text-[color:var(--gold-foreground)] grid place-items-center group-hover:translate-x-1 transition-transform">
-                        <ArrowRight className="h-4 w-4" />
-                      </span>
+                <RevealOnScroll key={c.titleKey}>
+                  <Link
+                    to="/commodities"
+                    className="group block rounded-2xl bg-card border border-border overflow-hidden hover-lift"
+                  >
+                    <div className="relative h-40 overflow-hidden">
+                      <img
+                        src={c.img}
+                        alt={t(c.titleKey)}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
                     </div>
-                  </div>
-                </Link>
+                    <div className="p-5">
+                      <h3 className="font-display text-lg text-[color:var(--navy)] dark:text-foreground mb-3">
+                        {t(c.titleKey)}
+                      </h3>
+                      <ul className="space-y-1.5 text-sm text-foreground/70">
+                        {c.itemKeys.map((itk) => (
+                          <li key={itk} className="flex items-center gap-2">
+                            <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                            {t(itk)}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-4 flex justify-end">
+                        <span className="h-8 w-8 rounded-full bg-gold text-[color:var(--gold-foreground)] grid place-items-center group-hover:translate-x-1 transition-transform">
+                          <ArrowRight className="h-4 w-4" />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </RevealOnScroll>
               ))}
             </div>
           </div>
 
           {/* Dashboard mock */}
           <div className="space-y-5">
-            <div>
-              <h2 className="font-display text-3xl md:text-4xl text-[color:var(--navy)] dark:text-foreground">
-                {t("home.dashTitle")}
-              </h2>
-              <p className="text-sm text-foreground/60 mt-1">{t("home.dashSubtitle")}</p>
-            </div>
+            <RevealOnScroll>
+              <div>
+                <h2 className="font-display text-3xl md:text-4xl text-[color:var(--navy)] dark:text-foreground">
+                  {t("home.dashTitle")}
+                </h2>
+                <p className="text-sm text-foreground/60 mt-1">{t("home.dashSubtitle")}</p>
+              </div>
+            </RevealOnScroll>
 
             {/* KPI grid */}
             <div className="grid grid-cols-2 gap-3">
