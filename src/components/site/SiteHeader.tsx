@@ -33,7 +33,7 @@ export function SiteHeader() {
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header className="sticky top-0 z-50">
+    <header className="fixed top-0 left-0 right-0 z-50">
       <div
         className={`border-b ${
           scrolled ? "navbar-glass-scrolled border-white/10" : "navbar-glass border-transparent"

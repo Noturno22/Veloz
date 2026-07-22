@@ -126,7 +126,7 @@ function RootComponent() {
       <I18nProvider>
         <div className="flex min-h-screen flex-col bg-background text-foreground">
           <SiteHeader />
-          <main className="flex-1">
+          <main className="flex-1 pt-24">
             <Outlet />
           </main>
           <SiteFooter />
