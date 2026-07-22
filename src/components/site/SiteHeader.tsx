@@ -33,12 +33,13 @@ export function SiteHeader() {
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
-      <div
-        className={`border-b ${
-          scrolled ? "navbar-glass-scrolled border-white/10" : "navbar-glass border-transparent"
-        }`}
-      >
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 border-b ${
+        scrolled
+          ? "border-white/10 bg-[color:var(--background)]/90 backdrop-blur-md"
+          : "border-transparent bg-[color:var(--background)]/40 backdrop-blur-sm"
+      }`}
+    >
       <div className="container-x flex h-24 items-center justify-between gap-4">
         <Link to="/" aria-label="Veloz home" className="flex items-center shrink-0">
           <Logo />
@@ -52,7 +53,7 @@ export function SiteHeader() {
                 key={item.to}
                 to={item.to}
                 aria-current={active ? "page" : undefined}
-                className={`nav-link-glass relative whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.18em] ${
+                className={`relative whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.18em] ${
                   active ? "text-gold" : "text-foreground/70 hover:text-gold"
                 }`}
               >
@@ -73,7 +74,7 @@ export function SiteHeader() {
           <ThemeToggle />
           <button
             aria-label={t("common.openMenu")}
-            className="hamburger-glass p-2 -mr-2 text-foreground"
+            className="p-2 -mr-2 rounded-md hover:bg-muted text-foreground"
             onClick={() => setOpen((v) => !v)}
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -82,7 +83,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="lg:hidden mobile-nav-glass rounded-b-2xl">
+        <div className="lg:hidden border-t border-white/10 bg-[color:var(--background)]/95 backdrop-blur">
           <nav className="container-x py-4 flex flex-col gap-1">
             {NAV.map((item) => {
               const active = pathname === item.to;
@@ -91,7 +92,7 @@ export function SiteHeader() {
                   key={item.to}
                   to={item.to}
                   aria-current={active ? "page" : undefined}
-                  className={`mobile-link-glass px-3 py-2.5 text-xs font-bold uppercase tracking-[0.25em] ${active ? "text-gold" : "text-foreground/80"}`}
+                  className={`rounded-md px-3 py-2.5 text-xs font-bold uppercase tracking-[0.25em] hover:bg-white/5 ${active ? "text-gold" : "text-foreground/80"}`}
                 >
                   {t(item.key)}
                 </Link>
@@ -101,7 +102,6 @@ export function SiteHeader() {
           </nav>
         </div>
       )}
-      </div>
     </header>
   );
 }
