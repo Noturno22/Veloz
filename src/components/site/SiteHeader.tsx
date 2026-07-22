@@ -34,8 +34,8 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-50 ${
-        scrolled ? "navbar-glass-scrolled" : "navbar-glass"
+      className={`sticky top-0 z-50 border-b ${
+        scrolled ? "navbar-glass-scrolled border-white/10" : "navbar-glass border-transparent"
       }`}
     >
       <div className="container-x flex h-24 items-center justify-between gap-4">
