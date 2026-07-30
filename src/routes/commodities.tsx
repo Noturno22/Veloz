@@ -51,10 +51,10 @@ function Commodities() {
   const [activeTab, setActiveTab] = useState("");
 
   const GROUPS: Group[] = [
-    { id: "agri", titleKey: "commPage.agri.title", descKey: "commPage.agri.desc", img: agriImg, itemKeys: ["comm.item.coffee", "comm.item.soybeans", "comm.item.corn", "comm.item.rice", "comm.item.cocoa", "comm.item.sugar"], stats: [
-      { icon: BarChart3, label: "Volume", value: "US$ 840M+" },
-      { icon: Handshake, label: "Active Deals", value: "340+" },
-      { icon: Globe2, label: "Markets", value: "28" },
+    { id: "agri", titleKey: "commPage.agri.title", descKey: "commPage.agri.desc", img: agriImg, itemKeys: ["comm.item.coffee", "comm.item.soybeans", "comm.item.wheat", "comm.item.corn", "comm.item.rice", "comm.item.cocoa", "comm.item.sugar", "comm.item.cotton", "comm.item.palmOil", "comm.item.ethanol", "comm.item.cattle"], stats: [
+      { icon: BarChart3, label: "Volume", value: "US$ 2.1B+" },
+      { icon: Handshake, label: "Active Deals", value: "680+" },
+      { icon: Globe2, label: "Markets", value: "42" },
     ]},
     { id: "min", titleKey: "commPage.min.title", descKey: "commPage.min.desc", img: mineralsImg, itemKeys: ["comm.item.copper", "comm.item.ironOre", "comm.item.manganese", "comm.item.bauxite"], stats: [
       { icon: BarChart3, label: "Volume", value: "US$ 620M+" },
