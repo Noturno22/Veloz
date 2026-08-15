@@ -86,6 +86,7 @@ export const Route = createRootRoute({
       { title: "Veloz — Global Commodity Trading Made Simple" },
       { name: "description", content: "Veloz connects producers, suppliers, exporters, importers and investors through secure and efficient global commodity trading." },
       { name: "author", content: "Veloz" },
+      { name: "google-site-verification", content: "zuklgSgdKe1tUanwOyC7CrkFV_Sv2euUvJVoHkuFOlU" },
       { property: "og:site_name", content: "Veloz" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
